@@ -37,6 +37,7 @@ public class RecallItem {
 		this.receivedate = receivedate;
 	}
 	public List<String> getImages() {
+		images = (images == null) ? new ArrayList<String>() : images;
 		return images;
 	}
 	public void setImages(List<String> images) {

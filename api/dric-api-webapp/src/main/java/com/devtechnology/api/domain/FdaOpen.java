@@ -1,0 +1,31 @@
+package com.devtechnology.api.domain;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class FdaOpen {
+	private List<String> product_ndc;
+	private List<String> brand_name;
+	private List<String> generic_name;
+	public List<String> getProduct_ndc() {
+		product_ndc = (product_ndc == null) ? new ArrayList<String>() : product_ndc;
+		return product_ndc;
+	}
+	public void setProduct_ndc(List<String> product_ndc) {
+		this.product_ndc = product_ndc;
+	}
+	public List<String> getBrand_name() {
+		brand_name = (brand_name == null) ? new ArrayList<String>() : brand_name;
+		return brand_name;
+	}
+	public void setBrand_name(List<String> brand_name) {
+		this.brand_name = brand_name;
+	}
+	public List<String> getGeneric_name() {
+		generic_name = (generic_name == null) ? new ArrayList<String>() : generic_name;
+		return generic_name;
+	}
+	public void setGeneric_name(List<String> generic_name) {
+		this.generic_name = generic_name;
+	}
+}
