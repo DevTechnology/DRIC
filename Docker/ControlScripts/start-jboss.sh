@@ -8,7 +8,6 @@ function getPropertyFromFile()
 # substitute "." with "\." so that we can use it as sed expression
 fileName=$2;
 cat $fileName | sed -n -e "s/^[ ]*//g;/^#/d;s/^$1=//p" | tail -1
-echo "bob"
 }
 
 #API Key File
