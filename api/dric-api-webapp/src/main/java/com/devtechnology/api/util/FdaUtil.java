@@ -1,6 +1,8 @@
 package com.devtechnology.api.util;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,11 +18,26 @@ import com.google.gson.Gson;
 public class FdaUtil {
 	private static Logger logger = Logger.getLogger(FdaUtil.class);
 	private String baseUrl = "https://api.fda.gov/drug/enforcement.json?";
+	private static Integer limit = 10;
 	// TODO get the openFdaApiKey and add to URL
 	public RecallResponse getRecentRecalls() {
-		String criteria = "search=report_date:[20140601+TO+20150618]&limit=10";
+		String today = getTodayYYYYMMDD();
+		String lastMonth = getLastMonthYYYYMMDD();
+		String criteria = "search=report_date:["+lastMonth+"+TO+"+today+"]&limit="+limit;
+		String apiKey = getApiKey();
 		HttpOperations ops = new HttpOperations();
-		String httpResultStr = ops.getFromUrl(baseUrl+criteria);
+		String httpResultStr = ops.getFromUrl(baseUrl+criteria+apiKey);
+		FdaResponse fdaResponse = new Gson().fromJson(httpResultStr, FdaResponse.class);
+		logger.info(new Gson().toJson(fdaResponse));
+		RecallResponse result = mapResponse(fdaResponse);
+		return result;
+	}
+	public RecallResponse getRecalls(String name) {
+		String searchValue = name.replaceAll(" ", "+");
+		String criteria = "search="+searchValue+"&limit="+limit;
+		String apiKey = getApiKey();
+		HttpOperations ops = new HttpOperations();
+		String httpResultStr = ops.getFromUrl(baseUrl+criteria+apiKey);
 		FdaResponse fdaResponse = new Gson().fromJson(httpResultStr, FdaResponse.class);
 		logger.info(new Gson().toJson(fdaResponse));
 		RecallResponse result = mapResponse(fdaResponse);
@@ -86,5 +103,27 @@ public class FdaUtil {
 //		ndcImage.setUrl(rxImageUtil.getNdcUrl(ndc));
 //		return ndcImage;
 //	}
-
+	private String getTodayYYYYMMDD() {
+		Calendar c = Calendar.getInstance();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+		String s = formatter.format(c.getTime());
+		return s;
+	}
+	private String getLastMonthYYYYMMDD() {
+		Calendar c = Calendar.getInstance();
+		c.add(Calendar.MONTH, -1);
+		c.set(Calendar.DATE, 1);
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+		String s = formatter.format(c.getTime());
+		return s;
+	}
+	
+	private String getApiKey() {
+		String key = System.getProperty("openFdaApiKey");
+		String s = "";
+		if (key != null) {
+			s = "&api_key="+key;
+		}
+		return s;
+	}
 }
