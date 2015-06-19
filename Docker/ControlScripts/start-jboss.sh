@@ -5,7 +5,7 @@
 # @param fileName
 function getPropertyFromFile()
 {
-# substitute “.” with “\.” so that we can use it as sed expression
+# substitute "." with "\." so that we can use it as sed expression
 propertyName="echo $1 | sed -e 's/\./\\\./g'"
 fileName=$2;
 cat $fileName | sed -n -e "s/^[ ]*//g;/^#/d;s/^$propertyName=//p" | tail -1
