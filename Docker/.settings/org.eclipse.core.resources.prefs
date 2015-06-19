@@ -1,0 +1,7 @@
+eclipse.preferences.version=1
+encoding//ControlScripts/build-dric-container.sh=UTF-8
+encoding//ControlScripts/start-jboss.sh=UTF-8
+encoding//ControlScripts/stop-jboss.sh=UTF-8
+encoding//ControlScripts/update-control-scripts.sh=UTF-8
+encoding/dockerfile=UTF-8
+encoding/dockerfile.debug=UTF-8
