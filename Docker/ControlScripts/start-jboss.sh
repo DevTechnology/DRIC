@@ -6,9 +6,9 @@
 function getPropertyFromFile()
 {
 # substitute "." with "\." so that we can use it as sed expression
-propertyName="echo $1 | sed -e 's/\./\\\./g'"
 fileName=$2;
-cat $fileName | sed -n -e "s/^[ ]*//g;/^#/d;s/^$propertyName=//p" | tail -1
+cat $fileName | sed -n -e "s/^[ ]*//g;/^#/d;s/^$1=//p" | tail -1
+echo "bob"
 }
 
 #API Key File
@@ -17,7 +17,7 @@ file="apikey.properties"
 #Read the API keys if they exist, due to time not iterative but declared
 if [ -f "$file" ]
 then
-	fdaapikey='getPropertyFromFile openfda $file'
+	fdaapikey=$(getPropertyFromFile openfda $file)
 fi
 
 #Broken in Docker 1.6.0, need 1.6.2 binary
@@ -34,7 +34,7 @@ sudo docker rename dric dric_$current_time
 # docker compile time and stored in a secured GIT instance), but due to time this will suffice.
 if [ -f "$file" ]
 then
-sudo docker run -d -p 8080:8080 -p 9990:9990 --name dric dtg/dric /opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0 -DopenFdaApiKey=$fdaapikey
+echo sudo docker run -d -p 8080:8080 -p 9990:9990 --name dric dtg/dric /opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0 -DopenFdaApiKey=$fdaapikey
 else
 sudo docker run -d -p 8080:8080 -p 9990:9990 --name dric dtg/dric
 fi
