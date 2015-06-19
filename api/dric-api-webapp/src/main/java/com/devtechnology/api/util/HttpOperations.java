@@ -60,7 +60,7 @@ public class HttpOperations implements HttpOps {
 			};
 			result = httpclient.execute(httpget, responseHandler);
 		} catch (Exception e) {
-			logger.error("Failed using url="+url, e);
+			logger.error("Failed using url="+url+" due to "+e.getMessage());
 		} finally {
 			if (httpclient != null) {
 				try {
