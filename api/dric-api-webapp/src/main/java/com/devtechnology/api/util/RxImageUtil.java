@@ -17,6 +17,12 @@ import com.google.gson.Gson;
 public class RxImageUtil {
 	private static Logger logger = Logger.getLogger(RxImageUtil.class);
 	private String baseUrl = "http://rximage.nlm.nih.gov/api/rximage/1/rxnav?";
+	
+	/**
+	 * NdcImage object with the image URL results matching the given 'ndc' value
+	 * @param ndc
+	 * @return
+	 */
 	public NdcImage getNdcUrl(String ndc) {
 		NdcImage ndcImage = new NdcImage();
 		ndcImage.setNdc(ndc);

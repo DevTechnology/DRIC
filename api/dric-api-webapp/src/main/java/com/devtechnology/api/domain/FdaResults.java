@@ -1,7 +1,11 @@
 package com.devtechnology.api.domain;
 
+/**
+ * POJO representing FDA JSON object
+ * @author jbnimble
+ *
+ */
 public class FdaResults {
-	
 	private String recall_number;
 	private String reason_for_recall;
 	private String status;

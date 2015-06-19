@@ -1,6 +1,10 @@
 package com.devtechnology.api.domain;
 
-public class RxImageResult {
+/**
+ * POJO representing RxImage JSON object
+ * @author jbnimble
+ *
+ */public class RxImageResult {
 	private Long id;
 	private String ndc11;
 	private Long rxcui;

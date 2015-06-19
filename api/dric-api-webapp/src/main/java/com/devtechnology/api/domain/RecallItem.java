@@ -3,13 +3,11 @@ package com.devtechnology.api.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 /**
- * Domain object representing a set of recall data
+ * POJO representing DRIC response object
  * @author jbnimble
+ *
  */
-@XmlRootElement
 public class RecallItem {
 	private String recall_number;
 	private String reason_for_recall;

@@ -1,6 +1,10 @@
 package com.devtechnology.api.domain;
 
-public class RxImageStatus {
+/**
+ * POJO representing RxImage JSON object
+ * @author jbnimble
+ *
+ */public class RxImageStatus {
 	private Boolean success;
 	private String date;
 	private Integer imageCount;

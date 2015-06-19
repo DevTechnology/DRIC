@@ -42,7 +42,7 @@ public class DricApi {
 	}
 	
 	/**
-	 * Get the recall details for the given key
+	 * Get the image URL data for a given NDC
 	 * @param key
 	 * @return
 	 */

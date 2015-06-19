@@ -3,6 +3,14 @@ package com.devtechnology.api.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+/**
+ * POJO representing DRIC response object
+ * @author jbnimble
+ *
+ */
+@XmlRootElement
 public class RecallResponse {
 	private FdaMeta meta;
 	private List<RecallItem> recalls;
