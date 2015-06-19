@@ -22,10 +22,10 @@ public class DricApi {
 	
 	/**
 	 * Get the latest recall data, or recalls that match the given drug name
-	 * Usage: /dric-api/webapp/dric/drug/recall
-	 * Usage: /dric-api/webapp/dric/drug/recall?name={value}
-	 * Usage: /dric-api/webapp/dric/drug/recall?limit={value}&skip={value}
-	 * Usage: /dric-api/webapp/dric/drug/recall?name={value}&limit={value}&skip={value}
+	 * Usage: /dric/api/drug/recall
+	 * Usage: /dric/api/drug/recall?name={value}
+	 * Usage: /dric/api/drug/recall?limit={value}&skip={value}
+	 * Usage: /dric/api/drug/recall?name={value}&limit={value}&skip={value}
 	 * @param drugName
 	 * @return
 	 */
@@ -47,7 +47,7 @@ public class DricApi {
 	
 	/**
 	 * Get the image URL data for a given NDC
-	 * Usage: /dric-api/webapp/dric/drug/image/{ndc}
+	 * Usage: /dric/api/drug/image/{ndc}
 	 * @param ndc
 	 * @return
 	 */
