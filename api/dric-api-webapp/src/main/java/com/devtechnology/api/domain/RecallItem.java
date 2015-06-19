@@ -30,7 +30,7 @@ public class RecallItem {
 	private String code_info;
 	private String initial_firm_notification;
 	private List<String> product;
-	private List<NdcImage> images;
+	private List<String> product_ndc;
 	
 	public String getRecall_number() {
 		return recall_number;
@@ -147,11 +147,11 @@ public class RecallItem {
 	public void setProduct(List<String> product) {
 		this.product = product;
 	}
-	public List<NdcImage> getImages() {
-		images = (images == null) ? new ArrayList<NdcImage>() : images;
-		return images;
+	public List<String> getProduct_ndc() {
+		product_ndc = (product_ndc == null) ? new ArrayList<String>() : product_ndc;
+		return product_ndc;
 	}
-	public void setImages(List<NdcImage> images) {
-		this.images = images;
+	public void setProduct_ndc(List<String> product_ndc) {
+		this.product_ndc = product_ndc;
 	}
 }
