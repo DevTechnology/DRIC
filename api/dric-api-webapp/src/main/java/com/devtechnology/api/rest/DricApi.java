@@ -26,15 +26,15 @@ public class DricApi {
 	@GET
 	@Path("/drugrecall")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getDrugRecallListing(@QueryParam("name") String drugName) {
+	public Response getDrugRecallListing(@QueryParam("name") String name) {
 		Response response = Response.ok().build();
-		if (drugName == null) {
-			FdaUtil fda = new FdaUtil();
+		FdaUtil fda = new FdaUtil();
+		if (name == null || name.trim().equals("") || name.trim().equals("undefined")) {
 			RecallResponse result = fda.getRecentRecalls();
 			response = Response.ok(result).build();
 		} else {
-			// find recalls that match drug name
-			// return results
+			RecallResponse result = fda.getRecalls(name);
+			response = Response.ok(result).build();
 		}
 		return response;
 	}
