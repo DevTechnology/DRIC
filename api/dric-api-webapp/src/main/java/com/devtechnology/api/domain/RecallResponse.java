@@ -3,14 +3,17 @@ package com.devtechnology.api.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
- * POJO representing FDA JSON object
+ * POJO representing DRIC response object
  * @author jbnimble
  *
  */
-public class FdaResponse {
+@XmlRootElement
+public class RecallResponse {
 	private FdaMeta meta;
-	private List<FdaResults> results;
+	private List<RecallItem> recalls;
 	private FdaError error;
 	
 	public FdaMeta getMeta() {
@@ -19,12 +22,12 @@ public class FdaResponse {
 	public void setMeta(FdaMeta meta) {
 		this.meta = meta;
 	}
-	public List<FdaResults> getResults() {
-		results = (results == null) ? new ArrayList<FdaResults>() : results;
-		return results;
+	public List<RecallItem> getRecalls() {
+		recalls = (recalls == null) ? new ArrayList<RecallItem>() : recalls;
+		return recalls;
 	}
-	public void setResults(List<FdaResults> results) {
-		this.results = results;
+	public void setRecalls(List<RecallItem> recalls) {
+		this.recalls = recalls;
 	}
 	public FdaError getError() {
 		return error;

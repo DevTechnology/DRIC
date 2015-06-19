@@ -1,5 +1,10 @@
 package com.devtechnology.api.domain;
 
+/**
+ * POJO representing FDA JSON object
+ * @author jbnimble
+ *
+ */
 public class FdaMetaResults {
 	private Integer skip;
 	private Integer limit;

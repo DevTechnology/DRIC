@@ -3,10 +3,17 @@ package com.devtechnology.api.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * POJO representing FDA JSON object
+ * @author jbnimble
+ *
+ */
 public class FdaOpen {
 	private List<String> product_ndc;
 	private List<String> brand_name;
 	private List<String> generic_name;
+	private List<String> substance_name;
+	
 	public List<String> getProduct_ndc() {
 		product_ndc = (product_ndc == null) ? new ArrayList<String>() : product_ndc;
 		return product_ndc;
@@ -27,5 +34,12 @@ public class FdaOpen {
 	}
 	public void setGeneric_name(List<String> generic_name) {
 		this.generic_name = generic_name;
+	}
+	public List<String> getSubstance_name() {
+		substance_name = (substance_name == null) ? new ArrayList<String>() : substance_name;
+		return substance_name;
+	}
+	public void setSubstance_name(List<String> substance_name) {
+		this.substance_name = substance_name;
 	}
 }
