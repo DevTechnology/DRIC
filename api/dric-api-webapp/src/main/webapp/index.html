@@ -1,8 +1,86 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <title>Drug Recall Information Center</title>
+
+  <!-- Use min once things are more or less working -->
+  <link href="frameworks/bootstrap-3.3.5-dist/css/bootstrap.css" rel="stylesheet">
+  <link rel="stylesheet" href="/frameworks/font-awesome-4.3.0/css/font-awesome.css">
+  <link href="css/style.css" rel="stylesheet">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
 </head>
-<body>
-<h1>Hello World!</h1>
+
+<body class="devBackgroundE">
+
+  <div class="container-fluid">
+  	<div class="header clearfix">
+		<nav class="navbar navbar-default" role="navigation">
+	        	<div class="navbar-header">
+				<a class="navbar-brand" href="/">Drug Recall Information Center</a>
+				<button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+
+		        </div> <!-- NavBar Header -->
+
+		        <div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav">
+				  <li class="active"><a href="/">Search</a></li>
+				  <li><a href="#">Drug Recalls</a></li>
+				</ul>
+			</div> <!-- NavBar Menus -->
+	    </nav> <!-- NavBar -->
+	</div> <!-- header clearfix -->
+
+	<div id="subHeader" class="container-fluid">
+		<div class="row text-left">
+			<div class="col-xs-6 col-md-4 text-left">
+				<img src="img/DEV-Logo_light_background.jpg" class="img-responsive">
+			</div>
+			<div class="col-xs-6 col-md-4 text-left">
+				<form class="form-horizontal">
+					<div class="form-group form-group-lg">
+						<div class="col-sm-10 text-left">
+							<button class="btn btn-default" for="formGroupInputLarge" type="submit">Search</button>
+							<input class="form-control" type="text" id="formGroupInputLarge" placeholder="Search">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid" id="mainContent">
+	</div>
+  </div> <!-- Main DIV -->
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery-1.11.3.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="frameworks/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="frameworks/bootstrap-3.3.5-dist/js/ie10-viewport-bug-workaround.js"></script>
+
+<script>
+$(document).on('click','.navbar-collapse.in',function(e) {
+    if( $(e.target).is('a') && ( $(e.target).attr('class') != 'dropdown-toggle' ) ) {
+            $(this).collapse('hide');
+    }
+});
+  
 </body>
 </html>
+

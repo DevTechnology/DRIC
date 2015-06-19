@@ -5,10 +5,9 @@
 # @param fileName
 function getPropertyFromFile()
 {
-# substitute “.” with “\.” so that we can use it as sed expression
-propertyName="echo $1 | sed -e 's/\./\\\./g'"
+# substitute "." with "\." so that we can use it as sed expression
 fileName=$2;
-cat $fileName | sed -n -e "s/^[ ]*//g;/^#/d;s/^$propertyName=//p" | tail -1
+cat $fileName | sed -n -e "s/^[ ]*//g;/^#/d;s/^$1=//p" | tail -1
 }
 
 #API Key File
@@ -17,7 +16,7 @@ file="apikey.properties"
 #Read the API keys if they exist, due to time not iterative but declared
 if [ -f "$file" ]
 then
-	fdaapikey='getPropertyFromFile openfda $file'
+	fdaapikey=$(getPropertyFromFile openfda $file)
 fi
 
 #Broken in Docker 1.6.0, need 1.6.2 binary
