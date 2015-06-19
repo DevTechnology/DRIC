@@ -12,6 +12,8 @@ import com.google.gson.Gson;
 
 /**
  * Utility methods for getting data from RxImage API
+ * Reference: http://rximage.nlm.nih.gov/docs/doku.php
+ * Reference: http://rximage.nlm.nih.gov/docs/doku.php?id=imageretrieval:examples:request_by_ndc
  * @author jbnimble
  */
 public class RxImageUtil {

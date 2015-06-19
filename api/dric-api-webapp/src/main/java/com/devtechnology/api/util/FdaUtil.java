@@ -18,6 +18,8 @@ import com.google.gson.Gson;
 
 /**
  * Utility methods for getting data from Open FDA Enforcement API
+ * Reference: https://open.fda.gov/api/reference/
+ * Reference: https://open.fda.gov/drug/enforcement/
  * @author jbnimble
  */
 public class FdaUtil {
