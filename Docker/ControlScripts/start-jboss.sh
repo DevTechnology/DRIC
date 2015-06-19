@@ -34,7 +34,7 @@ sudo docker rename dric dric_$current_time
 # docker compile time and stored in a secured GIT instance), but due to time this will suffice.
 if [ -f "$file" ]
 then
-echo sudo docker run -d -p 8080:8080 -p 9990:9990 --name dric dtg/dric /opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0 -DopenFdaApiKey=$fdaapikey
+sudo docker run -d -p 8080:8080 -p 9990:9990 --name dric dtg/dric /opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0 -DopenFdaApiKey=$fdaapikey
 else
 sudo docker run -d -p 8080:8080 -p 9990:9990 --name dric dtg/dric
 fi
