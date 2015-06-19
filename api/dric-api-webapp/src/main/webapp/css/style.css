@@ -1,3 +1,299 @@
-.mystyle {
+html, body {
+  height: 100%;
+}
+
+#mainContent {
+  min-height: 100%;
+}
+
+#main {
+  overflow:auto;
+  padding-bottom:150px; /* this needs to be bigger than footer height*/
+}
+
+.footer {
+  position: relative;
+  margin-top: -150px; /* negative value of footer height */
+  height: 150px;
+  clear:both;
+  padding-top:20px;
+} 
+
+
+
+*{
+	font-family: 'Economica', sans-serif;
+	font-weight:400;
+}
+video#bgvid {
+position: fixed;
+top: 50%;
+left: 50%;
+min-width: 100%;
+min-height: 100%;
+width: auto;
+height: auto;
+z-index: -100;
+-webkit-transform: translateX(-50%) translateY(-50%);
+transform: translateX(-50%) translateY(-50%);
+background: url(beach.jpg) no-repeat;
+background-size: cover;
+}
+
+.container{
+	margin-top: 20px;
+}
+h1{
+	font-size: 200%;
+	margin-top: 0;
+}
+h2{
+	font-size:125%;
+	font-style: italic;
+	margin-top: 10px;
+}
+.title{
+}
+
+@media (min-width: 768px) {
+    .navbar .navbar-nav {
+        display: inline-block;
+        float: none;
+        vertical-align: top;
+    }
+
+    .navbar .navbar-collapse {
+        text-align: center;
+    }
+}
+
+.navbar .navbar-default{
+	background: none;
+	border:none;
+	z-index: 1001;
+}
+
+.navbar .divider-vertical {
+height: 30px;
+margin: 10px 15px;
+border-right: 1px solid #337ab7;
+border-left: 1px solid #337ab7;
+}
+
+.navbar-inverse .divider-vertical {
+border-right-color: #222222;
+border-left-color: #111111;
+}
+
+@media (max-width: 768px) {
+.navbar-collapse .nav > .divider-vertical {
+    display: none;
+  }
+}
+.navbar-nav{
+	font-size: 125%;
+}
+
+.dropdown-backdrop {
+  display: none;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+}
+.footer-text{
+	text-align: center;
+	font-size:110%;
+}
+.fa-chevron-left,
+.fa-chevron-right{
+	position:absolute;top:50%;z-index:5;display:inline-block;
+}
+.logo{
+  max-height: 90px;
+  margin: auto;
+}
+/*
+.navbar-default{
+  background-color: #91beed;
+}*/
+
+@media (min-width: 768px) {
+  .navbar-default{
+    /*background-color: transparent;
+    border-color: transparent;*/
+}
+}
+
+@media(max-width:768px)  {
+
+    .navbar-collapse.collapse {
+        display: none !important;
+    }
+
+    .navbar-collapse {
+        overflow-x: visible !important;
+    }
+
+    .navbar-collapse.in {
+      overflow-y: auto !important;
+    }
+
+    .collapse.in {
+      display: block !important;
+    }
 
 }
+
+.navbar ul.nav li a {
+    z-index: 1005;
+} 
+
+.fa{
+  font-size: 32px;
+}
+
+/*==================================================
+=            Bootstrap 3 Media Queries             =
+==================================================*/
+
+/*==========  Mobile First Method  ==========*/
+
+/* Custom, iPhone Retina */ 
+@media only screen and (min-width : 320px) {
+    
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (min-width : 480px) {
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+
+}
+
+
+/*==========  Non-Mobile First Method  ==========*/
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (max-width : 480px) {
+
+}
+
+/* Custom, iPhone Retina */ 
+@media only screen and (max-width : 320px) {
+        
+}
+
+.infoDiv {
+	background-color: rgba(245, 245, 245, 0.4);
+}
+
+.carousel-caption {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.pole-content-holder > #pole-heading {
+    z-index: 1001;
+}
+
+.dropdown-mvbar
+enu {
+	z-index: 1200;
+}
+
+
+
+
+/**********************************************************/
+
+.devBackgroundA {
+	background-color: #8592c3;
+}
+
+.devBackgroundB {
+	background-color: #bcbcbe;
+}
+
+.devBackgroundC {
+	background-color: #dddedf;
+}
+
+.devBackgroundD {
+	background-color: #b57575;
+}
+
+.devBackgroundE {
+	background-color: white;
+}
+
+.devBackground18F {
+	background-color: #829fbd;
+
+}
+
+.accentOrange {
+	background-color: #b89781;
+}
+
+.accentPink {
+	background-color: #c38798;
+}
+
+.fontColor {
+	color: black;
+}
+
+.font {
+	font-family: Arial, sans-serif, Helvetica;
+}
+
+.bodyText {
+	font-family: Arial, sans-serif, Helvetica;
+}
+
+.formText {
+	font-size: 12pt;
+	font-weight: bold; 
+}
+
+.headingText {
+	font-size: 16pt;
+	font-weight: bold;
+}
+
+.navbar-brand {
+	color: blue;	
+}
+
