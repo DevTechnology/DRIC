@@ -3,6 +3,11 @@ package com.devtechnology.api.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * POJO representing FDA JSON object
+ * @author jbnimble
+ *
+ */
 public class FdaResponse {
 	private FdaMeta meta;
 	private List<FdaResults> results;

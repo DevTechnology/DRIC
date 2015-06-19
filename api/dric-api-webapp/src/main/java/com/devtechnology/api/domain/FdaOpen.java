@@ -3,6 +3,11 @@ package com.devtechnology.api.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * POJO representing FDA JSON object
+ * @author jbnimble
+ *
+ */
 public class FdaOpen {
 	private List<String> product_ndc;
 	private List<String> brand_name;

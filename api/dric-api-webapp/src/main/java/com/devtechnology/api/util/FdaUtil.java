@@ -15,11 +15,19 @@ import com.devtechnology.api.domain.RecallItem;
 import com.devtechnology.api.domain.RecallResponse;
 import com.google.gson.Gson;
 
+/**
+ * Utility methods for getting data from Open FDA Enforcement API
+ * @author jbnimble
+ */
 public class FdaUtil {
 	private static Logger logger = Logger.getLogger(FdaUtil.class);
 	private String baseUrl = "https://api.fda.gov/drug/enforcement.json?";
 	private static Integer limit = 10;
-	// TODO get the openFdaApiKey and add to URL
+	// TODO paginate results
+	/**
+	 * RecallResponse object with the recent recall results
+	 * @return
+	 */
 	public RecallResponse getRecentRecalls() {
 		String today = getTodayYYYYMMDD();
 		String lastMonth = getLastMonthYYYYMMDD();
@@ -32,6 +40,12 @@ public class FdaUtil {
 		RecallResponse result = mapResponse(fdaResponse);
 		return result;
 	}
+	
+	/**
+	 * RecallResponse object with the recall results matching the given 'name' value
+	 * @param name
+	 * @return
+	 */
 	public RecallResponse getRecalls(String name) {
 		String searchValue = name.replaceAll(" ", "+");
 		String criteria = "search="+searchValue+"&limit="+limit;
@@ -44,6 +58,11 @@ public class FdaUtil {
 		return result;
 	}
 	
+	/**
+	 * Map an FdaResponse to a RecallResponse
+	 * @param fdaResponse
+	 * @return
+	 */
 	private RecallResponse mapResponse(FdaResponse fdaResponse) {
 		RecallResponse result = new RecallResponse();
 		if (fdaResponse != null) {
@@ -79,13 +98,8 @@ public class FdaUtil {
 						productSet.addAll(fdaResult.getOpenfda().getBrand_name());
 						productSet.addAll(fdaResult.getOpenfda().getSubstance_name());
 						ndcSet.addAll(fdaResult.getOpenfda().getProduct_ndc());
+						item.getProduct_ndc().addAll(ndcSet);
 					}
-					// loop through all ndc values, and attempt to get a URL to an image
-//					for (String ndc : ndcSet) {
-//						if (ndc != null) {
-//							item.getImages().add(getNdcUrl(ndc));
-//						}
-//					}
 				}
 				item.getProduct().addAll(productSet);
 				list.add(item);
@@ -95,20 +109,21 @@ public class FdaUtil {
 		return result;
 	}
 	
-//	private NdcImage getNdcUrl(String ndc) {
-//		NdcImage ndcImage = new NdcImage();
-//		ndcImage.setNdc(ndc);
-//		// call service, urlEncode the URL value
-//		RxImageUtil rxImageUtil = new RxImageUtil();
-//		ndcImage.setUrl(rxImageUtil.getNdcUrl(ndc));
-//		return ndcImage;
-//	}
+	/**
+	 * Get the String representation needed for a date range from Open FDA for the value of today
+	 * @return yyyyMMdd formatted value for today
+	 */
 	private String getTodayYYYYMMDD() {
 		Calendar c = Calendar.getInstance();
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
 		String s = formatter.format(c.getTime());
 		return s;
 	}
+	
+	/**
+	 * Get the String representation needed for a date range from Open FDA for the value of the first day of last month
+	 * @return yyyyMMdd formatted value for the first day of last month
+	 */
 	private String getLastMonthYYYYMMDD() {
 		Calendar c = Calendar.getInstance();
 		c.add(Calendar.MONTH, -1);
@@ -118,11 +133,16 @@ public class FdaUtil {
 		return s;
 	}
 	
+	/**
+	 * Get the system property, if set, of the Open FDA API key. property name is 'openFdaApiKey'
+	 * @return URL parameter to add the FDA API key to the criteria
+	 */
 	private String getApiKey() {
 		String key = System.getProperty("openFdaApiKey");
 		String s = "";
 		if (key != null) {
 			s = "&api_key="+key;
+			logger.info("Using openFdaApiKey="+key);
 		}
 		return s;
 	}

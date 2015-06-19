@@ -1,5 +1,10 @@
 package com.devtechnology.api.domain;
 
+/**
+ * POJO representing FDA JSON object
+ * @author jbnimble
+ *
+ */
 public class FdaError {
 	private String code;
 	private String message;

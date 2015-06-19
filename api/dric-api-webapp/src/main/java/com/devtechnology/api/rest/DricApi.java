@@ -8,14 +8,16 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.devtechnology.api.domain.NdcImage;
 import com.devtechnology.api.domain.RecallResponse;
 import com.devtechnology.api.util.FdaUtil;
+import com.devtechnology.api.util.RxImageUtil;
 
 /**
  * API for Drug Recall Information Center (DRIC)
  * @author jbnimble
  */
-@Path("/api")
+@Path("/drug")
 public class DricApi {
 	
 	/**
@@ -24,7 +26,7 @@ public class DricApi {
 	 * @return
 	 */
 	@GET
-	@Path("/drugrecall")
+	@Path("/recall")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getDrugRecallListing(@QueryParam("name") String name) {
 		Response response = Response.ok().build();
@@ -40,15 +42,17 @@ public class DricApi {
 	}
 	
 	/**
-	 * Get the recall details for the given key
+	 * Get the image URL data for a given NDC
 	 * @param key
 	 * @return
 	 */
 	@GET
-	@Path("/drugrecall/{key}")
+	@Path("/image/{ndc}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getDrugRecallDetails(@PathParam("key") String key) {
+	public Response getDrugImage(@PathParam("ndc") String ndc) {
 		// find the recall from the key and return
-		return Response.ok().build();
+		RxImageUtil rxImage = new RxImageUtil();
+		NdcImage ndcImage = rxImage.getNdcUrl(ndc);
+		return Response.ok(ndcImage).build();
 	}
 }

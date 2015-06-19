@@ -1,6 +1,10 @@
 package com.devtechnology.api.domain;
 
-public class RxImageTerms {
+/**
+ * POJO representing RxImage JSON object
+ * @author jbnimble
+ *
+ */public class RxImageTerms {
 	private String ndc;
 	private String rxcui;
 	public String getNdc() {
