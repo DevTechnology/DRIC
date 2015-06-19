@@ -25,47 +25,49 @@
   	<div class="header clearfix">
 		<nav class="navbar navbar-default" role="navigation">
 	        	<div class="navbar-header">
-				<a class="navbar-brand" href="/">Drug Recall Information Center</a>
+				<a class="navbar-brand" title="Drug Recall Information Center" href="/">Drug Recall Information Center</a>
+				<!--	
 				<button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target=".navbar-ex1-collapse">
 					<span class="sr-only">Toggle navigation</span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
+				-->
 
 		        </div> <!-- NavBar Header -->
-
+			<!--
 		        <div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav">
 				  <li class="active"><a href="/">Search</a></li>
 				  <li><a href="#">Drug Recalls</a></li>
 				</ul>
-			</div> <!-- NavBar Menus -->
+			</div> --><!-- NavBar Menus -->
 	    </nav> <!-- NavBar -->
 	</div> <!-- header clearfix -->
 
 	<div id="subHeader" class="container-fluid">
-		<div class="row text-left">
-			<div class="col-xs-6 col-md-4 text-left">
-				<img src="img/DEV-Logo_light_background.jpg" class="img-responsive">
+		<form class="form-inline">
+			<div class="form-group form-group-lg">
+				<label for="drugSrchForm" title="Drug Recall Searcher">Drug Recall Searcher:</label>
+				<input class="form-control" type="text" title="Drug Search Input Field" id="drugSrchForm">
+				<button class="btn btn-default" for="formGroupInputLarge" type="submit" title="Search Drug Recall Database Action Button">Search</button>
+
 			</div>
-			<div class="col-xs-6 col-md-4 text-left">
-				<form class="form-horizontal">
-					<div class="form-group form-group-lg">
-						<div class="col-sm-10 text-left">
-							<button class="btn btn-default" for="formGroupInputLarge" type="submit">Search</button>
-							<input class="form-control" type="text" id="formGroupInputLarge" placeholder="Search">
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
+		</form>
 	</div>
 
 	<div class="container-fluid" id="mainContent">
 	</div>
+
+
   </div> <!-- Main DIV -->
 
+  <div id="footer">
+	<div class="navbar navbar-inner navbar-fixed-bottom">
+		<p class="muted credit"><center>&copy 2015 Dev Technology Group, All rights reserved</center></p>
+	</div>
+  </div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery-1.11.3.min.js"></script>
