@@ -27,7 +27,8 @@ public class FdaUtil {
 	private String baseUrl = "https://api.fda.gov/drug/enforcement.json?";
 	private static Integer defaultLimit = 10;
 	private static Integer defaultSkip = 0;
-	// TODO paginate results
+	private HttpOps httpOps;
+	
 	/**
 	 * RecallResponse object with the recent recall results
 	 * @return
@@ -37,8 +38,7 @@ public class FdaUtil {
 		String lastMonth = getLastMonthYYYYMMDD();
 		String criteria = "search=report_date:["+lastMonth+"+TO+"+today+"]"+getLimit(limit)+getSkip(skip);
 		String apiKey = getApiKey();
-		HttpOperations ops = new HttpOperations();
-		FdaResponse fdaResponse = ops.getMappedFromUlr(baseUrl+criteria+apiKey, FdaResponse.class);
+		FdaResponse fdaResponse = httpOps.getMappedFromUlr(baseUrl+criteria+apiKey, FdaResponse.class);
 		if (fdaResponse == null) {
 			fdaResponse = getError();
 		}
@@ -53,12 +53,16 @@ public class FdaUtil {
 	 * @return
 	 */
 	public RecallResponse getRecalls(String name, Integer limit, Integer skip) {
-		String searchValue = name.replaceAll(" ", "+");
+		String searchValue = "";
+		if (name != null) {
+			searchValue = name.replaceAll(" ", "+");
+		}
 		String criteria = "search="+searchValue+getLimit(limit)+getSkip(skip);
 		String apiKey = getApiKey();
-		HttpOperations ops = new HttpOperations();
-		FdaResponse fdaResponse = ops.getMappedFromUlr(baseUrl+criteria+apiKey, FdaResponse.class);
+		String url = baseUrl+criteria+apiKey;
+		FdaResponse fdaResponse = httpOps.getMappedFromUlr(url, FdaResponse.class);
 		if (fdaResponse == null) {
+			logger.warn("Failed to load data using url="+url);
 			fdaResponse = getError();
 		}
 		logger.info(new Gson().toJson(fdaResponse));
@@ -71,7 +75,7 @@ public class FdaUtil {
 	 * @param fdaResponse
 	 * @return
 	 */
-	private RecallResponse mapResponse(FdaResponse fdaResponse) {
+	public RecallResponse mapResponse(FdaResponse fdaResponse) {
 		RecallResponse result = new RecallResponse();
 		if (fdaResponse != null) {
 			result.setMeta(fdaResponse.getMeta());
@@ -173,5 +177,9 @@ public class FdaUtil {
 		error.setMessage("Failed to get data from Open FDA");
 		fdaResponse.setError(error);
 		return fdaResponse;
+	}
+	
+	public void setHttpOperations(HttpOps httpOps) {
+		this.httpOps = httpOps;
 	}
 }
