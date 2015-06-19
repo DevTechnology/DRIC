@@ -1,5 +1,6 @@
 Install Docker (https://docs.docker.com/installation/)
 Download the Control Scripts at: https://github.com/DevTechnology/DRIC/tree/master/Docker/ControlScripts
+curl -O URL frrom github --> Dont make the mistake of not using raw files 
 Place in a directory on target machine (normally just ~)
 Make sure all scripts are 755 for permissions (chmod 755 *.sh)
 Execute ./build-dric-container.sh , this will download the dockerfile and run the build command.
