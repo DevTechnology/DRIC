@@ -22,7 +22,7 @@
 <body class="devBackgroundE">
 
   <div class="container-fluid">
-  	<div class="header clearfix">
+  	<!--<div class="header clearfix">-->
 		<nav class="navbar navbar-default" role="navigation">
 	        	<div class="navbar-header">
 				<a class="navbar-brand" title="Drug Recall Information Center" href="/">Drug Recall Information Center</a>
@@ -43,20 +43,31 @@
 				  <li><a href="#">Drug Recalls</a></li>
 				</ul>
 			</div> --><!-- NavBar Menus -->
-	    </nav> <!-- NavBar -->
-	</div> <!-- header clearfix -->
+		<div id="subHeader" class="container-fluid text-center bg-success" style="padding:5px;">
+			<form class="form-inline">
+				<div class="form-group">
+					<label for="drugSrchForm" title="Drug Recall Searcher">Drug Recall Searcher:</label>
+					<input class="form-control" type="text" title="Drug Search Input Field" id="drugSrchForm">
+					<button class="btn btn-default btn-primary" for="formGroupInputLarge" type="submit" title="Search Drug Recall Database Action Button">Search</button>
 
-	<div id="subHeader" class="container-fluid">
+				</div>
+			</form>
+		</div>
+	    </nav> <!-- NavBar -->
+	<!--</div>--> <!-- header clearfix -->
+
+<!--
+	<div id="subHeader" class="container-fluid text-center bg-success" style="padding:5px;">
 		<form class="form-inline">
-			<div class="form-group form-group-lg">
+			<div class="form-group">
 				<label for="drugSrchForm" title="Drug Recall Searcher">Drug Recall Searcher:</label>
 				<input class="form-control" type="text" title="Drug Search Input Field" id="drugSrchForm">
-				<button class="btn btn-default" for="formGroupInputLarge" type="submit" title="Search Drug Recall Database Action Button">Search</button>
+				<button class="btn btn-default btn-primary" for="formGroupInputLarge" type="submit" title="Search Drug Recall Database Action Button">Search</button>
 
 			</div>
 		</form>
 	</div>
-
+-->
 	<div class="container-fluid" id="mainContent">
 	</div>
 
