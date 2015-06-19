@@ -29,8 +29,11 @@ public class RxImageUtil {
 		List<String> urls = new ArrayList<String>();
 		String criteria = "ndc="+ndc;
 		HttpOperations ops = new HttpOperations();
-		String httpResultStr = ops.getFromUrl(baseUrl+criteria);
-		RxImageResponse rxImageResponse = new Gson().fromJson(httpResultStr, RxImageResponse.class);
+		String url = baseUrl+criteria;
+		RxImageResponse rxImageResponse = ops.getMappedFromUlr(url, RxImageResponse.class);
+		if (rxImageResponse == null) {
+			logger.warn("Failed to load data using url="+baseUrl+criteria);
+		}
 		logger.info(new Gson().toJson(rxImageResponse));
 		if (rxImageResponse != null && !rxImageResponse.getNlmRxImages().isEmpty()) {
 			for (RxImageResult image : rxImageResponse.getNlmRxImages()) {

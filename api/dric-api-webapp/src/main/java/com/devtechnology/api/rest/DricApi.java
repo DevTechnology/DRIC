@@ -22,20 +22,24 @@ public class DricApi {
 	
 	/**
 	 * Get the latest recall data, or recalls that match the given drug name
+	 * Usage: /dric-api/webapp/dric/drug/recall
+	 * Usage: /dric-api/webapp/dric/drug/recall?name={value}
+	 * Usage: /dric-api/webapp/dric/drug/recall?limit={value}&skip={value}
+	 * Usage: /dric-api/webapp/dric/drug/recall?name={value}&limit={value}&skip={value}
 	 * @param drugName
 	 * @return
 	 */
 	@GET
 	@Path("/recall")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getDrugRecallListing(@QueryParam("name") String name) {
+	public Response getDrugRecallListing(@QueryParam("name") String name, @QueryParam("limit") Integer limit, @QueryParam("skip") Integer skip) {
 		Response response = Response.ok().build();
 		FdaUtil fda = new FdaUtil();
 		if (name == null || name.trim().equals("") || name.trim().equals("undefined")) {
-			RecallResponse result = fda.getRecentRecalls();
+			RecallResponse result = fda.getRecentRecalls(limit, skip);
 			response = Response.ok(result).build();
 		} else {
-			RecallResponse result = fda.getRecalls(name);
+			RecallResponse result = fda.getRecalls(name, limit, skip);
 			response = Response.ok(result).build();
 		}
 		return response;
@@ -43,7 +47,8 @@ public class DricApi {
 	
 	/**
 	 * Get the image URL data for a given NDC
-	 * @param key
+	 * Usage: /dric-api/webapp/dric/drug/image/{ndc}
+	 * @param ndc
 	 * @return
 	 */
 	@GET

@@ -9,6 +9,7 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 
+import com.devtechnology.api.domain.FdaError;
 import com.devtechnology.api.domain.FdaResponse;
 import com.devtechnology.api.domain.FdaResults;
 import com.devtechnology.api.domain.RecallItem;
@@ -22,20 +23,23 @@ import com.google.gson.Gson;
 public class FdaUtil {
 	private static Logger logger = Logger.getLogger(FdaUtil.class);
 	private String baseUrl = "https://api.fda.gov/drug/enforcement.json?";
-	private static Integer limit = 10;
+	private static Integer defaultLimit = 10;
+	private static Integer defaultSkip = 0;
 	// TODO paginate results
 	/**
 	 * RecallResponse object with the recent recall results
 	 * @return
 	 */
-	public RecallResponse getRecentRecalls() {
+	public RecallResponse getRecentRecalls(Integer limit, Integer skip) {
 		String today = getTodayYYYYMMDD();
 		String lastMonth = getLastMonthYYYYMMDD();
-		String criteria = "search=report_date:["+lastMonth+"+TO+"+today+"]&limit="+limit;
+		String criteria = "search=report_date:["+lastMonth+"+TO+"+today+"]"+getLimit(limit)+getSkip(skip);
 		String apiKey = getApiKey();
 		HttpOperations ops = new HttpOperations();
-		String httpResultStr = ops.getFromUrl(baseUrl+criteria+apiKey);
-		FdaResponse fdaResponse = new Gson().fromJson(httpResultStr, FdaResponse.class);
+		FdaResponse fdaResponse = ops.getMappedFromUlr(baseUrl+criteria+apiKey, FdaResponse.class);
+		if (fdaResponse == null) {
+			fdaResponse = getError();
+		}
 		logger.info(new Gson().toJson(fdaResponse));
 		RecallResponse result = mapResponse(fdaResponse);
 		return result;
@@ -46,13 +50,15 @@ public class FdaUtil {
 	 * @param name
 	 * @return
 	 */
-	public RecallResponse getRecalls(String name) {
+	public RecallResponse getRecalls(String name, Integer limit, Integer skip) {
 		String searchValue = name.replaceAll(" ", "+");
-		String criteria = "search="+searchValue+"&limit="+limit;
+		String criteria = "search="+searchValue+getLimit(limit)+getSkip(skip);
 		String apiKey = getApiKey();
 		HttpOperations ops = new HttpOperations();
-		String httpResultStr = ops.getFromUrl(baseUrl+criteria+apiKey);
-		FdaResponse fdaResponse = new Gson().fromJson(httpResultStr, FdaResponse.class);
+		FdaResponse fdaResponse = ops.getMappedFromUlr(baseUrl+criteria+apiKey, FdaResponse.class);
+		if (fdaResponse == null) {
+			fdaResponse = getError();
+		}
 		logger.info(new Gson().toJson(fdaResponse));
 		RecallResponse result = mapResponse(fdaResponse);
 		return result;
@@ -145,5 +151,25 @@ public class FdaUtil {
 			logger.info("Using openFdaApiKey="+key);
 		}
 		return s;
+	}
+	private String getLimit(Integer limit) {
+		if (limit == null || limit < 1) {
+			limit = defaultLimit;
+		}
+		return "&limit="+limit;
+	}
+	private String getSkip(Integer skip) {
+		if (skip == null || skip < 0) {
+			skip = defaultSkip;
+		}
+		return "&skip="+skip.toString();
+	}
+	private FdaResponse getError() {
+		FdaResponse fdaResponse = new FdaResponse();
+		FdaError error = new FdaError();
+		error.setCode("externalFailure");
+		error.setMessage("Failed to get data from Open FDA");
+		fdaResponse.setError(error);
+		return fdaResponse;
 	}
 }

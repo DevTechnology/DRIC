@@ -12,7 +12,6 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
 
-import com.devtechnology.api.domain.FdaResponse;
 import com.google.gson.Gson;
 
 /**
