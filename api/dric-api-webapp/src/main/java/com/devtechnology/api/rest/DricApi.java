@@ -11,6 +11,7 @@ import javax.ws.rs.core.Response;
 import com.devtechnology.api.domain.NdcImage;
 import com.devtechnology.api.domain.RecallResponse;
 import com.devtechnology.api.util.FdaUtil;
+import com.devtechnology.api.util.HttpOperations;
 import com.devtechnology.api.util.RxImageUtil;
 
 /**
@@ -35,6 +36,7 @@ public class DricApi {
 	public Response getDrugRecallListing(@QueryParam("name") String name, @QueryParam("limit") Integer limit, @QueryParam("skip") Integer skip) {
 		Response response = Response.ok().build();
 		FdaUtil fda = new FdaUtil();
+		fda.setHttpOperations(new HttpOperations());
 		if (name == null || name.trim().equals("") || name.trim().equals("undefined")) {
 			RecallResponse result = fda.getRecentRecalls(limit, skip);
 			response = Response.ok(result).build();
@@ -57,6 +59,7 @@ public class DricApi {
 	public Response getDrugImage(@PathParam("ndc") String ndc) {
 		// find the recall from the key and return
 		RxImageUtil rxImage = new RxImageUtil();
+		rxImage.setHttpOperations(new HttpOperations());
 		NdcImage ndcImage = rxImage.getNdcUrl(ndc);
 		return Response.ok(ndcImage).build();
 	}

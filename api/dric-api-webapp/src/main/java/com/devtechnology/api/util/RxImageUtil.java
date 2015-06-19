@@ -1,7 +1,9 @@
 package com.devtechnology.api.util;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 
@@ -19,6 +21,7 @@ import com.google.gson.Gson;
 public class RxImageUtil {
 	private static Logger logger = Logger.getLogger(RxImageUtil.class);
 	private String baseUrl = "http://rximage.nlm.nih.gov/api/rximage/1/rxnav?";
+	private HttpOps httpOps;
 	
 	/**
 	 * NdcImage object with the image URL results matching the given 'ndc' value
@@ -26,25 +29,33 @@ public class RxImageUtil {
 	 * @return
 	 */
 	public NdcImage getNdcUrl(String ndc) {
+		String criteria = "ndc="+ndc;
+		String url = baseUrl+criteria;
+		RxImageResponse rxImageResponse = httpOps.getMappedFromUlr(url, RxImageResponse.class);
+		if (rxImageResponse == null) {
+			logger.warn("Failed to load data using url="+url);
+		}
+		NdcImage ndcImage = mapResponse(ndc, rxImageResponse);
+		return ndcImage;
+	}
+	
+	public NdcImage mapResponse(String ndc, RxImageResponse rxImageResponse) {
 		NdcImage ndcImage = new NdcImage();
 		ndcImage.setNdc(ndc);
-		List<String> urls = new ArrayList<String>();
-		String criteria = "ndc="+ndc;
-		HttpOperations ops = new HttpOperations();
-		String url = baseUrl+criteria;
-		RxImageResponse rxImageResponse = ops.getMappedFromUlr(url, RxImageResponse.class);
-		if (rxImageResponse == null) {
-			logger.warn("Failed to load data using url="+baseUrl+criteria);
-		}
 		logger.info(new Gson().toJson(rxImageResponse));
 		if (rxImageResponse != null && !rxImageResponse.getNlmRxImages().isEmpty()) {
+			Set<String> urls = new HashSet<String>();
 			for (RxImageResult image : rxImageResponse.getNlmRxImages()) {
 				if (image != null && image.getImageUrl() != null) {
 					urls.add(image.getImageUrl());
 				}
 			}
+			ndcImage.getUrl().addAll(urls);
 		}
-		ndcImage.getUrl().addAll(urls);
 		return ndcImage;
+	}
+	
+	public void setHttpOperations(HttpOps HttpOps) {
+		this.httpOps = HttpOps;
 	}
 }

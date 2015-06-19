@@ -19,9 +19,10 @@ import com.google.gson.Gson;
  * @author jbnimble
  *
  */
-public class HttpOperations {
+public class HttpOperations implements HttpOps {
 	Logger logger = Logger.getLogger(HttpOperations.class);
 	
+	@Override
 	public <V> V getMappedFromUlr(String url, Class<V> type) {
 		V result = null;
 		try {
@@ -38,6 +39,7 @@ public class HttpOperations {
 	 * @param url
 	 * @return
 	 */
+	@Override
 	public String getFromUrl(String url) {
 		String result = null;
 		CloseableHttpClient httpclient = HttpClients.createDefault();
