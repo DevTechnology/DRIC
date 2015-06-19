@@ -37,6 +37,7 @@ public class DricApi {
 		Response response = Response.ok().build();
 		FdaUtil fda = new FdaUtil();
 		fda.setHttpOperations(new HttpOperations());
+		// decide if a valid 'name' value is passed and give default values or filtered
 		if (name == null || name.trim().equals("") || name.trim().equals("undefined")) {
 			RecallResponse result = fda.getRecentRecalls(limit, skip);
 			response = Response.ok(result).build();

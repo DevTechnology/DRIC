@@ -3,6 +3,11 @@ package com.devtechnology.api.util;
 import com.devtechnology.api.domain.FdaResponse;
 import com.devtechnology.api.domain.RxImageResponse;
 
+/**
+ * Simple mock for HttpOps for unit tests
+ * @author jbnimble
+ *
+ */
 public class HttpOpsSimpleMock implements HttpOps {
 
 	@Override

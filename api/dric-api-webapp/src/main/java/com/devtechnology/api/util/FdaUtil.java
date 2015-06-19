@@ -158,18 +158,35 @@ public class FdaUtil {
 		}
 		return s;
 	}
+	
+	/**
+	 * get the limit value and use default if an invalid value
+	 * @param limit
+	 * @return
+	 */
 	private String getLimit(Integer limit) {
 		if (limit == null || limit < 1) {
 			limit = defaultLimit;
 		}
 		return "&limit="+limit;
 	}
+	
+	/**
+	 * get the skip value and use default if an invalid value
+	 * @param skip
+	 * @return
+	 */
 	private String getSkip(Integer skip) {
 		if (skip == null || skip < 0) {
 			skip = defaultSkip;
 		}
 		return "&skip="+skip.toString();
 	}
+	
+	/**
+	 * get a default error object when external services have a failure
+	 * @return
+	 */
 	private FdaResponse getError() {
 		FdaResponse fdaResponse = new FdaResponse();
 		FdaError error = new FdaError();

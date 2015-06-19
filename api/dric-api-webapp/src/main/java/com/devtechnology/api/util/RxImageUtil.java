@@ -37,11 +37,18 @@ public class RxImageUtil {
 		return ndcImage;
 	}
 	
+	/**
+	 * Map the external service results to an NdcImage
+	 * @param ndc
+	 * @param rxImageResponse
+	 * @return
+	 */
 	public NdcImage mapResponse(String ndc, RxImageResponse rxImageResponse) {
 		NdcImage ndcImage = new NdcImage();
 		ndcImage.setNdc(ndc);
 		logger.info(new Gson().toJson(rxImageResponse));
 		if (rxImageResponse != null && !rxImageResponse.getNlmRxImages().isEmpty()) {
+			// get unique URL values and set to NdcImage
 			Set<String> urls = new HashSet<String>();
 			for (RxImageResult image : rxImageResponse.getNlmRxImages()) {
 				if (image != null && image.getImageUrl() != null) {

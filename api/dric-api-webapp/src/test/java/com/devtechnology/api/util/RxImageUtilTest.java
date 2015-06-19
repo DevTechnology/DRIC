@@ -11,6 +11,11 @@ import com.devtechnology.api.domain.NdcImage;
 import com.devtechnology.api.domain.RxImageResponse;
 import com.devtechnology.api.domain.RxImageResult;
 
+/**
+ * Tests for RxImageUtil
+ * @author jbnimble
+ *
+ */
 public class RxImageUtilTest {
 
 	@Before
