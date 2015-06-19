@@ -8,6 +8,6 @@ import javax.ws.rs.core.Application;
  * @author jbnimble
  *
  */
-@ApplicationPath("/dric")
+@ApplicationPath("/api")
 public class DricWebApp extends Application {
 }
