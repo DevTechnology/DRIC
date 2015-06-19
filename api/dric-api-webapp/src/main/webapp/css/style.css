@@ -263,6 +263,12 @@ enu {
 
 }
 
+.divBorder {
+	border-style: solid;
+	border-width: 1px;
+	border-color: #829fbd;
+}
+
 .accentOrange {
 	background-color: #b89781;
 }
