@@ -26,14 +26,6 @@
 		<nav class="navbar navbar-default" role="navigation">
 	        	<div class="navbar-header">
 				<a class="navbar-brand" title="Drug Recall Information Center" href="/">Drug Recall Information Center</a>
-				<!--	
-				<button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				-->
 
 		        </div> <!-- NavBar Header -->
 			<!--
@@ -49,29 +41,21 @@
 					<label for="drugSrchForm" title="Drug Recall Searcher">Drug Recall Searcher:</label>
 					<input class="form-control" type="text" title="Drug Search Input Field" id="drugSrchForm">
 					<button class="btn btn-default btn-primary" for="formGroupInputLarge" type="submit" title="Search Drug Recall Database Action Button">Search</button>
-					<button class="btn btn-primary" for="formGroupInputLarge" type="" title="Advanced Filter Criteria">Advanced</button>
-					<button class="btn btn-primary" for="formGroupInputLarge" type="" title="Clear">Clear</button>
+					<button class="btn btn-primary" for="formGroupInputLarge" type="button" title="Advanced Filter Criteria" onclick="dric.revealAdvancedSearch();">Advanced</button>
+					<button class="btn btn-primary" for="formGroupInputLarge" type="" title="Reset Search Results">Clear</button>
 
 				</div>
 			</form>
+			<div id="advancedFilters" class="advancedFilterDIV">
+				<form class="form-inline">
+			 		<label>Recalls In Last:</label>
+				</form>
+			</div>	
+
 		</div>
 	    </nav> <!-- NavBar -->
 	<!--</div>--> <!-- header clearfix -->
 
-<!--
-	<div id="subHeader" class="container-fluid text-center bg-success" style="padding:5px;">
-		<form class="form-inline">
-			<div class="form-group">
-				<label for="drugSrchForm" title="Drug Recall Searcher">Drug Recall Searcher:</label>
-				<input class="form-control" type="text" title="Drug Search Input Field" id="drugSrchForm">
-				<button class="btn btn-default btn-primary" for="formGroupInputLarge" type="submit" title="Search Drug Recall Database Action Button">Search</button>
-				<button class="btn btn-primary" for="formGroupInputLarge" type="Advanced" title="Filter Search Results">Advanced</button>
-				<button class="btn btn-primary" for="formGroupInputLarge" type="Clear" title="Reset Search Results">Clear</button>
-
-			</div>
-		</form>
-	</div>
--->
 	<div class="container-fluid text-center" id="mainContent">
 		<label class="text-center headingText">Recent Drug Recalls</label>
 		<center>
@@ -97,6 +81,8 @@
 <script src="frameworks/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="frameworks/bootstrap-3.3.5-dist/js/ie10-viewport-bug-workaround.js"></script>
+
+<script src="js/dric.js"></script>
 
 <script>
 $(document).on('click','.navbar-collapse.in',function(e) {
