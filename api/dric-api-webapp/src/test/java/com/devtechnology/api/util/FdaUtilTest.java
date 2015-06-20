@@ -39,7 +39,7 @@ public class FdaUtilTest {
 	public void testNullRecallsResponse() {
 		FdaUtil fdaUtil = new FdaUtil();
 		fdaUtil.setHttpOperations(new HttpOpsNullMock());
-		RecallResponse response = fdaUtil.getRecalls(null, null, null);
+		RecallResponse response = fdaUtil.getRecalls(null, null, null, null, null, null);
 		assertNotNull("RecallResponse is null", response);
 		assertNotNull("RecallResponse.error is null", response.getError());
 		assertNotNull("RecallResponse.error.code is null", response.getError().getCode());
@@ -59,7 +59,7 @@ public class FdaUtilTest {
 	public void testSimpleRecallsResponse() {
 		FdaUtil fdaUtil = new FdaUtil();
 		fdaUtil.setHttpOperations(new HttpOpsSimpleMock());
-		RecallResponse response = fdaUtil.getRecalls(null, null, null);
+		RecallResponse response = fdaUtil.getRecalls(null, null, null, null, null, null);
 		assertNotNull("RecallResponse is null", response);
 		assertNull("RecallResponse.error is not null", response.getError());
 	}

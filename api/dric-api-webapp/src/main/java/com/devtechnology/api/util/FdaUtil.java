@@ -9,9 +9,12 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 
+import com.devtechnology.api.domain.FdaClassificationFilter;
 import com.devtechnology.api.domain.FdaError;
+import com.devtechnology.api.domain.FdaReportDateFilter;
 import com.devtechnology.api.domain.FdaResponse;
 import com.devtechnology.api.domain.FdaResults;
+import com.devtechnology.api.domain.FdaStatusFilter;
 import com.devtechnology.api.domain.RecallItem;
 import com.devtechnology.api.domain.RecallResponse;
 import com.google.gson.Gson;
@@ -36,6 +39,7 @@ public class FdaUtil {
 	public RecallResponse getRecentRecalls(Integer limit, Integer skip) {
 		String today = getTodayYYYYMMDD();
 		String lastMonth = getLastMonthYYYYMMDD();
+		// search=status:Ongoing+AND+classification:Class+II
 		String criteria = "search=report_date:["+lastMonth+"+TO+"+today+"]"+getLimit(limit)+getSkip(skip);
 		String apiKey = getApiKey();
 		FdaResponse fdaResponse = httpOps.getMappedFromUlr(baseUrl+criteria+apiKey, FdaResponse.class);
@@ -49,25 +53,92 @@ public class FdaUtil {
 	
 	/**
 	 * RecallResponse object with the recall results matching the given 'name' value
-	 * @param name
+	 * @param textFilter
 	 * @return
 	 */
-	public RecallResponse getRecalls(String name, Integer limit, Integer skip) {
-		String searchValue = "";
-		if (name != null) {
-			searchValue = name.replaceAll(" ", "+");
-		}
-		String criteria = "search="+searchValue+getLimit(limit)+getSkip(skip);
-		String apiKey = getApiKey();
-		String url = baseUrl+criteria+apiKey;
+	public RecallResponse getRecalls(String textFilter, FdaReportDateFilter reportDate, FdaStatusFilter status, FdaClassificationFilter classification, Integer limit, Integer skip) {
+		String criteria = buildCriteria(mapSearchFilter(textFilter, reportDate, status, classification), getLimit(limit), getSkip(skip), getApiKey());
+		String url = baseUrl+criteria;
 		FdaResponse fdaResponse = httpOps.getMappedFromUlr(url, FdaResponse.class);
 		if (fdaResponse == null) {
-			logger.warn("Failed to load data using url="+url);
 			fdaResponse = getError();
 		}
 		logger.info(new Gson().toJson(fdaResponse));
 		RecallResponse result = mapResponse(fdaResponse);
 		return result;
+	}
+	
+	/**
+	 * Used to create a proper GET criteria, separating fields with an ampersand
+	 * @param searchFilter
+	 * @param limit
+	 * @param skip
+	 * @param apiKey
+	 * @return
+	 */
+	public String buildCriteria(String searchFilter, String limit, String skip, String apiKey) {
+		String r = "";
+		List<String> criteria = new ArrayList<String>();
+		if (searchFilter != null && !"".equals(searchFilter.trim())) {
+			criteria.add(searchFilter);
+		}
+		if (limit != null && !"".equals(limit.trim())) {
+			criteria.add(limit);
+		}
+		if (skip != null && !"".equals(skip.trim())) {
+			criteria.add(skip);
+		}
+		if (apiKey != null && !"".equals(apiKey.trim())) {
+			criteria.add(apiKey);
+		}
+		if (!criteria.isEmpty()) {
+			StringBuilder b = new StringBuilder();
+			for (String f : criteria) {
+				b.append(f);
+				if (criteria.indexOf(f) < criteria.size() - 1) {
+					b.append("&");
+				}
+			}
+			r = b.toString();
+		}
+		return r;
+	}
+	
+	/**
+	 * Map the 'search=value' fields to filter the data
+	 * @param textFilter
+	 * @param reportDate
+	 * @param status
+	 * @param classification
+	 * @return
+	 */
+	public String mapSearchFilter(String textFilter, FdaReportDateFilter reportDate, FdaStatusFilter status, FdaClassificationFilter classification) {
+		String r = "";
+		List<String> filters = new ArrayList<String>();
+		if (textFilter != null && !"".equals(textFilter.trim()) && !"undefined".equals(textFilter.trim())) {
+			textFilter = "%22"+textFilter.replaceAll(" ", "+")+"%22";
+			filters.add(textFilter);
+		}
+		if (reportDate != null && reportDate.getFilter() != null) {
+			filters.add(reportDate.getFilter());
+		}
+		if (status != null && status.getFilter() != null) {
+			filters.add(status.getFilter());
+		}
+		if (classification != null && classification.getFilter() != null) {
+			filters.add(classification.getFilter());
+		}
+		if (!filters.isEmpty()) {
+			StringBuilder b = new StringBuilder("search=");
+			for (String f : filters) {
+				b.append(f);
+				if (filters.indexOf(f) < filters.size() - 1) {
+					b.append("+AND+");
+				}
+			}
+			r = b.toString();
+		}
+		return r;
 	}
 	
 	/**
@@ -153,7 +224,7 @@ public class FdaUtil {
 		String key = System.getProperty("openFdaApiKey");
 		String s = "";
 		if (key != null) {
-			s = "&api_key="+key;
+			s = "api_key="+key;
 			logger.info("Using openFdaApiKey="+key);
 		}
 		return s;
@@ -168,7 +239,7 @@ public class FdaUtil {
 		if (limit == null || limit < 1) {
 			limit = defaultLimit;
 		}
-		return "&limit="+limit;
+		return "limit="+limit;
 	}
 	
 	/**
@@ -180,7 +251,7 @@ public class FdaUtil {
 		if (skip == null || skip < 0) {
 			skip = defaultSkip;
 		}
-		return "&skip="+skip.toString();
+		return "skip="+skip.toString();
 	}
 	
 	/**

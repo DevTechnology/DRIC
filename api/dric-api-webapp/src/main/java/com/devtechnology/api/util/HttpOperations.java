@@ -29,7 +29,7 @@ public class HttpOperations implements HttpOps {
 			String httpResultStr = getFromUrl(url);
 			result = new Gson().fromJson(httpResultStr, type);
 		} catch(Exception e) {
-			logger.error("Failed when performing a GET on url="+url+" and mapping result to class"+type.getName());
+			logger.error("Failed GET "+url+" and mapping for class "+type.getName()+" due to "+e.getMessage());
 		}
 		return result;
 	}
@@ -45,7 +45,7 @@ public class HttpOperations implements HttpOps {
 		CloseableHttpClient httpclient = HttpClients.createDefault();
 		try {
 			HttpGet httpget = new HttpGet(url);
-			logger.info("Executing request " + httpget.getRequestLine());
+			logger.info("Performing " + httpget.getRequestLine());
 			ResponseHandler<String> responseHandler = new ResponseHandler<String>() {
 				@Override
 				public String handleResponse(final HttpResponse response) throws ClientProtocolException, IOException {
@@ -60,7 +60,7 @@ public class HttpOperations implements HttpOps {
 			};
 			result = httpclient.execute(httpget, responseHandler);
 		} catch (Exception e) {
-			logger.error("Failed using url="+url+" due to "+e.getMessage());
+			logger.error("Failed GET "+url+" due to "+e.getMessage());
 		} finally {
 			if (httpclient != null) {
 				try {

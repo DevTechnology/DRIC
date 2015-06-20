@@ -8,6 +8,11 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.apache.log4j.Logger;
+
+import com.devtechnology.api.domain.FdaClassificationFilter;
+import com.devtechnology.api.domain.FdaReportDateFilter;
+import com.devtechnology.api.domain.FdaStatusFilter;
 import com.devtechnology.api.domain.NdcImage;
 import com.devtechnology.api.domain.RecallResponse;
 import com.devtechnology.api.util.FdaUtil;
@@ -20,31 +25,27 @@ import com.devtechnology.api.util.RxImageUtil;
  */
 @Path("/drug")
 public class DricApi {
-	
+	private static Logger logger = Logger.getLogger(DricApi.class);
 	/**
 	 * Get the latest recall data, or recalls that match the given drug name
 	 * Usage: /dric/api/drug/recall
-	 * Usage: /dric/api/drug/recall?name={value}
-	 * Usage: /dric/api/drug/recall?limit={value}&skip={value}
-	 * Usage: /dric/api/drug/recall?name={value}&limit={value}&skip={value}
-	 * @param drugName
+	 * @param textFilter, full data set text filter
+	 * @param reportDate, see FdaReportDateFilter for options
+	 * @param status, see FdaStatusFilter for options
+	 * @param classification, see FdaClassificationFilter for options
+	 * @param limit, defaults to 10, used to specify how many results to return per request
+	 * @param skip, defaults to 0, used to specify the starting index of results, used in combination with limit can be used for pagination
 	 * @return
 	 */
 	@GET
 	@Path("/recall")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getDrugRecallListing(@QueryParam("name") String name, @QueryParam("limit") Integer limit, @QueryParam("skip") Integer skip) {
-		Response response = Response.ok().build();
+	public Response getDrugRecalls(@QueryParam("name") String textFilter, @QueryParam("reportDate") FdaReportDateFilter reportDate, @QueryParam("status") FdaStatusFilter status, @QueryParam("classification") FdaClassificationFilter classification, @QueryParam("limit") Integer limit, @QueryParam("skip") Integer skip) {
+		logger.info("GET request for /recall?name="+textFilter+"&reportDate="+reportDate+"&status="+status+"&classification="+classification+"&limit="+limit+"&skip="+skip);
 		FdaUtil fda = new FdaUtil();
 		fda.setHttpOperations(new HttpOperations());
-		// decide if a valid 'name' value is passed and give default values or filtered
-		if (name == null || name.trim().equals("") || name.trim().equals("undefined")) {
-			RecallResponse result = fda.getRecentRecalls(limit, skip);
-			response = Response.ok(result).build();
-		} else {
-			RecallResponse result = fda.getRecalls(name, limit, skip);
-			response = Response.ok(result).build();
-		}
+		RecallResponse result = fda.getRecalls(textFilter, reportDate, status, classification, limit, skip);
+		Response response = Response.ok(result).build();
 		return response;
 	}
 	
