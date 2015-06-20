@@ -22,39 +22,155 @@
 <body class="devBackgroundE">
 
   <div class="container-fluid">
-  	<!--<div class="header clearfix">-->
-		<nav class="navbar navbar-default" role="navigation">
-	        	<div class="navbar-header">
-				<a class="navbar-brand" title="Drug Recall Information Center" href="/">Drug Recall Information Center</a>
-
-		        </div> <!-- NavBar Header -->
-			<!--
-		        <div class="collapse navbar-collapse navbar-ex1-collapse">
-				<ul class="nav navbar-nav">
-				  <li class="active"><a href="/">Search</a></li>
-				  <li><a href="#">Drug Recalls</a></li>
-				</ul>
-			</div> --><!-- NavBar Menus -->
+	<nav class="navbar navbar-default" role="navigation">
+       		<div class="navbar-header">
+			<a class="navbar-brand" title="Drug Recall Information Center" href="/">Drug Recall Information Center</a>
+		</div> <!-- NavBar Header -->
 		<div id="subHeader" class="container-fluid text-center bg-success" style="padding:5px;">
 			<form class="form-inline">
 				<div class="form-group" style="padding-right:3px;">
 					<label for="drugSrchForm" title="Drug Recall Searcher">Drug Recall Searcher:</label>
 					<input class="form-control" type="text" title="Drug Search Input Field" id="drugSrchForm">
-					<button class="btn btn-default btn-primary" for="formGroupInputLarge" type="submit" title="Search Drug Recall Database Action Button">Search</button>
-					<button class="btn btn-primary" for="formGroupInputLarge" type="button" title="Advanced Filter Criteria" onclick="dric.revealAdvancedSearch();">Advanced</button>
-					<button class="btn btn-primary" for="formGroupInputLarge" type="" title="Reset Search Results">Clear</button>
+					<button class="btn btn-default btn-primary" for="formGroupInputLarge" type="submit" 
+						title="Search Drug Recall Database Action Button">Search</button>
+					<button class="btn btn-primary" for="formGroupInputLarge" type="button" 
+						title="Advanced Filter Criteria" onclick="dric.showAdvancedSearch();">Advanced</button>
+					<button class="btn btn-primary" for="formGroupInputLarge" type="button" 
+						title="Reset Search Results">Clear</button>
 
 				</div>
 			</form>
-			<div id="advancedFilters" class="advancedFilterDIV">
-				<form class="form-inline">
-			 		<label>Recalls In Last:</label>
-				</form>
-			</div>	
 
 		</div>
-	    </nav> <!-- NavBar -->
-	<!--</div>--> <!-- header clearfix -->
+      	</nav> <!-- NavBar -->
+
+	<!-- Modal Dialogs -->
+	<div class="modal fade" id="advancedSearchModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Advanced Drug Recall Search</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="input-group">
+								<label for="drugSrchForm" title="Enter Drug Name">Enter Drug Name:</label>
+								<input class="form-control" type="text" title="Drug Search Input Field" id="advDrugSrchForm">
+							</div>
+						</div>
+					</div>
+
+					<div class="row" style="height:5px;">
+						&nbsp;
+					</div>
+
+					<div class="row">
+						<div class="col-lg-6">
+							<label title="Filters For Search Results">Filter Criteria For Search Results:</label>
+							<div class="input-group">
+								<div class="input-group-btn">
+									<button type="button" class="btn btn-default dropdown-toggle" 
+										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										Recall In Last:<span class="caret"></span></button>
+									<ul class="dropdown-menu">
+										<li>
+											<a href="#" 
+												onclick="dric.setAdvancedFilterString($('#recallTimeFilter'),'1 MONTH');">
+												1 Month
+											</a>
+										</li>
+										<li>
+											<a href="#" 
+												onclick="dric.setAdvancedFilterString($('#recallTimeFilter'), '6 MONTHS');">
+												6 Months
+											</a>
+										</li>
+										<li>
+											<a href="#" 
+												onclick="dric.setAdvancedFilterString($('#recallTimeFilter'), 'ALL');">
+												All
+											</a>
+										</li>
+									</ul>
+								 </div><!-- /btn-group -->
+								 <input type="text" class="form-control" aria-label="..." id="recallTimeFilter">
+							</div><!-- /input-group -->
+							<div style="height:5px;">&nbsp;</div>
+							<div class="input-group">
+								<div class="input-group-btn">
+									<button type="button" class="btn btn-default dropdown-toggle" 
+										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										Recall Status:<span class="caret"></span></button>
+									<ul class="dropdown-menu">
+										<li>
+											<a href="#" onclick="dric.setAdvancedFilterString($('#recallStatusFilter'), 'ONGOING');">
+												Ongoing
+											</a>
+										</li>
+										<li>
+											<a href="#" onclick="dric.setAdvancedFilterString($('#recallStatusFilter'), 'COMPLETED');">
+												Completed
+											</a>
+										</li>
+										<li>
+											<a href="#" onclick="dric.setAdvancedFilterString($('#recallStatusFilter'), 'TERMINATED');">
+												Terminated
+											</a>
+										</li>
+										<li>
+											<a href="#" onclick="dric.setAdvancedFilterString($('#recallStatusFilter'), 'ALL');">
+												All
+											</a>
+										</li>
+									</ul>
+								 </div><!-- /btn-group -->
+								 <input type="text" class="form-control" aria-label="..." id="recallStatusFilter">
+							</div><!-- /input-group -->
+							<div style="height:5px;">&nbsp;</div>
+							<div class="input-group">
+								<div class="input-group-btn">
+									<button type="button" class="btn btn-default dropdown-toggle" 
+										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										Classification:<span class="caret"></span></button>
+									<ul class="dropdown-menu">
+										<li>
+											<a href="#" onclick="dric.setAdvancedFilterString($('#classificationFilter'), 'CLASS 1');">
+												Class 1
+											</a>
+										</li>
+										<li>
+											<a href="#" onclick="dric.setAdvancedFilterString($('#classificationFilter'), 'CLASS 2');">
+												Class 2
+											</a>
+										</li>
+										<li>
+											<a href="#" onclick="dric.setAdvancedFilterString($('#classificationFilter'), 'CLASS 3');">
+												Class 3
+											</a>
+										</li>
+										<li>
+											<a href="#" onclick="dric.setAdvancedFilterString($('#classificationFilter'), 'ALL');">
+												All
+											</a>
+										</li>
+									</ul>
+								 </div><!-- /btn-group -->
+								 <input type="text" class="form-control" aria-label="..." id="classificationFilter">
+							</div><!-- /input-group -->
+						</div><!-- /.col-lg-6 -->
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Search</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<div class="container-fluid text-center" id="mainContent">
 		<label class="text-center headingText">Recent Drug Recalls</label>
