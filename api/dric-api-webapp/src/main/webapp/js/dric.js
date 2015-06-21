@@ -98,7 +98,7 @@ var dric = {
 	//  
 	////////////////////////////////////////////////////////////////////////////////
 	showLoadSpinner : function() {
-		$("#mainContent").html("<center><img src='img/ajax-loader.gif' title='Loading Data...'></center>");
+		$("#mainContent").html("<div class='spinner'><center><img src='img/ajax-loader.gif' title='Loading Data...'></center></div>");
 	},
 
 	////////////////////////////////////////////////////////////////////////////////
