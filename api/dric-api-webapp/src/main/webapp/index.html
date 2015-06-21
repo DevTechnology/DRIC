@@ -20,7 +20,7 @@
   <![endif]-->
 </head>
 
-<body class="devBackgroundE">
+<body class="devBackgroundE" onload="dric.loadRecentDrugReports();">
 
   <div class="container-fluid">
 	<nav class="navbar navbar-default role="navigation">
@@ -186,21 +186,6 @@
 
 
 	<div class="container-fluid" id="mainContent">
-		<center>
-			<label class="text-center headingText">Drug Recall Reports</label>
-			<table class="table table-responsive table-striped table-hover">
-				<tr>
-					<th>Recall Number</th>
-					<th>Product Name</th>
-					<th>Report Date</th>
-				<tr>
-				<tr>	
-					<td>D-12-44343</td>
-					<td>Drug 1, Drug2</td>
-					<td>05/25/2015</td>
-				</tr>
-		       	</table>
-		</center>
 	</div>
 
 
@@ -219,6 +204,8 @@
 <script src="frameworks/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="frameworks/bootstrap-3.3.5-dist/js/ie10-viewport-bug-workaround.js"></script>
+<!-- underscrore.min.js -->
+<script src="js/underscore-min.js"></script>
 
 <script src="js/dric.js"></script>
 

@@ -1,0 +1,17 @@
+<center>
+	<label class="text-center headingText">Drug Recall Reports</label>
+	<table class="table table-responsive table-striped table-hover">
+		<tr>
+			<th>Recall Number</th>
+			<th>Product Name</th>
+			<th>Report Date</th>
+		</tr>
+		<% _.each(data.recentDrugRecalls, function(drugs) {%>
+		<tr>
+			<td><%=drugs.recallNumber%></td>
+			<td><%=drugs.productName%></td>
+			<td><%=drugs.reportDate%></td>
+		</tr>
+		<% }); %>
+       	</table>
+</center>

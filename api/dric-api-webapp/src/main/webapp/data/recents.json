@@ -1,8 +1,10 @@
-[
-  {"recallNumber":"D-123-44", "classification":"CLASS 2", "productName":["Drug 1", "Drug 2"], "reportDate":"05/24/2015"},
-  {"recallNumber":"D-5505", "classification":"CLASS 1", "productName":["Drug Z", "Tylenol"], "reportDate":"05/25/2015"},
-  {"recallNumber":"D-66090", "classification":"CLASS 1", "productName":["Morphine", "Vertigo"], "reportDate":"06/12/2015"},
-  {"recallNumber":"D-666-777", "classification":"CLASS 3", "productName":["MDMA", "Drug 2, Drug 3"], "reportDate":"01/12/2015"},
-  {"recallNumber":"D-98TRFD", "classification":"CLASS 2", "productName":["Ketamine", "LSD"], "reportDate":"03/05/2015"},
-  {"recallNumber":"D-BNDT665", "classification":"CLASS 3", "productName":["Tylenol", "Acetominophine"], "reportDate":"04/15/2015"}
-]
+{
+	"recentDrugRecalls": [
+	  {"recallNumber":"D-123-44", "classification":"CLASS 2", "productName":["Drug 1", "Drug 2"], "reportDate":"05/24/2015"},
+	  {"recallNumber":"D-5505", "classification":"CLASS 1", "productName":["Drug Z", "Tylenol"], "reportDate":"05/25/2015"},
+	  {"recallNumber":"D-66090", "classification":"CLASS 1", "productName":["Morphine", "Vertigo"], "reportDate":"06/12/2015"},
+	  {"recallNumber":"D-666-777", "classification":"CLASS 3", "productName":["MDMA", "Drug 2, Drug 3"], "reportDate":"01/12/2015"},
+	  {"recallNumber":"D-98TRFD", "classification":"CLASS 2", "productName":["Ketamine", "LSD"], "reportDate":"03/05/2015"},
+	  {"recallNumber":"D-BNDT665", "classification":"CLASS 3", "productName":["Tylenol", "Acetominophine"], "reportDate":"04/15/2015"}
+	]
+}
