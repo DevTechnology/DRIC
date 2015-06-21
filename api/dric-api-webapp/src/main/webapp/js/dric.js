@@ -62,13 +62,16 @@ var dric = {
 	//  
 	////////////////////////////////////////////////////////////////////////////////
 	loadRecentDrugReports : function() {
-		$.ajax({
-			dataType: "json",
-			type: "GET",
-			url: "data/recents.json", 
-			success: dric.loadRecentDrugReportsCB,
-			error: dric.loadRecentDrugReportsErr
-		});
+		dric.showLoadSpinner();
+		setTimeout(function() {
+			$.ajax({
+				dataType: "json",
+				type: "GET",
+				url: "data/recents.json", 
+				success: dric.loadRecentDrugReportsCB,
+				error: dric.loadRecentDrugReportsErr
+			});
+		}, 3000);
 	},
 
 	////////////////////////////////////////////////////////////////////////////////
@@ -89,10 +92,28 @@ var dric = {
 	////////////////////////////////////////////////////////////////////////////////
 	loadRecentDrugReportsErr : function(msg) {
 		alert("Crapola!! " + msg.message);
+	},
+
+	////////////////////////////////////////////////////////////////////////////////
+	//  
+	////////////////////////////////////////////////////////////////////////////////
+	showLoadSpinner : function() {
+		$("#mainContent").html("<center><img src='img/ajax-loader.gif' title='Loading Data...'></center>");
+	},
+
+	////////////////////////////////////////////////////////////////////////////////
+	//  
+	////////////////////////////////////////////////////////////////////////////////
+	hideLoadSpinner : function() {
+		$("#mainContent").html("");
 	}
 
 };
 
+
+////////////////////////////////////////////////////////////////////////////////
+// Mixin to load underscore templates from a file using ajax.  
+////////////////////////////////////////////////////////////////////////////////
 _.mixin({templateFromUrl: function (url, data, settings) {
 	var templateHtml = "";
         this.cache = this.cache || {};
@@ -117,6 +138,4 @@ _.mixin({templateFromUrl: function (url, data, settings) {
         }
 	var t = _.template(templateHtml, settings);
 	return t(data);
-
-   	//return _.template(templateHtml, data, settings);
 }});
