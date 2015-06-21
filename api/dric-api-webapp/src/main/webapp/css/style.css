@@ -303,3 +303,11 @@ enu {
 	color: blue;	
 }
 
+.advancedFilterDIV {
+	display: none;
+
+}
+
+.spacer {
+	5px;
+}
