@@ -79,7 +79,7 @@ var dric = {
 	////////////////////////////////////////////////////////////////////////////////
 	loadRecentDrugReportsCB : function(data) {
 		try {
-			var drugs = _.templateFromUrl("templates/drugRecallTable.html", data, {variable:"data"});
+			var drugs = _.templateFromUrl("templates/drugRecallList.html", data, {variable:"data"});
 			$("#mainContent").html(drugs);
 
 		} catch (e) {

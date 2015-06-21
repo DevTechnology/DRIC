@@ -1,0 +1,20 @@
+<center>
+	<label class="text-center headingText">Drug Recall Reports</label>
+	<div style="height: 300px !important; overflow: scroll;">
+		<div class="list-group text-left">
+			<% _.each(data.recentDrugRecalls, function(drugs) {%>
+			<a href="#" class="list-group-item">
+        			<h4 class="list-group-item-heading">Recall Number: <%=drugs.recallNumber%> | 
+					Report Date: <%=drugs.reportDate%>	
+				</h4>
+				<p class="list-group-item-text">
+					Drugs referenced in this report: <%=drugs.productName%>
+				</p>
+				<p>Classification: <%=drugs.classification%></p>
+				<span class="sr-only">Recall Number is <%=drugs.recallNumber%>.  Report Date is <%=drugs.reportDate%>.  Report 
+				classification is <%=drugs.classification%></span>
+			</a>
+			<% }); %>
+		</div>
+	</div>
+</center>
