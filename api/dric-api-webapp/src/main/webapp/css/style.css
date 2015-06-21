@@ -311,3 +311,7 @@ enu {
 .spacer {
 	height: 3px;
 }
+
+.spinner {
+	height: 175px;
+}
