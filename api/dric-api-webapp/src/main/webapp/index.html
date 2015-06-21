@@ -23,25 +23,34 @@
 <body class="devBackgroundE">
 
   <div class="container-fluid">
-	<nav class="navbar navbar-default" role="navigation">
-       		<div class="navbar-header">
-			<a class="navbar-brand" title="Drug Recall Information Center" href="/">Drug Recall Information Center</a>
-		</div> <!-- NavBar Header -->
-		<div id="subHeader" class="container-fluid text-center bg-success" style="padding:5px;">
-			<form class="form-inline">
-				<div class="form-group" style="padding-right:3px;">
-					<label for="drugSrchForm" title="Drug Recall Searcher">Drug Recall Searcher:</label>
-					<input class="form-control" type="text" title="Drug Search Input Field" id="drugSrchForm">
-					<button class="btn btn-default btn-primary" for="formGroupInputLarge" type="submit" 
-						title="Search Drug Recall Database Action Button">Search</button>
-					<button class="btn btn-primary" for="formGroupInputLarge" type="button" 
-						title="Advanced Filter Criteria" onclick="dric.showAdvancedSearch();">Advanced</button>
-					<button class="btn btn-primary" for="formGroupInputLarge" type="button" 
-						title="Reset Search Results">Clear</button>
+	<nav class="navbar navbar-default role="navigation">
+		<div class="container-fluid bg-success">
+			<!-- Brand and toggle get grouped for better mobile display -->
+    			<div class="navbar-header">
+          			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	          			<span class="sr-only">Toggle navigation</span>
+		          		<span class="icon-bar"></span>
+			          	<span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+			        </button>
+	          		<span class="sr-only">Drug Recall Information Center</span>
+			      	<a class="navbar-brand" href="/dric" title="Drug Recall Information Center">Drug Recall Information Center</a>
+	                </div>
 
-				</div>
-			</form>
-
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<form class="navbar-form navbar-left" role="search">
+			        	<div class="form-group">
+	          				<span class="sr-only">Drug Recall Quick Search Field</span>
+				        	<input type="text" class="form-control" placeholder="Search..." id="quickSearchFld" title="Search Field">
+				        </div>
+	          			<span class="sr-only">Drug Recall Quick Search Button</span>
+					<button type="button" class="btn btn-default btn-primary" title="Drug Recall Quick Search">Search</button>
+	          			<span class="sr-only">Drug Recall Advanced Search Button</span>
+					<button type="button" class="btn btn-default" onclick="dric.showAdvancedSearch();" i
+						title="Drug Recall Advanced Search">Advanced Search</button>
+			        </form>
+			</div>
 		</div>
       	</nav> <!-- NavBar -->
 
