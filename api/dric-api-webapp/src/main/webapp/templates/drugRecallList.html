@@ -3,7 +3,7 @@
 	<div style="height: 300px !important; overflow: scroll;overflow-x:hidden;">
 		<div class="list-group text-left">
 			<% _.each(data.recentDrugRecalls, function(drugs) {%>
-			<a href="#" class="list-group-item" onclick="javascript:alert('Launch Details');">
+			<a href="#" class="list-group-item" onclick="dric.showSearchResultDetails();">
         			<h4 class="list-group-item-heading">
 					Recall Number: <%=drugs.recallNumber%> | 
 					Report Date: <%=drugs.reportDate%>	
