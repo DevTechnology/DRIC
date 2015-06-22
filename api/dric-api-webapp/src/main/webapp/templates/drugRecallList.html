@@ -2,17 +2,17 @@
 	<label class="text-center headingText">Drug Recall Reports</label>
 	<div style="height: 300px !important; overflow: scroll;overflow-x:hidden;">
 		<div class="list-group text-left">
-			<% _.each(data.recentDrugRecalls, function(drugs) {%>
+			<% _.each(data.recalls, function(drugs) {%>
 			<a href="#" class="list-group-item" onclick="dric.showSearchResultDetails();">
         			<h4 class="list-group-item-heading">
-					Recall Number: <%=drugs.recallNumber%> | 
-					Report Date: <%=drugs.reportDate%>	
+					Recall Number: <%=drugs.recall_number%> | 
+					Report Date: <%=drugs.report_date%>	
 				</h4>
 				<p class="list-group-item-text">
-					Drugs referenced in this report: <%=drugs.productName%>
+					Drugs referenced in this report: <% if(drugs.product.length > 0) {%><%= drugs.product %> <%} else {%>N/A<%}%>
 				</p>
 				<p>Classification: <%=drugs.classification%></p>
-				<span class="sr-only">Recall Number is <%=drugs.recallNumber%>.  Report Date is <%=drugs.reportDate%>.  Report 
+				<span class="sr-only">Recall Number is <%=drugs.recall_number%>.  Report Date is <%=drugs.report_date%>.  Report 
 				classification is <%=drugs.classification%></span>
 			</a>
 			<% }); %>
