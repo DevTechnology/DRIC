@@ -3,6 +3,12 @@
  * @author: jcaple, 6/20/2015
  */
 
+ /**
+  * TODO:
+  *	- Better error handling
+  *	- 
+  */
+
 var dric = {
 
 	url : "api/drug/recall",
@@ -60,6 +66,38 @@ var dric = {
 	},
 
 	////////////////////////////////////////////////////////////////////////////////
+	// When user clicks the 'Search' button in advanced search mode, gather additional
+	// filter criteria, if specified, and perform search.  
+	////////////////////////////////////////////////////////////////////////////////
+	performAdvancedSearch : function() {
+		try {
+			dric.showLoadSpinner();
+			var search = $("#advDrugSrchForm").val();
+			var filterRecallTime = $("#recallTimeFilter").val();
+			var filterRecallStatus = $("#recallStatusFilter").val();
+			var filterClassification = $("#classificationFilter").val();
+			$("#advancedSearchModal").modal('close');
+			console.log("Advnaced Search Criteria: " + search + "," + filterRecallTime + "," +
+				filterRecallStatus + "," + filterClassification);
+			var queryParams = "name="+search+"&reportDate="+filterRecallTime+"&status="+filterRecallStatus+
+				"&classification="+filterClassification;
+			console.log("Query Param String: " + queryParams);
+			dric.genericAjax(queryParams, dric.performAdvancedSearchCB, dric.performAdvancedSearchErr);	
+
+		} catch (e) {
+			console.log("Unexpected error in performAdvancedSearch: " + e.message);
+		}
+	},
+
+	performAdvancedSearchCB : function(data) {
+
+	},
+
+	performAdvancedSearchErr : function(msg) {
+
+	},
+
+	////////////////////////////////////////////////////////////////////////////////
 	// When user clicks the 'Search' button execute a quick drug recall search.  
 	////////////////////////////////////////////////////////////////////////////////
 	performQuickSearch : function() {
@@ -67,6 +105,8 @@ var dric = {
 			dric.showLoadSpinner();
 			var searchFor = $("#quickSearchFld").val();
 			console.log("Search For: " + searchFor);
+			if (searchFor === undefined || searchFor.trim() === '') 
+				return;
 			var queryParams = "name="+searchFor;
 			var cbHandler = dric.performQuickSearchCB;
 			var cbError = dric.performQuickSearchErr;
@@ -84,7 +124,7 @@ var dric = {
 			data.queryTerms = "Last Month";
 			var drugs = _.templateFromUrl("templates/drugRecallList.html", data, {variable:"data"});
 			$("#mainContent").html(drugs);
-
+			dric.reloadFooter();
 		} catch (e) {
 			console.log("Unexpected error: " + e.message);
 		}
@@ -101,7 +141,9 @@ var dric = {
 	// Run when the user presses the Clear button. 
 	////////////////////////////////////////////////////////////////////////////////
 	resetQuickSearch : function() {
-		dric.loadRecentDrugReports();
+		//dric.loadRecentDrugReports();
+		$("#quickSearchFld").val("");		
+		$("#mainContent").html("");
 	},
 
 	////////////////////////////////////////////////////////////////////////////////
@@ -153,6 +195,20 @@ var dric = {
 	////////////////////////////////////////////////////////////////////////////////
 	hideLoadSpinner : function() {
 		$("#mainContent").html("");
+	},
+
+	////////////////////////////////////////////////////////////////////////////////
+	// Make sure the footer stays at correct location at bottom of the screen. 
+	////////////////////////////////////////////////////////////////////////////////
+	reloadFooter : function() {
+     		var docHeight = $(window).height();
+        	var footerHeight = $('#footer').height();
+		var mainHeight = $('#mainContent').height();
+	   	var footerTop = $('#footer').position().top + footerHeight;
+
+	      	if (footerTop < docHeight) {
+	          	$('#footer').css('margin-top', 2 + (docHeight - footerTop) + 'px');
+		}
 	}
 
 };

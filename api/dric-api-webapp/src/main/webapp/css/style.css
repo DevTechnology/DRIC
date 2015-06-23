@@ -6,6 +6,10 @@ body {
 	padding-top: 0px;
 }
 
+.dricHeader {
+	padding-left: 5px;
+}
+
 #mainContent {
   min-height: 100%;
 }
@@ -71,7 +75,17 @@ h2{
     }
 }
 
-.navbar .navbar-default{
+.navbar .navbar-nav {
+	display: inline-block;
+    	float: none;
+      	vertical-align: top;
+}
+
+.navbar .navbar-collapse {
+        text-align: center;
+}
+
+.navbar .navbar-default {
 	background: none;
 	border:none;
 	z-index: 1001;
@@ -164,6 +178,10 @@ border-left-color: #111111;
 
 .fa{
   font-size: 32px;
+}
+
+.nav {
+	text-align: center;
 }
 
 /*==================================================
