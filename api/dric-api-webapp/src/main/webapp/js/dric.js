@@ -18,6 +18,9 @@ var dric = {
 	////////////////////////////////////////////////////////////////////////////////
 	showAdvancedSearch : function() {
 		dric.resetAdvancedSearchForm();
+		$("#recallTimeFilter").val("ONEMONTH")
+		$("#recallStatusFilter").val("ALL");
+		$("#classificationFilter").val("ALL");
 		$("#advancedSearchModal").modal('show');
 	},
 
@@ -81,30 +84,47 @@ var dric = {
 	////////////////////////////////////////////////////////////////////////////////
 	performAdvancedSearch : function() {
 		try {
+			$("#advancedSearchModal").modal('toggle');
 			dric.showLoadSpinner();
 			var search = $("#advDrugSrchForm").val();
+			var reportDateFilter = "";
 			var filterRecallTime = $("#recallTimeFilter").val();
+			if (filterRecallTime !== '') {
+				reportDateFilter = '&reportDate='+filterRecallTime;
+			}
+			var statusFilter = "";
 			var filterRecallStatus = $("#recallStatusFilter").val();
+			if (filterRecallStatus !== '') {
+				statusFilter = '&status='+filterRecallStatus;
+			}
+			var classificationFilter = "";
 			var filterClassification = $("#classificationFilter").val();
-			$("#advancedSearchModal").modal('close');
-			console.log("Advnaced Search Criteria: " + search + "," + filterRecallTime + "," +
-				filterRecallStatus + "," + filterClassification);
-			var queryParams = "name="+search+"&reportDate="+filterRecallTime+"&status="+filterRecallStatus+
-				"&classification="+filterClassification;
+			if (filterClassification !== '') {
+				classificationFilter = '&classification='+filterClassification;
+			}
+			var queryParams = "name="+search+reportDateFilter+statusFilter+classificationFilter;
 			console.log("Query Param String: " + queryParams);
 			dric.genericAjax(queryParams, dric.performAdvancedSearchCB, dric.performAdvancedSearchErr);	
-
 		} catch (e) {
 			console.log("Unexpected error in performAdvancedSearch: " + e.message);
 		}
 	},
 
 	performAdvancedSearchCB : function(data) {
-		dric.recallResponse = data;
+		try {
+			dric.recallResponse = data;
+			data.queryTerms = "Advanced Search";
+			var dateTime = new Date().getTime();
+			var drugs = _.templateFromUrl("templates/drugRecallList.html?time="+dateTime, data, {variable:"data"});
+			$("#mainContent").html(drugs);
+			dric.reloadFooter();
+		} catch (e) {
+			console.log("Unexpected error: " + e.message);
+		}
 	},
 
 	performAdvancedSearchErr : function(msg) {
-
+		console.log("Unexpected error occurred in advanced search: " + msg.message);
 	},
 
 	////////////////////////////////////////////////////////////////////////////////

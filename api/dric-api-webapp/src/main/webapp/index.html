@@ -100,13 +100,13 @@
 									<ul class="dropdown-menu">
 										<li>
 											<a href="#" 
-												onclick="dric.setAdvancedFilterString($('#recallTimeFilter'),'1 MONTH');">
+												onclick="dric.setAdvancedFilterString($('#recallTimeFilter'),'ONEMONTH');">
 												1 Month
 											</a>
 										</li>
 										<li>
 											<a href="#" 
-												onclick="dric.setAdvancedFilterString($('#recallTimeFilter'), '6 MONTHS');">
+												onclick="dric.setAdvancedFilterString($('#recallTimeFilter'), 'SIXMONTH');">
 												6 Months
 											</a>
 										</li>
@@ -159,17 +159,17 @@
 										Classification:<span class="caret"></span></button>
 									<ul class="dropdown-menu">
 										<li>
-											<a href="#" onclick="dric.setAdvancedFilterString($('#classificationFilter'), 'CLASS 1');">
+											<a href="#" onclick="dric.setAdvancedFilterString($('#classificationFilter'), 'CLASS1');">
 												Class 1
 											</a>
 										</li>
 										<li>
-											<a href="#" onclick="dric.setAdvancedFilterString($('#classificationFilter'), 'CLASS 2');">
+											<a href="#" onclick="dric.setAdvancedFilterString($('#classificationFilter'), 'CLASS2');">
 												Class 2
 											</a>
 										</li>
 										<li>
-											<a href="#" onclick="dric.setAdvancedFilterString($('#classificationFilter'), 'CLASS 3');">
+											<a href="#" onclick="dric.setAdvancedFilterString($('#classificationFilter'), 'CLASS3');">
 												Class 3
 											</a>
 										</li>
@@ -187,7 +187,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-default" data-dismiss="modal">Search</button>
+					<button type="button" class="btn btn-default" onclick="dric.performAdvancedSearch();">Search</button>
 				</div>
 			</div>
 		</div>
