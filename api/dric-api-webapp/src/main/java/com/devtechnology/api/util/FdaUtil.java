@@ -43,6 +43,9 @@ public class FdaUtil {
 		if (fdaResponse == null) {
 			fdaResponse = getError();
 		}
+		if (fdaResponse.getMeta() == null) {
+			fdaResponse.setMeta(new FdaMeta());
+		}
 		fdaResponse.getMeta().setHttpStatus(httpOps.getHttpStatus());
 		logger.info(new Gson().toJson(fdaResponse));
 		RecallResponse result = mapResponse(fdaResponse);
