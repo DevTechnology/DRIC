@@ -26,7 +26,7 @@ import com.google.gson.Gson;
 public class FdaUtil {
 	private static Logger logger = Logger.getLogger(FdaUtil.class);
 	private String baseUrl = "https://api.fda.gov/drug/enforcement.json?";
-	private static Integer defaultLimit = 10;
+	private static Integer defaultLimit = 100;
 	private static Integer defaultSkip = 0;
 	private HttpOps httpOps;
 	
@@ -148,6 +148,7 @@ public class FdaUtil {
 					item.setEvent_id(fdaResult.getEvent_id());
 					item.setProduct_type(fdaResult.getProduct_type());
 					item.setProduct_description(fdaResult.getProduct_description());
+					item.setShort_product_description(getShortDescription(fdaResult.getProduct_description()));
 					item.setCountry(fdaResult.getCountry());
 					item.setCity(fdaResult.getCity());
 					item.setRecalling_firm(fdaResult.getRecalling_firm());
@@ -170,6 +171,30 @@ public class FdaUtil {
 				list.add(item);
 			}
 			result.getRecalls().addAll(list);
+		}
+		return result;
+	}
+	
+	/**
+	 * Shorten the product_description
+	 * @param desc
+	 * @return
+	 */
+	public String getShortDescription(String desc) {
+		String result = "No description available";
+		if (desc != null && desc.trim().length() > 0) {
+			int pos = desc.indexOf(",");
+			if (pos == -1) { // no comma
+				if (desc.trim().length() > 100) {
+					result = desc.substring(0,100)+"..."; // return first 100 characters
+				} else {
+					result = desc;
+				}
+			} else if (pos > 100) {
+				result = desc.substring(0,100)+"..."; // return first 100 characters
+			} else {
+				result = desc.substring(0,pos);
+			}
 		}
 		return result;
 	}
