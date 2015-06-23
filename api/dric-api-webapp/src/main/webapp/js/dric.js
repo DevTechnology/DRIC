@@ -12,7 +12,7 @@
 var dric = {
 
 	url : "api/drug/recall",
-
+	recallResponse : null,
 	////////////////////////////////////////////////////////////////////////////////
 	// Display the advanced search modal dialog.
 	////////////////////////////////////////////////////////////////////////////////
@@ -24,7 +24,14 @@ var dric = {
 	////////////////////////////////////////////////////////////////////////////////
 	// Display Search Results Modal Dialog 
 	////////////////////////////////////////////////////////////////////////////////
-	showSearchResultDetails : function() {
+	showSearchResultDetails : function(index) {
+		try {
+			var data = dric.recallResponse.recalls[index];
+			var detailsHtml = _.templateFromUrl("templates/drugRecallDetails.html", data, {variable:"data"});
+			$("#drugRecallDetailsBody").html(detailsHtml);
+		} catch (e) {
+			console.log("Unexpected error: " + e.message);
+		}
 		$("#searchResultsModal").modal('show');
 	},
 
@@ -93,7 +100,7 @@ var dric = {
 	},
 
 	performAdvancedSearchCB : function(data) {
-
+		dric.recallResponse = data;
 	},
 
 	performAdvancedSearchErr : function(msg) {
@@ -124,6 +131,7 @@ var dric = {
 	////////////////////////////////////////////////////////////////////////////////
 	performQuickSearchCB : function(data) {
 		try {
+			dric.recallResponse = data;
 			data.queryTerms = "Last Month";
 			var dateTime = new Date().getTime();
 			var drugs = _.templateFromUrl("templates/drugRecallList.html?time="+dateTime, data, {variable:"data"});

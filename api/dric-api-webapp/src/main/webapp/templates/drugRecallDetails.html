@@ -1,3 +1,31 @@
-<div>
-
+<div class="panel panel-default">
+	<h4><%=data.short_product_description%></h4>
+	<h4>Related Image from RxImage</h4>
+	<div class="row">
+		<div class="col-xs-4">
+			<div class="thumbnail">
+				<img alt="" src="img/drug.jpg">
+			</div>
+		</div>
+		<div class="col-xs-4">
+			<div class="thumbnail">
+				<img alt="" src="img/drug.jpg">
+			</div>
+		</div>
+	</div>
+	<p>Images supplied by the National Library of Medicine (NLM) Office of High Performance Computing and Communications (OHPCC) have been supported by the American Recovery and Reinvestment Act of 2009 (ARRA) and through NIH intramural funding approved by the NLM Board of Scientific Counselors.</p>
+	<h4>Product Description</h4>
+	<p><%=data.product_description%></p>
+	<h4>Reason for Recall</h4>
+	<p><%=data.reason_for_recall%></p>
+	<h4>Classification</h4>
+	<p><%=data.classification%></p>
+	<h4>Status</h4>
+	<p><%=data.status%></p>
+	<h4>Report Number</h4>
+	<p><%=data.recall_number%></p>
+	<h4>Report Date</h4>
+	<p><%=data.report_date%></p>
+	<h4>Products referenced in this report</h4>
+	<p><% if(data.product.length > 0) {%><%= data.product %> <%} else {%>N/A<%}%></p>
 </div>
