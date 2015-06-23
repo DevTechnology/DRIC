@@ -53,6 +53,9 @@ var dric = {
 	////////////////////////////////////////////////////////////////////////////////
 	genericAjax : function(queryParams, callback, err) {
 		setTimeout(function() {
+			var dateTime = new Date();
+			var time = dateTime.getTime();
+			queryParams += "&time="+time;  // try to prevent cache problems
 			$.ajax({
 				dataType: "json",
 				type: "GET",
@@ -102,11 +105,11 @@ var dric = {
 	////////////////////////////////////////////////////////////////////////////////
 	performQuickSearch : function() {
 		try {
-			dric.showLoadSpinner();
 			var searchFor = $("#quickSearchFld").val();
 			console.log("Search For: " + searchFor);
 			if (searchFor === undefined || searchFor.trim() === '') 
 				return;
+			dric.showLoadSpinner();
 			var queryParams = "name="+searchFor;
 			var cbHandler = dric.performQuickSearchCB;
 			var cbError = dric.performQuickSearchErr;
@@ -122,9 +125,10 @@ var dric = {
 	performQuickSearchCB : function(data) {
 		try {
 			data.queryTerms = "Last Month";
-			var drugs = _.templateFromUrl("templates/drugRecallList.html", data, {variable:"data"});
+			var dateTime = new Date().getTime();
+			var drugs = _.templateFromUrl("templates/drugRecallList.html?time="+dateTime, data, {variable:"data"});
 			$("#mainContent").html(drugs);
-			dric.reloadFooter();
+			//dric.reloadFooter();
 		} catch (e) {
 			console.log("Unexpected error: " + e.message);
 		}
