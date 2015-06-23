@@ -16,4 +16,9 @@ public interface HttpOps {
 	 * @return
 	 */
 	public String getFromUrl(String url);
+	/**
+	 * get the remote HTTP status
+	 * @return
+	 */
+	public Integer getHttpStatus();
 }

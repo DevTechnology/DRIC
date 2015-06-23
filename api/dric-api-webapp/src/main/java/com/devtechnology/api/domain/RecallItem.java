@@ -19,6 +19,7 @@ public class RecallItem {
 	private String event_id;
 	private String product_type;
 	private String product_description;
+	private String short_product_description;
 	private String country;
 	private String city;
 	private String recalling_firm;
@@ -89,6 +90,12 @@ public class RecallItem {
 	}
 	public void setProduct_description(String product_description) {
 		this.product_description = product_description;
+	}
+	public String getShort_product_description() {
+		return short_product_description;
+	}
+	public void setShort_product_description(String short_product_description) {
+		this.short_product_description = short_product_description;
 	}
 	public String getCountry() {
 		return country;
