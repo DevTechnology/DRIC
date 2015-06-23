@@ -78,7 +78,7 @@ var dric = {
 				success: dric.loadRecentDrugReportsCB,
 				error: dric.loadRecentDrugReportsErr
 			});
-		}, 3000);
+		}, 300);
 	},
 
 	////////////////////////////////////////////////////////////////////////////////
@@ -86,6 +86,7 @@ var dric = {
 	////////////////////////////////////////////////////////////////////////////////
 	loadRecentDrugReportsCB : function(data) {
 		try {
+			data.queryTerms = "Last Month";
 			var drugs = _.templateFromUrl("templates/drugRecallList.html", data, {variable:"data"});
 			$("#mainContent").html(drugs);
 

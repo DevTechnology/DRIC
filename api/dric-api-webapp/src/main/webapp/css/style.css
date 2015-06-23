@@ -2,6 +2,10 @@ html, body {
   height: 100%;
 }
 
+body {
+	padding-top: 0px;
+}
+
 #mainContent {
   min-height: 100%;
 }
@@ -73,13 +77,18 @@ h2{
 	z-index: 1001;
 }
 
+.navbar {
+	margin-bottom: 5px;
+}
+
+/*
 .navbar .divider-vertical {
 height: 30px;
 margin: 10px 15px;
 border-right: 1px solid #337ab7;
 border-left: 1px solid #337ab7;
 }
-
+*/
 .navbar-inverse .divider-vertical {
 border-right-color: #222222;
 border-left-color: #111111;
