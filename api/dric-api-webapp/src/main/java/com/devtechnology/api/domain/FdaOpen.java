@@ -13,6 +13,7 @@ public class FdaOpen {
 	private List<String> brand_name;
 	private List<String> generic_name;
 	private List<String> substance_name;
+	private List<String> package_ndc;
 	
 	public List<String> getProduct_ndc() {
 		product_ndc = (product_ndc == null) ? new ArrayList<String>() : product_ndc;
@@ -41,5 +42,12 @@ public class FdaOpen {
 	}
 	public void setSubstance_name(List<String> substance_name) {
 		this.substance_name = substance_name;
+	}
+	public List<String> getPackage_ndc() {
+		package_ndc = (package_ndc == null) ? new ArrayList<String>() : package_ndc;
+		return package_ndc;
+	}
+	public void setPackage_ndc(List<String> package_ndc) {
+		this.package_ndc = package_ndc;
 	}
 }

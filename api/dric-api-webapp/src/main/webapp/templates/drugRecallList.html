@@ -1,14 +1,20 @@
 <div class="panel panel-info text-center" id="srchResultsPanel">
-	<% if (data.hasOwnProperty('error') && data.error != null) {%>
+	<% if (data.hasOwnProperty('error') && data.error != null && data.meta.httpStatus != 404) {%>
 		<div class="panel-heading">Drug Recall Reports <span>[ Error ]</span></div>
+	<%} else if (data.hasOwnProperty('error') && data.error != null && data.meta.httpStatus == 404) {%>
+		<div class="panel-heading">Drug Recall Reports <span>[ No Results ]</span></div>
 	<%} else {%>
 		<div class="panel-heading">Drug Recall Reports <span>[ Results: <%=data.meta.results.total%> ]</span></div>
 	<%}%>
 		<div style="height: 265px !important; overflow: scroll;overflow-x:hidden;">
 			<div class="list-group text-left">
-			<% if (data.hasOwnProperty('error') && data.error != null) {%>
+			<% if (data.hasOwnProperty('error') && data.error != null && data.meta.httpStatus != 404) {%>
 				<div class="alert alert-danger" role="alert">
-					Sorry, but an unexpected error occurred. <%=data.error.message%>.
+					An unexpected error occurred: <%=data.error.message%>
+				</div>
+			<%} else if (data.hasOwnProperty('error') && data.error != null && data.meta.httpStatus == 404) {%>
+				<div class="alert alert-info" role="alert">
+					No Results Found
 				</div>
 			<%} else {%>
 				<% _.each(data.recalls, function(drugs) {%>

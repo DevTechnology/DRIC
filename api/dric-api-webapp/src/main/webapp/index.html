@@ -19,11 +19,13 @@
   <![endif]-->
 </head>
 
-<body class="devBackgroundE" onload="dric.loadRecentDrugReports();">
+<body class="devBackgroundE" onload="">
 
   <div class="container-full">
-	<nav class="navbar navbar-default role="navigation">
-		<div class="container-fluid bg-success">
+	<span class="sr-only">Drug Recall Information Center</span>
+  	<div class="header dricHeader"><h2 title="Drug Recall Information Center">Drug Recall Information Center</h2></div>
+	<nav class="navbar navbar-default text-center role="navigation" id="navBar">
+		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
     			<div class="navbar-header">
           			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -32,26 +34,27 @@
 			          	<span class="icon-bar"></span>
 				        <span class="icon-bar"></span>
 			        </button>
-	          		<span class="sr-only">Drug Recall Information Center</span>
-			      	<a class="navbar-brand" href="/dric" title="Drug Recall Information Center">Drug Recall Info Center</a>
 	                </div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<form class="navbar-form navbar-left" role="search">
-			        	<div class="form-group">
+				<div class="navbar-form" role="search">
+			        	<div class="input-group">
 	          				<span class="sr-only">Drug Recall Quick Search Field</span>
-				        	<input type="text" class="form-control" placeholder="Search..." id="quickSearchFld" title="Search Field">
+				        	<input type="text" class="form-control" placeholder="Search (e.g., advil)..." id="quickSearchFld" title="Search Field">
+						<span class="input-group-btn">
+	          					<span class="sr-only">Drug Recall Quick Search Button</span>
+							<button type="button" class="btn btn-default btn-primary" 
+								title="Drug Recall Quick Search" 
+								onclick="dric.performQuickSearch();">Search</button>
+						</span>
 				        </div>
-	          			<span class="sr-only">Drug Recall Quick Search Button</span>
-					<button type="button" class="btn btn-default btn-primary" title="Drug Recall Quick Search"
-						onclick="dric.performQuickSearch();">Search</button>
 	          			<span class="sr-only">Drug Recall Advanced Search Button</span>
 					<button type="button" class="btn btn-default" onclick="dric.showAdvancedSearch();"
 						title="Drug Recall Advanced Search">Advanced Search</button>
 					<button type="button" class="btn btn-default" onclick="dric.resetQuickSearch();"
 						title="Reset Results To Latest In Current Month">Clear</button>
-			        </form>
+			        </div>
 			</div>
 		</div>
       	</nav> <!-- NavBar -->
@@ -242,7 +245,7 @@
 
   </div> <!-- Main DIV -->
 
-  <div id="footer">
+  <div class="navbar navbar-fixed-bottom" id="footer">
 	<center><a href="http://www.devtechnology.com" target="_new" border="0"><img src="img/developedby-outline.jpg" class="img-responsive text-center" title="Dev Technology Group" sr-only="Developed By Dev Technology Group, http://www.devtechnology.com"></a></center>
 	<p class="muted credit" sr-only="Copyright 2015 Dev Technology Group, All rights reserved" title=">Copyright 2015 Dev Technology Group, All rights reserved"><center>&copy 2015 Dev Technology Group, All rights reserved</center></p>
   </div>
@@ -262,6 +265,18 @@ $(document).on('click','.navbar-collapse.in',function(e) {
             $(this).collapse('hide');
     }
 });
+</script>
+
+<script>
+	$(document).ready(function() {
+		//dric.reloadFooter();
+		$("#quickSearchFld").keyup(function (e) {
+			if (e.keyCode == 13) {
+				dric.performQuickSearch();
+			}
+		});
+      	});
+</script>
   
 </body>
 </html>
