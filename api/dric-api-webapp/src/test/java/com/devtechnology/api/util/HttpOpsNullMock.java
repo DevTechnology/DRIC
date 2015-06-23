@@ -16,4 +16,9 @@ public class HttpOpsNullMock implements HttpOps {
 		return null;
 	}
 
+	@Override
+	public Integer getHttpStatus() {
+		return null;
+	}
+
 }

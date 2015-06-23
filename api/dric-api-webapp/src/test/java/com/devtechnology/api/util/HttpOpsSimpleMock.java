@@ -35,4 +35,9 @@ public class HttpOpsSimpleMock implements HttpOps {
 		RxImageResponse r = new RxImageResponse();
 		return r;
 	}
+
+	@Override
+	public Integer getHttpStatus() {
+		return null;
+	}
 }

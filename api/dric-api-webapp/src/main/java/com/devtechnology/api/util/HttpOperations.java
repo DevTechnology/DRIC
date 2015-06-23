@@ -20,8 +20,8 @@ import com.google.gson.Gson;
  *
  */
 public class HttpOperations implements HttpOps {
-	Logger logger = Logger.getLogger(HttpOperations.class);
-	
+	private static Logger logger = Logger.getLogger(HttpOperations.class);
+	private Integer httpStatus = null;
 	/**
 	 * perform a GET on the given 'url' and convert the raw JSON to a POJO
 	 */
@@ -53,6 +53,7 @@ public class HttpOperations implements HttpOps {
 				@Override
 				public String handleResponse(final HttpResponse response) throws ClientProtocolException, IOException {
 					int status = response.getStatusLine().getStatusCode();
+					httpStatus = status;
 					if (status >= 200 && status < 300) {
 						HttpEntity entity = response.getEntity();
 						return entity != null ? EntityUtils.toString(entity) : null;
@@ -74,5 +75,9 @@ public class HttpOperations implements HttpOps {
 			}
 		}
 		return result;
+	}
+	
+	public Integer getHttpStatus() {
+		return httpStatus;
 	}
 }

@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 
 import com.devtechnology.api.domain.FdaClassificationFilter;
 import com.devtechnology.api.domain.FdaError;
+import com.devtechnology.api.domain.FdaMeta;
 import com.devtechnology.api.domain.FdaReportDateFilter;
 import com.devtechnology.api.domain.FdaResponse;
 import com.devtechnology.api.domain.FdaResults;
@@ -42,6 +43,7 @@ public class FdaUtil {
 		if (fdaResponse == null) {
 			fdaResponse = getError();
 		}
+		fdaResponse.getMeta().setHttpStatus(httpOps.getHttpStatus());
 		logger.info(new Gson().toJson(fdaResponse));
 		RecallResponse result = mapResponse(fdaResponse);
 		return result;
@@ -248,6 +250,7 @@ public class FdaUtil {
 		error.setCode("externalFailure");
 		error.setMessage("Failed to get data from Open FDA");
 		fdaResponse.setError(error);
+		fdaResponse.setMeta(new FdaMeta());
 		return fdaResponse;
 	}
 	

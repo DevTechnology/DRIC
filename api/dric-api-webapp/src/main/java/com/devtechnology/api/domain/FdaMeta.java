@@ -10,7 +10,14 @@ public class FdaMeta {
 	private String license;
 	private String last_updated;
 	private FdaMetaResults results;
+	private Integer httpStatus;
 	
+	public Integer getHttpStatus() {
+		return httpStatus;
+	}
+	public void setHttpStatus(Integer httpStatus) {
+		this.httpStatus = httpStatus;
+	}
 	public String getDisclaimer() {
 		return disclaimer;
 	}
