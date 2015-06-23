@@ -246,7 +246,7 @@
 
   </div> <!-- Main DIV -->
 
-  <div class="navbar navbar-fixed-bottom" id="footer">
+  <div id="footer">
 	<center><a href="http://www.devtechnology.com" target="_new" border="0"><img src="img/developedby-outline.jpg" class="img-responsive text-center" title="Dev Technology Group" sr-only="Developed By Dev Technology Group, http://www.devtechnology.com"></a></center>
 	<p class="muted credit" sr-only="Copyright 2015 Dev Technology Group, All rights reserved" title=">Copyright 2015 Dev Technology Group, All rights reserved"><center>&copy 2015 Dev Technology Group, All rights reserved</center></p>
   </div>
@@ -276,6 +276,20 @@ $(document).on('click','.navbar-collapse.in',function(e) {
 				dric.performQuickSearch();
 			}
 		});
+
+		didResize = false;
+		dric.reloadFooter();
+
+		$(window).resize(function() {
+			didResize = true;
+		});
+
+		setInterval(function() {  
+	  		if(didResize) {
+		     		didResize = false;
+				dric.reloadFooter();
+			}
+	   	}, 250);
       	});
 </script>
   
