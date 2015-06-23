@@ -60,6 +60,10 @@ public class RxImageUtil {
 		return ndcImage;
 	}
 	
+	/**
+	 * Used to inject an instance of HttpOps for ease of unit testing
+	 * @param httpOps
+	 */
 	public void setHttpOperations(HttpOps HttpOps) {
 		this.httpOps = HttpOps;
 	}

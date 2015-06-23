@@ -31,7 +31,7 @@ public class FdaUtil {
 	private HttpOps httpOps;
 	
 	/**
-	 * RecallResponse object with the recall results matching the given 'name' value
+	 * RecallResponse object with the recall results matching the given filter values
 	 * @param textFilter
 	 * @return
 	 */
@@ -92,6 +92,7 @@ public class FdaUtil {
 	 * @return
 	 */
 	public String mapSearchFilter(String textFilter, FdaReportDateFilter reportDate, FdaStatusFilter status, FdaClassificationFilter classification) {
+		// only add valid values, and return as 'search=key1:val1+AND+key2:val2'
 		String r = "";
 		List<String> filters = new ArrayList<String>();
 		if (textFilter != null && !"".equals(textFilter.trim()) && !"undefined".equals(textFilter.trim())) {
@@ -156,9 +157,11 @@ public class FdaUtil {
 					item.setCode_info(fdaResult.getCode_info());
 					item.setInitial_firm_notification(fdaResult.getInitial_firm_notification());
 					if (fdaResult.getOpenfda() != null) {
+						// attempt to get unique product names from multiple fields
 						productSet.addAll(fdaResult.getOpenfda().getGeneric_name());
 						productSet.addAll(fdaResult.getOpenfda().getBrand_name());
 						productSet.addAll(fdaResult.getOpenfda().getSubstance_name());
+						// get unique NDC values
 						ndcSet.addAll(fdaResult.getOpenfda().getProduct_ndc());
 						item.getProduct_ndc().addAll(ndcSet);
 					}
@@ -173,6 +176,7 @@ public class FdaUtil {
 	
 	/**
 	 * Get the system property, if set, of the Open FDA API key. property name is 'openFdaApiKey'
+	 * The OpenFDA API does not require an API key, but if applicable then inject it into the container as a server property
 	 * @return URL parameter to add the FDA API key to the criteria
 	 */
 	private String getApiKey() {
@@ -222,6 +226,10 @@ public class FdaUtil {
 		return fdaResponse;
 	}
 	
+	/**
+	 * Used to inject an instance of HttpOps for ease of unit testing
+	 * @param httpOps
+	 */
 	public void setHttpOperations(HttpOps httpOps) {
 		this.httpOps = httpOps;
 	}

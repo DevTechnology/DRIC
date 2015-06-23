@@ -15,13 +15,16 @@ import org.apache.log4j.Logger;
 import com.google.gson.Gson;
 
 /**
- * Utility methods for doing GET operations to external services
+ * Utility methods for doing HTTP operations to external services
  * @author jbnimble
  *
  */
 public class HttpOperations implements HttpOps {
 	Logger logger = Logger.getLogger(HttpOperations.class);
 	
+	/**
+	 * perform a GET on the given 'url' and convert the raw JSON to a POJO
+	 */
 	@Override
 	public <V> V getMappedFromUlr(String url, Class<V> type) {
 		V result = null;
@@ -35,7 +38,7 @@ public class HttpOperations implements HttpOps {
 	}
 	
 	/**
-	 * perform a GET on the given 'url' and return the result as a String
+	 * perform a GET on the given 'url' and return the raw result as a String
 	 * @param url
 	 * @return
 	 */
