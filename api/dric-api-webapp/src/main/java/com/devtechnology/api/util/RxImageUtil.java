@@ -38,6 +38,30 @@ public class RxImageUtil {
 	}
 	
 	/**
+	 * Get the first image URLs from a comma separated list of NDC values
+	 * @param ndcs
+	 * @return
+	 */
+	public NdcImage getNdcsImageUrl(String ndcs) {
+		NdcImage ndcImage = null;
+		if (ndcs != null && !ndcs.trim().isEmpty() && !ndcs.equals("undefined")) {
+			String[] ndcArr = ndcs.split(",");
+			for (String ndc : ndcArr) {
+				if (ndc != null) {
+					ndcImage = getNdcUrl(ndc);
+					if (ndcImage != null && !ndcImage.getUrl().isEmpty()) {
+						break;
+					}
+				}
+			}
+		}
+		if (ndcImage == null) {
+			ndcImage = new NdcImage();
+		}
+		return ndcImage;
+	}
+	
+	/**
 	 * Map the external service results to an NdcImage
 	 * @param ndc
 	 * @param rxImageResponse

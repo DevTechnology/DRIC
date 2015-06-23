@@ -59,10 +59,25 @@ public class DricApi {
 	@Path("/image/{ndc}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getDrugImage(@PathParam("ndc") String ndc) {
-		// find the recall from the key and return
 		RxImageUtil rxImage = new RxImageUtil();
 		rxImage.setHttpOperations(new HttpOperations());
 		NdcImage ndcImage = rxImage.getNdcUrl(ndc);
+		return Response.ok(ndcImage).build();
+	}
+	
+	/**
+	 * Get the first image that becomes available from a comma separated list of NDC values
+	 * /dric/api/drug/image?ndcs=val1,val2,val3
+	 * @param ndcs
+	 * @return
+	 */
+	@GET
+	@Path("/image")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getDrugImages(@QueryParam("ndcs") String ndcs) {
+		RxImageUtil rxImage = new RxImageUtil();
+		rxImage.setHttpOperations(new HttpOperations());
+		NdcImage ndcImage = rxImage.getNdcsImageUrl(ndcs);
 		return Response.ok(ndcImage).build();
 	}
 }
