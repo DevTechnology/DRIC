@@ -105,7 +105,7 @@ public class FdaUtil {
 	}
 	
 	/**
-	 * Map the 'search=value' fields to filter the data
+	 * Map the 'search=value' fields to filter the data. Creating an exact text search and multiple filters use AND logic
 	 * @param textFilter
 	 * @param reportDate
 	 * @param status

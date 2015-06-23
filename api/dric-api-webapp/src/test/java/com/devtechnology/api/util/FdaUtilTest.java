@@ -8,9 +8,12 @@ import org.apache.log4j.BasicConfigurator;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.devtechnology.api.domain.FdaClassificationFilter;
 import com.devtechnology.api.domain.FdaOpen;
+import com.devtechnology.api.domain.FdaReportDateFilter;
 import com.devtechnology.api.domain.FdaResponse;
 import com.devtechnology.api.domain.FdaResults;
+import com.devtechnology.api.domain.FdaStatusFilter;
 import com.devtechnology.api.domain.RecallResponse;
 
 /**
@@ -65,7 +68,7 @@ public class FdaUtilTest {
 	}
 	
 	@Test
-	public void testMapping() {
+	public void testMapResponse() {
 		FdaUtil fdaUtil = new FdaUtil();
 		FdaResponse f = new FdaResponse();
 		FdaResults item = new FdaResults();
@@ -88,5 +91,28 @@ public class FdaUtilTest {
 		assertTrue("product does not contain 'product3'", r.getRecalls().get(0).getProduct().contains("product3"));
 		assertTrue("product has more than 3 unique items", r.getRecalls().get(0).getProduct().size() == 3);
 		assertTrue("ndc has more than 3 unique items", r.getRecalls().get(0).getProduct_ndc().size() == 3);
+	}
+	
+	@Test
+	public void testMapSearchFilter() {
+		FdaUtil fdaUtil = new FdaUtil();
+		String result = fdaUtil.mapSearchFilter(null, null, null, null);
+		assertTrue("result != '' with all null parameters result="+result, "".equals(result));
+		result = fdaUtil.mapSearchFilter("", null, null, null);
+		assertTrue("result != '' with searchFilter='' result="+result, "".equals(result));
+		result = fdaUtil.mapSearchFilter("undefined", null, null, null);
+		assertTrue("result != '' with with searchFilter='undefined' result="+result, "".equals(result));
+		result = fdaUtil.mapSearchFilter(null, FdaReportDateFilter.ALL, null, null);
+		assertTrue("result != '' with with FdaReportDateFilter='ALL' result="+result, "".equals(result));
+		result = fdaUtil.mapSearchFilter(null, null, FdaStatusFilter.ALL, null);
+		assertTrue("result != '' with with FdaStatusFilter='ALL' result="+result, "".equals(result));
+		result = fdaUtil.mapSearchFilter(null, null, null, FdaClassificationFilter.ALL);
+		assertTrue("result != '' with with FdaClassificationFilter='ALL' result="+result, "".equals(result));
+		result = fdaUtil.mapSearchFilter("testing123", FdaReportDateFilter.SIXMONTH, FdaStatusFilter.ONGOING, FdaClassificationFilter.CLASS1);
+		assertTrue("result missing textFilter result="+result, result.indexOf("%22testing123%22") != -1);
+		assertTrue("result missing reportDate result="+result, result.indexOf("report_date:") != -1);
+		assertTrue("result missing status result="+result, result.indexOf("status:Ongoing") != -1);
+		assertTrue("result missing classification result="+result, result.indexOf("classification:%22Class+I%22") != -1);
+		assertTrue("result wrong number of ANDs result="+result, result.split("AND").length == 4);
 	}
 }
