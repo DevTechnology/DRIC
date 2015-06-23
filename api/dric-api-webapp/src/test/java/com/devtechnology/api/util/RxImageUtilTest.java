@@ -37,7 +37,7 @@ public class RxImageUtilTest {
 	}
 	
 	@Test
-	public void testMappResponse() {
+	public void testMapResponse() {
 		RxImageUtil util = new RxImageUtil();
 		RxImageResponse r = new RxImageResponse();
 		RxImageResult ir = new RxImageResult();

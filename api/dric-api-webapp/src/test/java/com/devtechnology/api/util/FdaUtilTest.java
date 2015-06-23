@@ -28,17 +28,6 @@ public class FdaUtilTest {
 	}
 	
 	@Test
-	public void testNullRecentRecallResponse() {
-		FdaUtil fdaUtil = new FdaUtil();
-		fdaUtil.setHttpOperations(new HttpOpsNullMock());
-		RecallResponse response = fdaUtil.getRecentRecalls(null, null);
-		assertNotNull("RecallResponse is null", response);
-		assertNotNull("RecallResponse.error is null", response.getError());
-		assertNotNull("RecallResponse.error.code is null", response.getError().getCode());
-		assertTrue("Did not match 'externalFailure'", response.getError().getCode().equals("externalFailure"));
-	}
-	
-	@Test
 	public void testNullRecallsResponse() {
 		FdaUtil fdaUtil = new FdaUtil();
 		fdaUtil.setHttpOperations(new HttpOpsNullMock());
@@ -47,15 +36,6 @@ public class FdaUtilTest {
 		assertNotNull("RecallResponse.error is null", response.getError());
 		assertNotNull("RecallResponse.error.code is null", response.getError().getCode());
 		assertTrue("Did not match 'externalFailure'", response.getError().getCode().equals("externalFailure"));
-	}
-	
-	@Test
-	public void testSimpleRecentRecallResponse() {
-		FdaUtil fdaUtil = new FdaUtil();
-		fdaUtil.setHttpOperations(new HttpOpsSimpleMock());
-		RecallResponse response = fdaUtil.getRecentRecalls(null, null);
-		assertNotNull("RecallResponse is null", response);
-		assertNull("RecallResponse.error is not null", response.getError());
 	}
 	
 	@Test

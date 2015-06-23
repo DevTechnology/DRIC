@@ -1,8 +1,6 @@
 package com.devtechnology.api.util;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -31,25 +29,6 @@ public class FdaUtil {
 	private static Integer defaultLimit = 10;
 	private static Integer defaultSkip = 0;
 	private HttpOps httpOps;
-	
-	/**
-	 * RecallResponse object with the recent recall results
-	 * @return
-	 */
-	public RecallResponse getRecentRecalls(Integer limit, Integer skip) {
-		String today = getTodayYYYYMMDD();
-		String lastMonth = getLastMonthYYYYMMDD();
-		// search=status:Ongoing+AND+classification:Class+II
-		String criteria = "search=report_date:["+lastMonth+"+TO+"+today+"]"+getLimit(limit)+getSkip(skip);
-		String apiKey = getApiKey();
-		FdaResponse fdaResponse = httpOps.getMappedFromUlr(baseUrl+criteria+apiKey, FdaResponse.class);
-		if (fdaResponse == null) {
-			fdaResponse = getError();
-		}
-		logger.info(new Gson().toJson(fdaResponse));
-		RecallResponse result = mapResponse(fdaResponse);
-		return result;
-	}
 	
 	/**
 	 * RecallResponse object with the recall results matching the given 'name' value
@@ -190,30 +169,6 @@ public class FdaUtil {
 			result.getRecalls().addAll(list);
 		}
 		return result;
-	}
-	
-	/**
-	 * Get the String representation needed for a date range from Open FDA for the value of today
-	 * @return yyyyMMdd formatted value for today
-	 */
-	private String getTodayYYYYMMDD() {
-		Calendar c = Calendar.getInstance();
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
-		String s = formatter.format(c.getTime());
-		return s;
-	}
-	
-	/**
-	 * Get the String representation needed for a date range from Open FDA for the value of the first day of last month
-	 * @return yyyyMMdd formatted value for the first day of last month
-	 */
-	private String getLastMonthYYYYMMDD() {
-		Calendar c = Calendar.getInstance();
-		c.add(Calendar.MONTH, -1);
-		c.set(Calendar.DATE, 1);
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
-		String s = formatter.format(c.getTime());
-		return s;
 	}
 	
 	/**
