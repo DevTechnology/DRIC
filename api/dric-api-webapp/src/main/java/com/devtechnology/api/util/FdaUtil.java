@@ -169,6 +169,7 @@ public class FdaUtil {
 						productSet.addAll(fdaResult.getOpenfda().getSubstance_name());
 						// get unique NDC values
 						ndcSet.addAll(fdaResult.getOpenfda().getProduct_ndc());
+						ndcSet.addAll(fdaResult.getOpenfda().getPackage_ndc());
 						item.getProduct_ndc().addAll(ndcSet);
 					}
 				}
