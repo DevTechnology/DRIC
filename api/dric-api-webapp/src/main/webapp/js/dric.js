@@ -98,31 +98,30 @@ var dric = {
 	},
 
 	////////////////////////////////////////////////////////////////////////////////
-	//  
+	// Run when the user presses the Clear button. 
 	////////////////////////////////////////////////////////////////////////////////
 	resetQuickSearch : function() {
-
+		dric.loadRecentDrugReports();
 	},
 
 	////////////////////////////////////////////////////////////////////////////////
-	//  
+	// Load Drug Recall Reports for the last month.  
 	////////////////////////////////////////////////////////////////////////////////
 	loadRecentDrugReports : function() {
-		dric.showLoadSpinner();
-		setTimeout(function() {
-			$.ajax({
-				dataType: "json",
-				type: "GET",
-				url: "api/drug/recall?reportDate=ONEMONTH", 
-				//url: "data/recents.json", 
-				success: dric.loadRecentDrugReportsCB,
-				error: dric.loadRecentDrugReportsErr
-			});
-		}, 300);
+		try {
+			$("#quickSearchFld").val("");		
+			dric.showLoadSpinner();
+			var queryParams = "reportDate=ONEMONTH";
+			var cbHandler = dric.loadRecentDrugReportsCB;
+			var cbError = dric.loadRecentDrugReportsErr;
+			dric.genericAjax(queryParams, cbHandler, cbError);
+		} catch (e) {
+			console.log("Unexpected error: " + e.message);
+		}
 	},
 
 	////////////////////////////////////////////////////////////////////////////////
-	//  
+	// Callback Handler for loadRecentDrugReports function. 
 	////////////////////////////////////////////////////////////////////////////////
 	loadRecentDrugReportsCB : function(data) {
 		try {
@@ -136,10 +135,10 @@ var dric = {
 	},
 
 	////////////////////////////////////////////////////////////////////////////////
-	//  
+	// Error Handler for loadRecentDrugReports function. 
 	////////////////////////////////////////////////////////////////////////////////
 	loadRecentDrugReportsErr : function(msg) {
-		alert("Crapola!! " + msg.message);
+		console.log("Unexpected error: " + msg.message);
 	},
 
 	////////////////////////////////////////////////////////////////////////////////
