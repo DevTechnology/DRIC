@@ -74,8 +74,8 @@ var dric = {
 			$.ajax({
 				dataType: "json",
 				type: "GET",
-				//url: "api/drug/recall?reportDate=ONEMONTH", 
-				url: "data/recents.json", 
+				url: "api/drug/recall?reportDate=ONEMONTH", 
+				//url: "data/recents.json", 
 				success: dric.loadRecentDrugReportsCB,
 				error: dric.loadRecentDrugReportsErr
 			});
