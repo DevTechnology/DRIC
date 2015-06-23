@@ -1,6 +1,6 @@
 <div class="panel panel-info text-center" id="srchResultsPanel">
-	<div class="panel-heading">Drug Recall Reports <span>[ Search Results for: <%=data.queryTerms%> ]</span></div>
-		<div style="height: 300px !important; overflow: scroll;overflow-x:hidden;">
+	<div class="panel-heading">Drug Recall Reports <span>[ Results: <%=data.meta.results.total%> ]</span></div>
+		<div style="height: 265px !important; overflow: scroll;overflow-x:hidden;">
 			<div class="list-group text-left">
 			<% _.each(data.recalls, function(drugs) {%>
 			<a href="#" class="list-group-item" onclick="dric.showSearchResultDetails();">
