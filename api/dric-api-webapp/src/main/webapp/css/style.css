@@ -342,3 +342,12 @@ enu {
 .spinner {
 	height: 200px;
 }
+
+.drugInfo {
+	max-height: 75px;
+}
+
+.modal-body {
+	max-height: 300px;
+	overflow-y: auto;
+}
