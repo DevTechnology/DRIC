@@ -5,6 +5,8 @@
 
 var dric = {
 
+	url : "api/drug/recall",
+
 	////////////////////////////////////////////////////////////////////////////////
 	// Display the advanced search modal dialog.
 	////////////////////////////////////////////////////////////////////////////////
@@ -38,24 +40,61 @@ var dric = {
 	},
 
 	////////////////////////////////////////////////////////////////////////////////
-	//  
+	// Generic function to perform AJAX queries.
+	// @queryParams - string of query params to pass to REST service
+	// @callback - AJAX callback handler
+	// @err - AJAX callback handler
+	////////////////////////////////////////////////////////////////////////////////
+	genericAjax : function(queryParams, callback, err) {
+		setTimeout(function() {
+			$.ajax({
+				dataType: "json",
+				type: "GET",
+				url: dric.url+"?"+queryParams, 
+				//url: "data/recents.json", 
+				success: callback,
+				error: err 
+			});
+		}, 300);
+
+	},
+
+	////////////////////////////////////////////////////////////////////////////////
+	// When user clicks the 'Search' button execute a quick drug recall search.  
 	////////////////////////////////////////////////////////////////////////////////
 	performQuickSearch : function() {
-
+		try {
+			dric.showLoadSpinner();
+			var searchFor = $("#quickSearchFld").val();
+			console.log("Search For: " + searchFor);
+			var queryParams = "name="+searchFor;
+			var cbHandler = dric.performQuickSearchCB;
+			var cbError = dric.performQuickSearchErr;
+			dric.genericAjax(queryParams, cbHandler, cbError);
+		} catch (e) {
+			console.log("Unexpected error: " + e.message);
+		}
 	},
 
 	////////////////////////////////////////////////////////////////////////////////
-	//  
+	// Callback Handler for performQuickSearch function. 
 	////////////////////////////////////////////////////////////////////////////////
 	performQuickSearchCB : function(data) {
+		try {
+			data.queryTerms = "Last Month";
+			var drugs = _.templateFromUrl("templates/drugRecallList.html", data, {variable:"data"});
+			$("#mainContent").html(drugs);
 
+		} catch (e) {
+			console.log("Unexpected error: " + e.message);
+		}
 	},
 
 	////////////////////////////////////////////////////////////////////////////////
-	//  
+	// Callback Error Handler for performQuickSearch function. 
 	////////////////////////////////////////////////////////////////////////////////
 	performQuickSearchErr : function(msg) {
-
+		console.log("Unexpected error occurred in quick search: " + msg.message);
 	},
 
 	////////////////////////////////////////////////////////////////////////////////

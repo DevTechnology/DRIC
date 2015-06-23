@@ -1,21 +1,31 @@
 <div class="panel panel-info text-center" id="srchResultsPanel">
-	<div class="panel-heading">Drug Recall Reports <span>[ Results: <%=data.meta.results.total%> ]</span></div>
+	<% if (data.hasOwnProperty('error') && data.error != null) {%>
+		<div class="panel-heading">Drug Recall Reports <span>[ Error ]</span></div>
+	<%} else {%>
+		<div class="panel-heading">Drug Recall Reports <span>[ Results: <%=data.meta.results.total%> ]</span></div>
+	<%}%>
 		<div style="height: 265px !important; overflow: scroll;overflow-x:hidden;">
 			<div class="list-group text-left">
-			<% _.each(data.recalls, function(drugs) {%>
-			<a href="#" class="list-group-item" onclick="dric.showSearchResultDetails();">
-				<h4 class="list-group-item-heading">
-					Recall Number: <%=drugs.recall_number%> | 
-					Report Date: <%=drugs.report_date%>	
-				</h4>
-				<p class="list-group-item-text">
-					Drugs referenced in this report: <% if(drugs.product.length > 0) {%><%= drugs.product %> <%} else {%>N/A<%}%>
-				</p>
-				<p>Classification: <%=drugs.classification%></p>
-				<span class="sr-only">Recall Number is <%=drugs.recall_number%>.  Report Date is <%=drugs.report_date%>.  Report 
-				classification is <%=drugs.classification%></span>
-			</a>
-			<% }); %>
+			<% if (data.hasOwnProperty('error') && data.error != null) {%>
+				<div class="alert alert-danger" role="alert">
+					Sorry, but an unexpected error occurred. <%=data.error.message%>.
+				</div>
+			<%} else {%>
+				<% _.each(data.recalls, function(drugs) {%>
+				<a href="#" class="list-group-item" onclick="dric.showSearchResultDetails();">
+					<h4 class="list-group-item-heading">
+						Recall Number: <%=drugs.recall_number%> | 
+						Report Date: <%=drugs.report_date%>	
+					</h4>
+					<p class="list-group-item-text">
+						Drugs referenced in this report: <% if(drugs.product.length > 0) {%><%= drugs.product %> <%} else {%>N/A<%}%>
+					</p>
+					<p>Classification: <%=drugs.classification%></p>
+					<span class="sr-only">Recall Number is <%=drugs.recall_number%>.  Report Date is <%=drugs.report_date%>.  Report 
+					classification is <%=drugs.classification%></span>
+				</a>
+				<% }); %>
+			<%}%>
 		</div>
 	</div>
 </div>
