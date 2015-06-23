@@ -4,8 +4,8 @@
 	<%} else if (data.hasOwnProperty('error') && data.error != null && data.meta.httpStatus == 404) {%>
 		<div class="panel-heading">Drug Recall Reports <span>[ No Results Found ]</span></div>
 	<%} else {%>
-		<div class="panel-heading">Drug Recall Reports <span>[ Results: <%=data.meta.results.total%>
-			of <%=data.recalls.length%> ]</span></div>
+		<div class="panel-heading"> Results (<%=data.meta.results.total%> 
+			of <%=data.recalls.length%>)</div>
 	<%}%>
 		<div style="height: 265px !important; overflow: scroll;overflow-x:hidden;">
 			<div class="list-group text-left">
