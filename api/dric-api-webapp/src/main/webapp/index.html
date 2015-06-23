@@ -24,7 +24,7 @@
   <div class="container-full">
 	<span class="sr-only">Drug Recall Information Center</span>
   	<div class="header dricHeader"><h2 title="Drug Recall Information Center">Drug Recall Information Center</h2></div>
-	<nav class="navbar navbar-default text-center role="navigation" id="navBar">
+	<nav class="navbar navbar-default text-center in" role="navigation" id="navBar">
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
     			<div class="navbar-header">
@@ -37,7 +37,8 @@
 	                </div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"> -->
+			<div id="bs-example-navbar-collapse-1">
 				<div class="navbar-form" role="search">
 			        	<div class="input-group">
 	          				<span class="sr-only">Drug Recall Quick Search Field</span>
@@ -217,7 +218,7 @@
 
   </div> <!-- Main DIV -->
 
-  <div class="navbar navbar-fixed-bottom" id="footer">
+  <div id="footer">
 	<center><a href="http://www.devtechnology.com" target="_new" border="0"><img src="img/developedby-outline.jpg" class="img-responsive text-center" title="Dev Technology Group" sr-only="Developed By Dev Technology Group, http://www.devtechnology.com"></a></center>
 	<p class="muted credit" sr-only="Copyright 2015 Dev Technology Group, All rights reserved" title=">Copyright 2015 Dev Technology Group, All rights reserved"><center>&copy 2015 Dev Technology Group, All rights reserved</center></p>
   </div>
@@ -247,6 +248,20 @@ $(document).on('click','.navbar-collapse.in',function(e) {
 				dric.performQuickSearch();
 			}
 		});
+
+		didResize = false;
+		dric.reloadFooter();
+
+		$(window).resize(function() {
+			didResize = true;
+		});
+
+		setInterval(function() {  
+	  		if(didResize) {
+		     		didResize = false;
+				dric.reloadFooter();
+			}
+	   	}, 250);
       	});
 </script>
   

@@ -136,7 +136,7 @@ var dric = {
 			var dateTime = new Date().getTime();
 			var drugs = _.templateFromUrl("templates/drugRecallList.html?time="+dateTime, data, {variable:"data"});
 			$("#mainContent").html(drugs);
-			//dric.reloadFooter();
+			dric.reloadFooter();
 		} catch (e) {
 			console.log("Unexpected error: " + e.message);
 		}
@@ -156,6 +156,7 @@ var dric = {
 		//dric.loadRecentDrugReports();
 		$("#quickSearchFld").val("");		
 		$("#mainContent").html("");
+		dric.reloadFooter();
 	},
 
 	////////////////////////////////////////////////////////////////////////////////

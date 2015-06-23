@@ -2,7 +2,7 @@
 	<% if (data.hasOwnProperty('error') && data.error != null && data.meta.httpStatus != 404) {%>
 		<div class="panel-heading">Drug Recall Reports <span>[ Error ]</span></div>
 	<%} else if (data.hasOwnProperty('error') && data.error != null && data.meta.httpStatus == 404) {%>
-		<div class="panel-heading">Drug Recall Reports <span>[ No Results ]</span></div>
+		<div class="panel-heading">Drug Recall Reports <span>[ No Results Found ]</span></div>
 	<%} else {%>
 		<div class="panel-heading">Drug Recall Reports <span>[ Results: <%=data.meta.results.total%> ]</span></div>
 	<%}%>
@@ -11,10 +11,6 @@
 			<% if (data.hasOwnProperty('error') && data.error != null && data.meta.httpStatus != 404) {%>
 				<div class="alert alert-danger" role="alert">
 					An unexpected error occurred: <%=data.error.message%>
-				</div>
-			<%} else if (data.hasOwnProperty('error') && data.error != null && data.meta.httpStatus == 404) {%>
-				<div class="alert alert-info" role="alert">
-					No Results Found
 				</div>
 			<%} else {%>
 				<% _.each(data.recalls, function(drugs, index) {%>
