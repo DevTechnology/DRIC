@@ -3,11 +3,16 @@
 		<h2><b><%=data.short_product_description%></b></h2>
 	</div>
 	<div class="panel-body">
-		<h4><b>Related Image from RxImage</b></h4>
-		<div class="row">
+		<div class="row" id="images" style="display:
+			<%if (data.hasOwnProperty('drugImage')) {%>block;<%}else{%>none;<%}%>">
+			<div class="col-xs-9">
+				<h4><b>Related Image from RxImage</b></h4>
+			</div>
 			<div class="col-xs-4">
 				<div class="thumbnail">
-					<img alt="" src="img/drug.jpg">
+					<img alt="Drug Thumbnail Image" 
+						src="<%if (data.hasOwnProperty('drugImage')) {%><%=data.drugImage%><%}%>" 
+						id="recalledDrugImage">
 				</div>
 			</div>
 			<div class="col-xs-4 bottom-aligned-text">

@@ -3,16 +3,16 @@
  * @author: jcaple, 6/20/2015
  */
 
- /**
-  * TODO:
-  *	- Better error handling
-  *	- 
-  */
-
 var dric = {
 
 	url : "api/drug/recall",
+
+	imgUrl : "api/drug/image",
+
 	recallResponse : null,
+
+	detailsResponse : null,
+
 	////////////////////////////////////////////////////////////////////////////////
 	// Display the advanced search modal dialog.
 	////////////////////////////////////////////////////////////////////////////////
@@ -29,13 +29,68 @@ var dric = {
 	////////////////////////////////////////////////////////////////////////////////
 	showSearchResultDetails : function(index) {
 		try {
-			var data = dric.recallResponse.recalls[index];
-			var detailsHtml = _.templateFromUrl("templates/drugRecallDetails.html", data, {variable:"data"});
-			$("#drugRecallDetailsBody").html(detailsHtml);
+			// Set data received so far
+			dric.detailsResponse = dric.recallResponse.recalls[index];
+			var data = dric.detailsResponse;
+
+			// Try to load an associated Drug Image if one can be found.
+			if (data.hasOwnProperty("product_ndc")) {
+				if (data.product_ndc.length > 0) {
+					var ndcList = data.product_ndc.join();
+					var queryParam = "ndcs="+ndcList;
+					var callback = dric.ndcImageCallback;
+					var err = dric.ndcImageErr;
+					var url = dric.imgUrl;
+					dric.genericAjax(queryParam, callback, err, url);
+				} else {
+					dric.showDrugDetailsModal();
+				}
+			} else {
+				dric.showDrugDetailsModal();
+			}
+
 		} catch (e) {
 			console.log("Unexpected error: " + e.message);
 		}
-		$("#searchResultsModal").modal('show');
+	},
+
+	////////////////////////////////////////////////////////////////////////////////
+	// Show the drug details modal dialog with the data we've collected so far. 
+	////////////////////////////////////////////////////////////////////////////////
+	showDrugDetailsModal : function() {
+		try {
+			var detailsHtml = _.templateFromUrl("templates/drugRecallDetails.html", 
+				dric.detailsResponse, {variable:"data"});
+			$("#drugRecallDetailsBody").html(detailsHtml);
+			$("#searchResultsModal").modal('show');
+		} catch (e) {
+			console.log(e.message);
+		}
+	},
+
+	////////////////////////////////////////////////////////////////////////////////
+	// Handle NDC Image Loading.
+	////////////////////////////////////////////////////////////////////////////////
+	ndcImageCallback : function(data) {
+		try {
+			if (data.hasOwnProperty("url")) {
+				if (data.url.length > 0) {
+					dric.detailsResponse.drugImage = data.url[0];
+				}
+			}
+			dric.showDrugDetailsModal();
+		} catch (e) {
+			dric.showDrugDetailsModal();
+			console.log("Unexpected error in ndcImageCallback: " + e.message);
+		}
+	},
+
+	////////////////////////////////////////////////////////////////////////////////
+	// Handle NDC Image errors.
+	////////////////////////////////////////////////////////////////////////////////
+	ndcImageErr : function(err) {
+		dric.showDrugDetailsModal();
+		console.log("ndcImageErr unexpected error: " + err.message);
 	},
 
 	////////////////////////////////////////////////////////////////////////////////
@@ -61,15 +116,16 @@ var dric = {
 	// @callback - AJAX callback handler
 	// @err - AJAX callback handler
 	////////////////////////////////////////////////////////////////////////////////
-	genericAjax : function(queryParams, callback, err) {
+	genericAjax : function(queryParams, callback, err, url) {
 		setTimeout(function() {
+			if (url === undefined) { url = dric.url; }
 			var dateTime = new Date();
 			var time = dateTime.getTime();
 			queryParams += "&time="+time;  // try to prevent cache problems
 			$.ajax({
 				dataType: "json",
 				type: "GET",
-				url: dric.url+"?"+queryParams, 
+				url: url+"?"+queryParams, 
 				//url: "data/recents.json", 
 				success: callback,
 				error: err 
@@ -110,6 +166,9 @@ var dric = {
 		}
 	},
 
+	////////////////////////////////////////////////////////////////////////////////
+	// Callback function for the advanced search function.  
+	////////////////////////////////////////////////////////////////////////////////
 	performAdvancedSearchCB : function(data) {
 		try {
 			dric.recallResponse = data;
@@ -123,6 +182,9 @@ var dric = {
 		}
 	},
 
+	////////////////////////////////////////////////////////////////////////////////
+	// Error callback function for the advanced search function.  
+	////////////////////////////////////////////////////////////////////////////////
 	performAdvancedSearchErr : function(msg) {
 		console.log("Unexpected error occurred in advanced search: " + msg.message);
 	},
