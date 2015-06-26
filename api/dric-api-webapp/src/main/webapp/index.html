@@ -96,10 +96,10 @@
 						<div class="col-lg-6">
 							<label title="Filters For Search Results">Filter Criteria For Search Results:</label>
 							<div class="input-group">
-								<div class="input-group-btn">
+								<div class="input-group-btn advFilters">
 									<button type="button" class="btn btn-default dropdown-toggle" 
 										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										Recall In Last:<span class="caret"></span></button>
+										Recalls In Last:<span class="caret"></span></button>
 									<ul class="dropdown-menu">
 										<li>
 											<a href="#" 
@@ -121,14 +121,14 @@
 										</li>
 									</ul>
 								 </div><!-- /btn-group -->
-								 <input type="text" class="form-control" aria-label="..." id="recallTimeFilter" readonly>
+								 <input type="text" class="form-control" id="recallTimeFilter" readonly>
 							</div><!-- /input-group -->
 							<div class="spacer">&nbsp;</div>
 							<div class="input-group">
-								<div class="input-group-btn">
+								<div class="input-group-btn btn-block advFilters">
 									<button type="button" class="btn btn-default dropdown-toggle" 
 										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										Recall Status:<span class="caret"></span></button>
+										Recall Status:&nbsp;&nbsp;<span class="caret"></span></button>
 									<ul class="dropdown-menu">
 										<li>
 											<a href="#" onclick="dric.setAdvancedFilterString($('#recallStatusFilter'), 'ONGOING');">
@@ -152,28 +152,28 @@
 										</li>
 									</ul>
 								 </div><!-- /btn-group -->
-								 <input type="text" class="form-control" aria-label="..." id="recallStatusFilter" readonly>
+								 <input type="text" class="form-control" id="recallStatusFilter" readonly>
 							</div><!-- /input-group -->
 							<div class="spacer">&nbsp;</div>
 							<div class="input-group">
-								<div class="input-group-btn">
+								<div class="input-group-btn advFilters">
 									<button type="button" class="btn btn-default dropdown-toggle" 
 										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										Classification:<span class="caret"></span></button>
+										Classification:&nbsp;&nbsp;<span class="caret"></span></button>
 									<ul class="dropdown-menu">
 										<li>
-											<a href="#" onclick="dric.setAdvancedFilterString($('#classificationFilter'), 'CLASS1');">
-												Class 1
+											<a href="#" onclick="dric.setAdvancedFilterString($('#classificationFilter'), 'CLASS I');">
+												Class I
 											</a>
 										</li>
 										<li>
-											<a href="#" onclick="dric.setAdvancedFilterString($('#classificationFilter'), 'CLASS2');">
-												Class 2
+											<a href="#" onclick="dric.setAdvancedFilterString($('#classificationFilter'), 'CLASS II');">
+												Class II 
 											</a>
 										</li>
 										<li>
-											<a href="#" onclick="dric.setAdvancedFilterString($('#classificationFilter'), 'CLASS3');">
-												Class 3
+											<a href="#" onclick="dric.setAdvancedFilterString($('#classificationFilter'), 'CLASS III');">
+												Class III 
 											</a>
 										</li>
 										<li>
@@ -183,7 +183,7 @@
 										</li>
 									</ul>
 								 </div><!-- /btn-group -->
-								 <input type="text" class="form-control" aria-label="..." id="classificationFilter" readonly>
+								 <input type="text" class="form-control" id="classificationFilter" readonly>
 							</div><!-- /input-group -->
 						</div><!-- /.col-lg-6 -->
 					</div>
