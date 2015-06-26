@@ -313,6 +313,16 @@ var dric = {
 	      	if (footerTop < docHeight) {
 	          	$('#footer').css('margin-top', -2 + (docHeight - footerTop) + 'px');
 		}
+	},
+
+	close_toggle : function() {
+		if ($(window).width() <= 776) {
+	        	$('.nav a').on('click', function() {
+		        	$(".navbar-toggle").click();
+			});
+	    	} else {
+		        $('.nav a').off('click');
+		}			  
 	}
 
 };
