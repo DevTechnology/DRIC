@@ -89,7 +89,7 @@ public class FdaUtilTest {
 		result = fdaUtil.mapSearchFilter(null, null, null, FdaClassificationFilter.ALL);
 		assertTrue("result != '' with with FdaClassificationFilter='ALL' result="+result, "".equals(result));
 		result = fdaUtil.mapSearchFilter("testing123", FdaReportDateFilter.SIXMONTH, FdaStatusFilter.ONGOING, FdaClassificationFilter.CLASS1);
-		assertTrue("result missing textFilter result="+result, result.indexOf("%22testing123%22") != -1);
+		assertTrue("result missing textFilter result="+result, result.indexOf("testing123") != -1);
 		assertTrue("result missing reportDate result="+result, result.indexOf("report_date:") != -1);
 		assertTrue("result missing status result="+result, result.indexOf("status:Ongoing") != -1);
 		assertTrue("result missing classification result="+result, result.indexOf("classification:%22Class+I%22") != -1);
