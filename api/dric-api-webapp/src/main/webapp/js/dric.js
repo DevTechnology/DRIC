@@ -143,6 +143,7 @@ var dric = {
 			$("#advancedSearchModal").modal('toggle');
 			dric.showLoadSpinner();
 			var search = $("#advDrugSrchForm").val();
+			$("#quickSearchFld").val(search);
 			var reportDateFilter = "";
 			var filterRecallTime = $("#recallTimeFilter").val();
 			if (filterRecallTime !== '') {
