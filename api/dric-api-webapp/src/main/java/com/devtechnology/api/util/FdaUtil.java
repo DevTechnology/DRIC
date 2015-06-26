@@ -27,8 +27,9 @@ import com.google.gson.Gson;
 public class FdaUtil {
 	private static Logger logger = Logger.getLogger(FdaUtil.class);
 	private String baseUrl = "https://api.fda.gov/drug/enforcement.json?";
-	private static Integer defaultLimit = 100;
+	private static Integer defaultLimit = 100; // 100 is max OpenFDA API will give in a single request
 	private static Integer defaultSkip = 0;
+	static String dbQuote = "%22"; // used for 'exact' search
 	private HttpOps httpOps;
 	
 	/**
@@ -101,7 +102,7 @@ public class FdaUtil {
 		String r = "";
 		List<String> filters = new ArrayList<String>();
 		if (textFilter != null && !"".equals(textFilter.trim()) && !"undefined".equals(textFilter.trim())) {
-			textFilter = "%22"+textFilter.replaceAll(" ", "+")+"%22";
+			textFilter = textFilter.replaceAll(" ", "+");
 			filters.add(textFilter);
 		}
 		if (reportDate != null && reportDate.getFilter() != null) {
