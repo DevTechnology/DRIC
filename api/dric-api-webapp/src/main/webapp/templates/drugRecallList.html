@@ -16,6 +16,7 @@
 				<% _.each(data.recalls, function(drugs, index) {%>
 				<a href="#" class="list-group-item" onclick="dric.showSearchResultDetails(<%=index%>);">
 					<h4 class="list-group-item-heading"><%=drugs.short_product_description%></h4>
+					<p class="list-group-item-text">Recall Number: <%=drugs.recall_number%></p>
 					<p class="list-group-item-text">Report Date: <%=drugs.report_date%></p>
 					<span class="sr-only">Recall Number is <%=drugs.recall_number%>.  Report Date is <%=drugs.report_date%>.  Report 
 					classification is <%=drugs.classification%></span>
