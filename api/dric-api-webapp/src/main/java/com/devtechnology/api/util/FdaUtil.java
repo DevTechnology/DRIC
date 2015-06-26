@@ -206,8 +206,8 @@ public class FdaUtil {
 				// check for "data (data, data) data, data" and get the data before the comma but after the ')'
 				int cpPos = desc.indexOf(")");
 				int cmPos = cpPos != -1 ? desc.substring(cpPos).indexOf(",") : -1;
-				if (cmPos == -1 && cpPos != -1 && cpPos < 100) {
-					result = desc.substring(0,100);
+				if (cmPos == -1 && cpPos != -1 && cpPos > 100) {
+					result = desc.substring(0,100); // 
 				} else if (cmPos != -1 && cmPos < 100-cpPos) {
 					result = desc.substring(0,cmPos+cpPos);
 				} else {
