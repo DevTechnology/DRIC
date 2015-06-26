@@ -3,8 +3,11 @@ package com.devtechnology.api.util;
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,7 +24,7 @@ import com.devtechnology.api.domain.RecallResponse;
  * @author jbnimble
  */
 public class FdaUtilTest {
-
+	private static Logger logger = Logger.getLogger(FdaUtilTest.class);
 	@Before
 	public void setup() {
 		BasicConfigurator.configure();
@@ -94,5 +97,26 @@ public class FdaUtilTest {
 		assertTrue("result missing status result="+result, result.indexOf("status:Ongoing") != -1);
 		assertTrue("result missing classification result="+result, result.indexOf("classification:%22Class+I%22") != -1);
 		assertTrue("result wrong number of ANDs result="+result, result.split("AND").length == 4);
+	}
+	
+	@Test
+	public void testGetFormattedDate() {
+		FdaUtil util = new FdaUtil();
+		Map<String,String> map = new HashMap<>();
+		map.put("19000110", "01/10/1900");
+		map.put(null, null);
+		map.put("", "");
+		map.put("2", "2");
+		map.put("20221225", "12/25/2022");
+		map.put("1234567", "1234567");
+		map.put("ABC", "ABC");
+		map.put("20150631", "07/01/2015");
+		map.put("201506310", "201506310");
+		for (String key : map.keySet()) {
+			String val = map.get(key);
+			String res = util.getFormattedDate(key);
+			logger.info("key="+key+" val="+val+" res="+res);
+			assertTrue(key+" should be "+val+" but is "+res, (val == null && res == null) || val.equals(res));
+		}
 	}
 }
