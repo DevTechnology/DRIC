@@ -302,7 +302,7 @@ var dric = {
 	   	var footerTop = $('#footer').position().top + footerHeight;
 
 	      	if (footerTop < docHeight) {
-	          	$('#footer').css('margin-top', 5 + (docHeight - footerTop) + 'px');
+	          	$('#footer').css('margin-top', -2 + (docHeight - footerTop) + 'px');
 		}
 	}
 
