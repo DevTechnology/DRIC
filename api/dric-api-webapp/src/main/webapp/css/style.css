@@ -69,6 +69,7 @@ h2{
 .title{
 }
 
+/*
 @media (min-width: 768px) {
     .navbar .navbar-nav {
         display: inline-block;
@@ -100,6 +101,7 @@ h2{
 .navbar {
 	margin-bottom: 1px;
 }
+*/
 
 /*
 .navbar .divider-vertical {
@@ -109,6 +111,8 @@ border-right: 1px solid #337ab7;
 border-left: 1px solid #337ab7;
 }
 */
+
+/*
 .navbar-inverse .divider-vertical {
 border-right-color: #222222;
 border-left-color: #111111;
@@ -126,6 +130,7 @@ border-left-color: #111111;
 .dropdown-backdrop {
   display: none;
 }
+*/
 
 .footer {
   position: fixed;
@@ -147,6 +152,7 @@ border-left-color: #111111;
   background-color: #91beed;
 }*/
 
+/*
 @media (min-width: 768px) {
   .navbar-default{
     /*background-color: transparent;
@@ -173,6 +179,7 @@ border-left-color: #111111;
     }
 
 }
+*/
 
 .navbar ul.nav li a {
     z-index: 1005;
