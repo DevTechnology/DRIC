@@ -349,7 +349,11 @@ enu {
 	max-height: 75px;
 }
 
-.modal-body {
+#drugRecallDetailsBody {
 	max-height: 300px;
 	overflow-y: auto;
+}
+
+.advFilters {
+	width: 80px;
 }
