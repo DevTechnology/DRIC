@@ -32,23 +32,8 @@ var dric = {
 			// Set data received so far
 			dric.detailsResponse = dric.recallResponse.recalls[index];
 			var data = dric.detailsResponse;
-
-			// Try to load an associated Drug Image if one can be found.
-			if (data.hasOwnProperty("product_ndc")) {
-				if (data.product_ndc.length > 0) {
-					var ndcList = data.product_ndc.join();
-					var queryParam = "ndcs="+ndcList;
-					var callback = dric.ndcImageCallback;
-					var err = dric.ndcImageErr;
-					var url = dric.imgUrl;
-					dric.genericAjax(queryParam, callback, err, url);
-				} else {
-					dric.showDrugDetailsModal();
-				}
-			} else {
-				dric.showDrugDetailsModal();
-			}
-
+			dric.showDrugDetailsModal();
+			dric.getNdcImage(dric.detailsResponse);
 		} catch (e) {
 			console.log("Unexpected error: " + e.message);
 		}
@@ -63,11 +48,28 @@ var dric = {
 				dric.detailsResponse, {variable:"data"});
 			$("#drugRecallDetailsBody").html(detailsHtml);
 			$("#searchResultsModal").modal('show');
+			$("#drugRecallDetailsBody").scrollTop(0);
 		} catch (e) {
 			console.log(e.message);
 		}
 	},
-
+	
+	getNdcImage : function(data) {
+		if (data.hasOwnProperty("product_ndc")) {
+			if (data.product_ndc.length > 0) {
+				var ndcList = data.product_ndc.join();
+				var queryParam = "ndcs="+ndcList;
+				var callback = dric.ndcImageCallback;
+				var err = dric.ndcImageErr;
+				var url = dric.imgUrl;
+				dric.genericAjax(queryParam, callback, err, url);
+			} else {
+				dric.showDrugDetailsModal();
+			}
+		} else {
+			dric.showDrugDetailsModal();
+		}
+	},
 	////////////////////////////////////////////////////////////////////////////////
 	// Handle NDC Image Loading.
 	////////////////////////////////////////////////////////////////////////////////
@@ -75,12 +77,12 @@ var dric = {
 		try {
 			if (data.hasOwnProperty("url")) {
 				if (data.url.length > 0) {
-					dric.detailsResponse.drugImage = data.url[0];
+					var imageData = {drugImage:data.url[0]};
+					var imageHtml = _.templateFromUrl("templates/drugRecallDetailsImage.html", imageData, {variable:"data"});
+					$("#images").html(imageHtml).show();
 				}
 			}
-			dric.showDrugDetailsModal();
 		} catch (e) {
-			dric.showDrugDetailsModal();
 			console.log("Unexpected error in ndcImageCallback: " + e.message);
 		}
 	},
@@ -89,7 +91,6 @@ var dric = {
 	// Handle NDC Image errors.
 	////////////////////////////////////////////////////////////////////////////////
 	ndcImageErr : function(err) {
-		dric.showDrugDetailsModal();
 		console.log("ndcImageErr unexpected error: " + err.message);
 	},
 
