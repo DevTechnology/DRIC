@@ -55,6 +55,8 @@ var dric = {
 	},
 	
 	getNdcImage : function(data) {
+		var imageHtml = _.templateFromUrl("templates/drugRecallDetailsImage.html", {drugImage:'img/ajax-loader-sm.gif'}, {variable:"data"});
+		$("#images").html(imageHtml).show();
 		if (data.hasOwnProperty("product_ndc")) {
 			if (data.product_ndc.length > 0) {
 				var ndcList = data.product_ndc.join();
@@ -75,13 +77,14 @@ var dric = {
 	////////////////////////////////////////////////////////////////////////////////
 	ndcImageCallback : function(data) {
 		try {
+			var imageUrl = 'img/No_image_available.svg';
 			if (data.hasOwnProperty("url")) {
 				if (data.url.length > 0) {
-					var imageData = {drugImage:data.url[0]};
-					var imageHtml = _.templateFromUrl("templates/drugRecallDetailsImage.html", imageData, {variable:"data"});
-					$("#images").html(imageHtml).show();
+					imageUrl = data.url[0];
 				}
 			}
+			var imageHtml = _.templateFromUrl("templates/drugRecallDetailsImage.html", {drugImage:imageUrl}, {variable:"data"});
+			$("#images").html(imageHtml).show();
 		} catch (e) {
 			console.log("Unexpected error in ndcImageCallback: " + e.message);
 		}
