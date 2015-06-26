@@ -3,33 +3,12 @@
 		<h2><b><%=data.short_product_description%></b></h2>
 	</div>
 	<div class="panel-body">
-		<div class="row" id="images" style="display:
-			<%if (data.hasOwnProperty('drugImage')) {%>block;<%}else{%>none;<%}%>">
-			<div class="col-xs-9">
-				<h4><b>Related Image from RxImage</b></h4>
-			</div>
-			<div class="col-xs-4">
-				<div class="thumbnail">
-					<img alt="Drug Thumbnail Image" 
-						src="<%if (data.hasOwnProperty('drugImage')) {%><%=data.drugImage%><%}%>" 
-						id="recalledDrugImage">
-				</div>
-			</div>
-			<div class="col-xs-4 bottom-aligned-text">
-				<div class="bottom-aligned-text" style="font-size:xx-small;line-height:8px;">
-					Images supplied by the <a href="http://1.usa.gov/1LA2nzI" target="_new" 
-					title="National Library of Medecine" alt="National Library of Medecine">National 
-					Library of Medicine (NLM) Office of High Performance Computing and Communications 
-					(OHPCC)</a> have been supported by the American Recovery and Reinvestment Act of 2009 
-					(ARRA) and through NIH intramural funding approved by the NLM Board of Scientific 
-					Counselors.
-				</div>
-			</div>
+		<div class="row" id="images" style="display:none;">
+			<!-- if image data exists, it goes here -->
 		</div>
-		
 		<div class="row">
 			<div class="col-xs-9">
-				<h4><b>Product Description</b></h3>
+				<h4><b>Product Description</b></h4>
 				<p><%=data.product_description%></p>
 				<h4><b>Reason for Recall</b></h4>
 				<p><%=data.reason_for_recall%></p>
