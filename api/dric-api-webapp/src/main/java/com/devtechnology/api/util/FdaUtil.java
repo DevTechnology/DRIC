@@ -1,6 +1,9 @@
 package com.devtechnology.api.util;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -149,7 +152,7 @@ public class FdaUtil {
 					item.setStatus(fdaResult.getStatus());
 					item.setDistribution_pattern(fdaResult.getDistribution_pattern());
 					item.setProduct_quantity(fdaResult.getProduct_quantity());
-					item.setRecall_initiation_date(fdaResult.getRecall_initiation_date());
+					item.setRecall_initiation_date(getFormattedDate(fdaResult.getRecall_initiation_date()));
 					item.setState(fdaResult.getState());
 					item.setEvent_id(fdaResult.getEvent_id());
 					item.setProduct_type(fdaResult.getProduct_type());
@@ -158,7 +161,7 @@ public class FdaUtil {
 					item.setCountry(fdaResult.getCountry());
 					item.setCity(fdaResult.getCity());
 					item.setRecalling_firm(fdaResult.getRecalling_firm());
-					item.setReport_date(fdaResult.getReport_date());
+					item.setReport_date(getFormattedDate(fdaResult.getReport_date()));
 					item.setVoluntary_mandated(fdaResult.getVoluntary_mandated());
 					item.setClassification(fdaResult.getClassification());
 					item.setCode_info(fdaResult.getCode_info());
@@ -204,6 +207,26 @@ public class FdaUtil {
 			}
 		}
 		return result;
+	}
+	
+	/**
+	 * Convert yyyyMMdd format to MM/dd/yyyy
+	 * @param dateStr
+	 * @return
+	 */
+	public String getFormattedDate(String dateStr) {
+		String d = dateStr;
+		if (d != null && d.length() == 8) {
+			SimpleDateFormat formatyyyyMMdd = new SimpleDateFormat("yyyyMMdd");
+			SimpleDateFormat formatMMddyyyy = new SimpleDateFormat("MM/dd/yyyy");
+			try {
+				Date date = formatyyyyMMdd.parse(d);
+				d = formatMMddyyyy.format(date);
+			} catch (ParseException e) {
+				logger.warn("Failed to parse date="+d);
+			}
+		}
+		return d;
 	}
 	
 	/**
