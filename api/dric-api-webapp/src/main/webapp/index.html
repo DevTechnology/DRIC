@@ -71,8 +71,8 @@
 
 
 	<!-- Modal Dialogs -->
-	<div class="modal fade" id="advancedSearchModal">
-		<div class="modal-dialog">
+	<div class="modal" id="advancedSearchModal">
+		<div class="modal-dialog modal-dialog-center">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -199,8 +199,8 @@
 	</div>
 	
 	<!-- Search Results Details Modal -->
-	<div class="modal fade" id="searchResultsModal">
-		<div class="modal-dialog">
+	<div class="modal" id="searchResultsModal">
+		<div class="modal-dialog modal-dialog-center">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -267,6 +267,17 @@ $(document).on('click','.navbar-collapse.in',function(e) {
 			}
 	   	}, 250);
       	});
+
+	$('.modal').on('shown.bs.modal', function() {
+	    $(this).find('.modal-dialog').css({
+	            'margin-top': function () {
+	            return -($(this).outerHeight() / 2);
+	    },
+	    'margin-left': function () {
+	    	return -($(this).outerWidth() / 2);
+            }
+            });
+	});
 </script>
   
 </body>
