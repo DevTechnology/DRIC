@@ -311,18 +311,8 @@ var dric = {
 	   	var footerTop = $('#footer').position().top + footerHeight;
 
 	      	if (footerTop < docHeight) {
-	          	$('#footer').css('margin-top', -2 + (docHeight - footerTop) + 'px');
+	          	$('#footer').css('margin-top', (docHeight - footerTop) + 'px');
 		}
-	},
-
-	close_toggle : function() {
-		if ($(window).width() <= 776) {
-	        	$('.nav a').on('click', function() {
-		        	$(".navbar-toggle").click();
-			});
-	    	} else {
-		        $('.nav a').off('click');
-		}			  
 	}
 
 };
