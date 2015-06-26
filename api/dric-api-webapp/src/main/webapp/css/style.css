@@ -353,3 +353,7 @@ enu {
 	max-height: 300px;
 	overflow-y: auto;
 }
+
+.advFilters {
+	width: 80px;
+}
