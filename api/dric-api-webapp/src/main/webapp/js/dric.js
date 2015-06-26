@@ -155,6 +155,14 @@ var dric = {
 			}
 			var classificationFilter = "";
 			var filterClassification = $("#classificationFilter").val();
+			if (filterClassification === 'CLASS I') {
+				filterClassification = 'CLASS1';
+			} else if (filterClassification === 'CLASS II') {
+				filterClassification = 'CLASS2';
+			} else if (filterClassification === 'CLASS III') {
+				filterClassification = 'CLASS3';
+			}
+
 			if (filterClassification !== '') {
 				classificationFilter = '&classification='+filterClassification;
 			}
@@ -302,7 +310,7 @@ var dric = {
 	   	var footerTop = $('#footer').position().top + footerHeight;
 
 	      	if (footerTop < docHeight) {
-	          	$('#footer').css('margin-top', 2 + (docHeight - footerTop) + 'px');
+	          	$('#footer').css('margin-top', -2 + (docHeight - footerTop) + 'px');
 		}
 	}
 
