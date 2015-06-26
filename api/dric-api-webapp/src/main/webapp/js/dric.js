@@ -57,19 +57,15 @@ var dric = {
 	getNdcImage : function(data) {
 		var imageHtml = _.templateFromUrl("templates/drugRecallDetailsImage.html", {drugImage:'img/ajax-loader-sm.gif'}, {variable:"data"});
 		$("#images").html(imageHtml).show();
-		if (data.hasOwnProperty("product_ndc")) {
-			if (data.product_ndc.length > 0) {
-				var ndcList = data.product_ndc.join();
-				var queryParam = "ndcs="+ndcList;
-				var callback = dric.ndcImageCallback;
-				var err = dric.ndcImageErr;
-				var url = dric.imgUrl;
-				dric.genericAjax(queryParam, callback, err, url);
-			} else {
-				dric.showDrugDetailsModal();
-			}
+		if (data.hasOwnProperty("product_ndc") && data.product_ndc.length > 0) {
+			var ndcList = data.product_ndc.join();
+			var queryParam = "ndcs="+ndcList;
+			var callback = dric.ndcImageCallback;
+			var err = dric.ndcImageErr;
+			var url = dric.imgUrl;
+			dric.genericAjax(queryParam, callback, err, url);
 		} else {
-			dric.showDrugDetailsModal();
+			dric.ndcImageCallback({});
 		}
 	},
 	////////////////////////////////////////////////////////////////////////////////
