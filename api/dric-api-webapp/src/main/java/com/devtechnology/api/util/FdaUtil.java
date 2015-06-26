@@ -51,7 +51,7 @@ public class FdaUtil {
 			fdaResponse.setMeta(new FdaMeta());
 		}
 		fdaResponse.getMeta().setHttpStatus(httpOps.getHttpStatus());
-		logger.info(new Gson().toJson(fdaResponse));
+//		logger.info(new Gson().toJson(fdaResponse));
 		RecallResponse result = mapResponse(fdaResponse);
 		return result;
 	}
@@ -191,25 +191,35 @@ public class FdaUtil {
 	 * @return
 	 */
 	public String getShortDescription(String desc) {
+		int max = 100;
 		String result = "No description available";
 		if (desc != null && desc.trim().length() > 0) {
 			int pos = desc.indexOf(",");
 			if (pos == -1) { // no comma
-				if (desc.trim().length() > 100) {
-					result = desc.substring(0,100); // return first 100 characters
+				if (desc.trim().length() > max) {
+					result = desc.substring(0,max); // return first max characters
 				} else {
 					result = desc;
 				}
-			} else if (pos > 100) {
-				result = desc.substring(0,100); // return first 100 characters
+			} else if (pos > max) {
+				result = desc.substring(0,max); // return first max characters
 			} else {
 				// check for "data (data, data) data, data" and get the data before the comma but after the ')'
-				int cpPos = desc.indexOf(")");
-				int cmPos = cpPos != -1 ? desc.substring(cpPos).indexOf(",") : -1;
-				if (cmPos == -1 && cpPos != -1 && cpPos < 100) {
-					result = desc.substring(0,100);
-				} else if (cmPos != -1 && cmPos < 100-cpPos) {
-					result = desc.substring(0,cmPos+cpPos);
+				int parenPos = desc.indexOf(")"); // close parenthesis position
+				int commaPos = parenPos != -1 ? desc.substring(parenPos).indexOf(",") : -1; // comma after close paren position
+				if (commaPos == -1 && parenPos != -1 && parenPos < 100) {
+					// no comma after paren so either go to max or maxlength
+					if (desc.length() < max) {
+						result = desc.substring(0);
+					} else {
+						result = desc.substring(0,max);
+					}
+				} else if (commaPos != -1) {
+					if (commaPos+parenPos < 100) {
+						result = desc.substring(0,commaPos+parenPos);
+					} else {
+						result = desc.substring(0,max);
+					}
 				} else {
 					result = desc.substring(0,pos);
 				}
