@@ -18,6 +18,7 @@ body {
 
 #mainContent {
   min-height: 100%;
+  top: -10px;
 }
 
 #main {
@@ -103,6 +104,9 @@ h2{
 }
 */
 
+.navbar {
+	margin-bottom: 1px;
+}
 /*
 .navbar .divider-vertical {
 height: 30px;
@@ -263,14 +267,6 @@ border-left-color: #111111;
 .pole-content-holder > #pole-heading {
     z-index: 1001;
 }
-
-.dropdown-mvbar
-enu {
-	z-index: 1200;
-}
-
-
-
 
 /**********************************************************/
 
