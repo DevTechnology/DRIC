@@ -119,4 +119,30 @@ public class FdaUtilTest {
 			assertTrue(key+" should be "+val+" but is "+res, (val == null && res == null) || val.equals(res));
 		}
 	}
+	
+	@Test
+	public void testGetShortDescription() {
+		FdaUtil util = new FdaUtil();
+		Map<String,String> map = new HashMap<>();
+		map.put(null, 
+				"No description available");
+		map.put("", 
+				"No description available");
+		map.put("Testing 1 2 3", 
+				"Testing 1 2 3");
+		map.put("Testing for some drugs, here are some more drugs", 
+				"Testing for some drugs");
+		map.put("Testing for some drugs still testing yep still testing still testing yep still testing here you goat are some more drugs", 
+				"Testing for some drugs still testing yep still testing still testing yep still testing here you goat");
+		map.put("Testing for some drugs (data, data, data) and here we go, still testing yep still testing still testing", 
+				"Testing for some drugs (data, data, data) and here we go");
+		map.put("Testing for some drugs (data, data, data) and here we go still testing yep still testing still test. to go", 
+				"Testing for some drugs (data, data, data) and here we go still testing yep still testing still test.");
+		for (String key : map.keySet()) {
+			String val = map.get(key);
+			String res = util.getShortDescription(key);
+			logger.info("val='"+val+"' res='"+res+"'");
+			assertTrue("should be "+val+" but is "+res, val.equals(res));
+		}
+	}
 }
