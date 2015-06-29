@@ -222,42 +222,24 @@
 
 <script>
 	$(document).ready(function() {
+		// quick search execute when pressing enter
 		$("#quickSearchFld").keyup(function (e) {
 			if (e.keyCode == 13) {
 				dric.performQuickSearch();
 			}
 		});
-
-		didResize = false;
-		dric.reloadFooter();
-
-		$(window).resize(function() {
-			didResize = true;
-		});
-
-		setInterval(function() {  
-	  		if(didResize) {
-		     		didResize = false;
-				dric.reloadFooter();
-			}
-	   	}, 250);
-
-      	});
-
-	
+	});
 	// This code centers the modal dialogs in the middle of the screen
 	$('.modal').on('shown.bs.modal', function() {
-	    $(this).find('.modal-dialog').css({
-	            'margin-top': function () {
-	            return -($(this).outerHeight() / 2);
-	    },
-	    'margin-left': function () {
-	    	return -($(this).outerWidth() / 2);
-            }
-            });
+		$(this).find('.modal-dialog').css({
+			'margin-top': function () {
+				return -($(this).outerHeight() / 2);
+			},
+			'margin-left': function () {
+				return -($(this).outerWidth() / 2);
+			}
+		});
 	});
 </script>
-  
 </body>
 </html>
-
