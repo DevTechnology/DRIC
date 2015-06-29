@@ -12,15 +12,31 @@ var dric = {
 	recallResponse : null,
 
 	detailsResponse : null,
+	queryTerms : {
+		name : '',
+		reportDate : 'ALL',
+		status : 'ALL',
+		classification : 'ALL',
+		skip : 0,
+		limit : 100
+	},
 
 	////////////////////////////////////////////////////////////////////////////////
 	// Display the advanced search modal dialog.
 	////////////////////////////////////////////////////////////////////////////////
 	showAdvancedSearch : function() {
-		dric.resetAdvancedSearchForm();
-		$("#recallTimeFilter").val("ONEMONTH")
-		$("#recallStatusFilter").val("ALL");
-		$("#classificationFilter").val("ALL");
+		$("#advDrugSrchForm").val(dric.queryTerms.name);
+		$("#recallTimeFilter").val(dric.queryTerms.reportDate)
+		$("#recallStatusFilter").val(dric.queryTerms.status);
+		var classification = dric.queryTerms.classification;
+		if (classification === 'CLASS1') {
+			classification = 'Class I';
+		} else if (classification === 'CLASS2') {
+			classification = 'Class II';
+		} else if (classification === 'CLASS3') {
+			classification = 'Class III';
+		}
+		$("#classificationFilter").val(classification);
 		$("#advancedSearchModal").modal('show');
 	},
 
@@ -44,8 +60,7 @@ var dric = {
 	////////////////////////////////////////////////////////////////////////////////
 	showDrugDetailsModal : function() {
 		try {
-			var detailsHtml = _.templateFromUrl("templates/drugRecallDetails.html", 
-				dric.detailsResponse, {variable:"data"});
+			var detailsHtml = _.templateFromUrl("templates/drugRecallDetails.html", dric.detailsResponse, {variable:"data"});
 			$("#drugRecallDetailsBody").html(detailsHtml);
 			$("#searchResultsModal").modal('show');
 			$("#drugRecallDetailsBody").scrollTop(0);
@@ -61,7 +76,9 @@ var dric = {
 			var ndcList = data.product_ndc.join();
 			var queryParam = "ndcs="+ndcList;
 			var callback = dric.ndcImageCallback;
-			var err = dric.ndcImageErr;
+			var err = function(err) {
+				console.log("ndcImageErr unexpected error: " + err.message);
+			};
 			var url = dric.imgUrl;
 			dric.genericAjax(queryParam, callback, err, url);
 		} else {
@@ -87,27 +104,10 @@ var dric = {
 	},
 
 	////////////////////////////////////////////////////////////////////////////////
-	// Handle NDC Image errors.
-	////////////////////////////////////////////////////////////////////////////////
-	ndcImageErr : function(err) {
-		console.log("ndcImageErr unexpected error: " + err.message);
-	},
-
-	////////////////////////////////////////////////////////////////////////////////
 	// Set the value of the selected filter criteria in the specified filter field.
 	////////////////////////////////////////////////////////////////////////////////
 	setAdvancedFilterString : function(filterFld, value) {
 		filterFld.val(value);
-	},
-
-	////////////////////////////////////////////////////////////////////////////////
-	// Reset the advanced search form. 
-	////////////////////////////////////////////////////////////////////////////////
-	resetAdvancedSearchForm : function() {
-		$("#advDrugSrchForm").val("");
-		$("#recallTimeFilter").val("");
-		$("#recallStatusFilter").val("");
-		$("#classificationFilter").val("");
 	},
 
 	////////////////////////////////////////////////////////////////////////////////
@@ -138,38 +138,46 @@ var dric = {
 	// When user clicks the 'Search' button in advanced search mode, gather additional
 	// filter criteria, if specified, and perform search.  
 	////////////////////////////////////////////////////////////////////////////////
+	executeAdvancedSearch : function() {
+		dric.queryTerms.skip = 0;
+		dric.queryTerms.name = $("#advDrugSrchForm").val();
+		if ($("#recallTimeFilter").val() !== '') {
+			dric.queryTerms.reportDate = $("#recallTimeFilter").val();
+		} else {
+			dric.queryTerms.reportDate = 'ALL';
+		}
+		if ($("#recallStatusFilter").val() !== '') {
+			dric.queryTerms.status = $("#recallStatusFilter").val();
+		} else {
+			dric.queryTerms.status = 'ALL';
+		}
+		if ($("#classificationFilter").val() === 'CLASS I') {
+			dric.queryTerms.classification = 'CLASS1';
+		} else if ($("#classificationFilter").val() === 'CLASS II') {
+			dric.queryTerms.classification = 'CLASS2';
+		} else if ($("#classificationFilter").val() === 'CLASS III') {
+			dric.queryTerms.classification = 'CLASS3';
+		} else {
+			dric.queryTerms.classification = 'ALL';
+		}
+		dric.performAdvancedSearch();
+	},
+	
 	performAdvancedSearch : function() {
 		try {
-			$("#advancedSearchModal").modal('toggle');
+			$("#advancedSearchModal").modal('hide');
 			dric.showLoadSpinner();
-			var search = $("#advDrugSrchForm").val();
-			$("#quickSearchFld").val(search);
-			var reportDateFilter = "";
-			var filterRecallTime = $("#recallTimeFilter").val();
-			if (filterRecallTime !== '') {
-				reportDateFilter = '&reportDate='+filterRecallTime;
-			}
-			var statusFilter = "";
-			var filterRecallStatus = $("#recallStatusFilter").val();
-			if (filterRecallStatus !== '') {
-				statusFilter = '&status='+filterRecallStatus;
-			}
-			var classificationFilter = "";
-			var filterClassification = $("#classificationFilter").val();
-			if (filterClassification === 'CLASS I') {
-				filterClassification = 'CLASS1';
-			} else if (filterClassification === 'CLASS II') {
-				filterClassification = 'CLASS2';
-			} else if (filterClassification === 'CLASS III') {
-				filterClassification = 'CLASS3';
-			}
-
-			if (filterClassification !== '') {
-				classificationFilter = '&classification='+filterClassification;
-			}
-			var queryParams = "name="+search+reportDateFilter+statusFilter+classificationFilter;
-			console.log("Query Param String: " + queryParams);
-			dric.genericAjax(queryParams, dric.performAdvancedSearchCB, dric.performAdvancedSearchErr);	
+			var searchFilter = dric.queryTerms.name;
+			$("#quickSearchFld").val(searchFilter);
+			var reportDateFilter = dric.queryTerms.reportDate !== '' ? '&reportDate='+dric.queryTerms.reportDate : '';
+			var statusFilter = dric.queryTerms.status !== '' ? '&status='+dric.queryTerms.status : '';
+			var classificationFilter = dric.queryTerms.classification !== '' ? '&classification='+dric.queryTerms.classification : '';
+			var skipFilter = "&skip="+dric.queryTerms.skip;
+			var queryParams = "name="+searchFilter+reportDateFilter+statusFilter+classificationFilter+skipFilter;
+			console.log("advanced params: " + queryParams);
+			dric.genericAjax(queryParams, dric.performAdvancedSearchCB, function(msg) {
+				console.log("Unexpected error occurred in advanced search: " + msg.message);
+			});
 		} catch (e) {
 			console.log("Unexpected error in performAdvancedSearch: " + e.message);
 		}
@@ -180,22 +188,15 @@ var dric = {
 	////////////////////////////////////////////////////////////////////////////////
 	performAdvancedSearchCB : function(data) {
 		try {
+			dric.paginationSetup(data);
 			dric.recallResponse = data;
 			data.queryTerms = "Advanced Search";
 			var dateTime = new Date().getTime();
 			var drugs = _.templateFromUrl("templates/drugRecallList.html?time="+dateTime, data, {variable:"data"});
 			$("#mainContent").html(drugs);
-			dric.reloadFooter();
 		} catch (e) {
 			console.log("Unexpected error: " + e.message);
 		}
-	},
-
-	////////////////////////////////////////////////////////////////////////////////
-	// Error callback function for the advanced search function.  
-	////////////////////////////////////////////////////////////////////////////////
-	performAdvancedSearchErr : function(msg) {
-		console.log("Unexpected error occurred in advanced search: " + msg.message);
 	},
 
 	////////////////////////////////////////////////////////////////////////////////
@@ -204,13 +205,17 @@ var dric = {
 	performQuickSearch : function() {
 		try {
 			var searchFor = $("#quickSearchFld").val();
-			console.log("Search For: " + searchFor);
-			if (searchFor === undefined || searchFor.trim() === '') 
-				return;
+			$("#advDrugSrchForm").val(searchFor);
+			dric.queryTerms.name = searchFor;
+			dric.queryTerms.reportDate = 'ALL';
+			dric.queryTerms.status = 'ALL';
+			dric.queryTerms.classification = 'ALL';
+			dric.queryTerms.skip = 0;
 			dric.showLoadSpinner();
 			var queryParams = "name="+searchFor;
 			var cbHandler = dric.performQuickSearchCB;
 			var cbError = dric.performQuickSearchErr;
+			console.log('quick params: '+queryParams);
 			dric.genericAjax(queryParams, cbHandler, cbError);
 		} catch (e) {
 			console.log("Unexpected error: " + e.message);
@@ -222,12 +227,12 @@ var dric = {
 	////////////////////////////////////////////////////////////////////////////////
 	performQuickSearchCB : function(data) {
 		try {
+			dric.paginationSetup(data);
 			dric.recallResponse = data;
 			data.queryTerms = "Last Month";
 			var dateTime = new Date().getTime();
-			var drugs = _.templateFromUrl("templates/drugRecallList.html?time="+dateTime, data, {variable:"data"});
-			$("#mainContent").html(drugs);
-			dric.reloadFooter();
+			var resultHtml = _.templateFromUrl("templates/drugRecallList.html?time="+dateTime, data, {variable:"data"});
+			$("#mainContent").html(resultHtml);
 		} catch (e) {
 			console.log("Unexpected error: " + e.message);
 		}
@@ -244,47 +249,9 @@ var dric = {
 	// Run when the user presses the Clear button. 
 	////////////////////////////////////////////////////////////////////////////////
 	resetQuickSearch : function() {
-		//dric.loadRecentDrugReports();
-		$("#quickSearchFld").val("");		
+		$("#quickSearchFld").val("");
 		$("#mainContent").html("");
-		dric.reloadFooter();
-	},
-
-	////////////////////////////////////////////////////////////////////////////////
-	// Load Drug Recall Reports for the last month.  
-	////////////////////////////////////////////////////////////////////////////////
-	loadRecentDrugReports : function() {
-		try {
-			$("#quickSearchFld").val("");		
-			dric.showLoadSpinner();
-			var queryParams = "reportDate=ONEMONTH";
-			var cbHandler = dric.loadRecentDrugReportsCB;
-			var cbError = dric.loadRecentDrugReportsErr;
-			dric.genericAjax(queryParams, cbHandler, cbError);
-		} catch (e) {
-			console.log("Unexpected error: " + e.message);
-		}
-	},
-
-	////////////////////////////////////////////////////////////////////////////////
-	// Callback Handler for loadRecentDrugReports function. 
-	////////////////////////////////////////////////////////////////////////////////
-	loadRecentDrugReportsCB : function(data) {
-		try {
-			data.queryTerms = "Last Month";
-			var drugs = _.templateFromUrl("templates/drugRecallList.html", data, {variable:"data"});
-			$("#mainContent").html(drugs);
-
-		} catch (e) {
-			console.log("Unexpected error: " + e.message);
-		}
-	},
-
-	////////////////////////////////////////////////////////////////////////////////
-	// Error Handler for loadRecentDrugReports function. 
-	////////////////////////////////////////////////////////////////////////////////
-	loadRecentDrugReportsErr : function(msg) {
-		console.log("Unexpected error: " + msg.message);
+		dric.queryTerms.skip = 0;
 	},
 
 	////////////////////////////////////////////////////////////////////////////////
@@ -300,21 +267,35 @@ var dric = {
 	hideLoadSpinner : function() {
 		$("#mainContent").html("");
 	},
-
-	////////////////////////////////////////////////////////////////////////////////
-	// Make sure the footer stays at correct location at bottom of the screen. 
-	////////////////////////////////////////////////////////////////////////////////
-	reloadFooter : function() {
-     		var docHeight = $(window).height();
-        	var footerHeight = $('#footer').height();
-		var mainHeight = $('#mainContent').height();
-	   	var footerTop = $('#footer').position().top + footerHeight;
-
-	      	if (footerTop < docHeight) {
-	          	$('#footer').css('margin-top', (docHeight - footerTop) + 'px');
+	paginationSetup : function(data) {
+		if (data && data.meta && data.meta.results) {
+			dric.queryTerms.skip = data.meta.results.skip;
+			var skip = data.meta.results.skip;
+			var limit = data.meta.results.limit;
+			var total = data.meta.results.total;
+			var items = data.recalls.length;
+			data.prevDisabled = skip === 0 ? "disabled" : "active";
+			data.prevOnclick = skip === 0 ? "" : "dric.prevPage();";
+			var isNext = (limit + skip) < total;
+			data.nextDisabled = isNext === true ? "active" : "disabled";
+			data.nextOnclick = isNext === true ? "dric.nextPage();" : "";
+			var indexLo = skip+1;
+			var indexHi = skip+items;
+			data.resultStr = indexLo+'-'+indexHi+' of '+total
 		}
+	},
+	
+	prevPage : function() {
+		dric.queryTerms.skip = dric.queryTerms.skip - dric.queryTerms.limit;
+		dric.performAdvancedSearch();
+		return false;
+	},
+	
+	nextPage : function() {
+		dric.queryTerms.skip = dric.queryTerms.skip + dric.queryTerms.limit;
+		dric.performAdvancedSearch();
+		return false;
 	}
-
 };
 
 
@@ -323,26 +304,24 @@ var dric = {
 ////////////////////////////////////////////////////////////////////////////////
 _.mixin({templateFromUrl: function (url, data, settings) {
 	var templateHtml = "";
-        this.cache = this.cache || {};
-
-    	if (this.cache[url]) {
-        	templateHtml = this.cache[url];
-        } else {
-	        $.ajax({
-            		url: url,
-		        method: "GET",
+	this.cache = this.cache || {};
+	if (this.cache[url]) {
+		templateHtml = this.cache[url];
+	} else {
+		$.ajax({
+			url: url,
+			method: "GET",
 			dataType: "html", 
-		        async: false,
-		        success: function(data) {
-		        	templateHtml = data;
+			async: false,
+			success: function(data) {
+				templateHtml = data;
 			},
 			error: function(data) {
 				alert(data);
 			}
-            	});
-
-           	this.cache[url] = templateHtml;
-        }
+		});
+		this.cache[url] = templateHtml;
+	}
 	var t = _.template(templateHtml, settings);
 	return t(data);
 }});
