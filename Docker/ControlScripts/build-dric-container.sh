@@ -4,5 +4,5 @@
 curl -O  https://raw.githubusercontent.com/DevTechnology/DRIC/master/Docker/dockerfile
 
 #Execute the build
-sudo docker build -f dockerfile --tag=dtg/dric .
+docker build -f dockerfile --tag=dtg/dric .
 
