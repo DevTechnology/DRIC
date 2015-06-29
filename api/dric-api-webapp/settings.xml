@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+	<profiles>
+		<profile>
+			<id>wildfly-remote</id>
+			<properties>
+				<wildfly-hostname>127.0.0.1</wildfly-hostname>
+				<wildfly-port>9990</wildfly-port>
+				<wildfly-username>admin</wildfly-username>
+				<wildfly-password>Admin#70365</wildfly-password>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>wildfly-local</id>
+			<properties>
+				<wildfly-hostname>127.0.0.1</wildfly-hostname>
+				<wildfly-port>9990</wildfly-port>
+				<wildfly-username>admin</wildfly-username>
+				<wildfly-password>Admin#70365</wildfly-password>
+			</properties>
+		</profile>
+
+	</profiles>
+
+</settings>
