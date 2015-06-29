@@ -1,12 +1,25 @@
 <div class="panel panel-info text-center" id="srchResultsPanel">
-	<% if (data.hasOwnProperty('error') && data.error != null && data.meta.httpStatus != 404) {%>
+	<% if (data.hasOwnProperty('error') && data.error != null && data.meta.httpStatus != 404) { %>
 		<div class="panel-heading">Drug Recall Reports <span>[ Error ]</span></div>
-	<%} else if (data.hasOwnProperty('error') && data.error != null && data.meta.httpStatus == 404) {%>
+	<% } else if (data.hasOwnProperty('error') && data.error != null && data.meta.httpStatus == 404) { %>
 		<div class="panel-heading">Drug Recall Reports <span>[ No Results Found ]</span></div>
-	<%} else {%>
-		<div class="panel-heading"> Results (<%=data.recalls.length%> of <%=data.meta.results.total%>)</div>
-	<%}%>
-		<div><!-- style="height: 265px !important; overflow: scroll;overflow-x:hidden;" -->
+	<% } else { 
+		// TODO decide if pagination is class="disabled"
+		// TODO make pagination do something
+		var skip = data.meta.results.skip;
+		var limit = data.meta.results.limit;
+		var total = data.meta.results.total;
+		var batch = data.recalls.length;
+	%>
+		<div class="panel-heading" id="dricPagination">
+			<ul class="pagination">
+				<li class="disabled"><a href="#">&laquo;</a></li>
+				<li class="disabled"><a href="#">Results (<%=data.recalls.length%> of <%=data.meta.results.total%>)</a></li>
+				<li class="active"><a href="#">&raquo;</a></li>
+			</ul>
+		</div>
+	<% } %>
+		<div>
 			<div class="list-group text-left">
 			<% if (data.hasOwnProperty('error') && data.error != null && data.meta.httpStatus != 404) {%>
 				<div class="alert alert-danger" role="alert">
