@@ -185,7 +185,6 @@ var dric = {
 			var dateTime = new Date().getTime();
 			var drugs = _.templateFromUrl("templates/drugRecallList.html?time="+dateTime, data, {variable:"data"});
 			$("#mainContent").html(drugs);
-			dric.reloadFooter();
 		} catch (e) {
 			console.log("Unexpected error: " + e.message);
 		}
@@ -227,7 +226,6 @@ var dric = {
 			var dateTime = new Date().getTime();
 			var drugs = _.templateFromUrl("templates/drugRecallList.html?time="+dateTime, data, {variable:"data"});
 			$("#mainContent").html(drugs);
-			dric.reloadFooter();
 		} catch (e) {
 			console.log("Unexpected error: " + e.message);
 		}
@@ -247,7 +245,6 @@ var dric = {
 		//dric.loadRecentDrugReports();
 		$("#quickSearchFld").val("");		
 		$("#mainContent").html("");
-		dric.reloadFooter();
 	},
 
 	////////////////////////////////////////////////////////////////////////////////
@@ -299,21 +296,7 @@ var dric = {
 	////////////////////////////////////////////////////////////////////////////////
 	hideLoadSpinner : function() {
 		$("#mainContent").html("");
-	},
-
-	////////////////////////////////////////////////////////////////////////////////
-	// Make sure the footer stays at correct location at bottom of the screen. 
-	////////////////////////////////////////////////////////////////////////////////
-	reloadFooter : function() {
-//     		var docHeight = $(window).height();
-//        	var footerHeight = $('#footer').height();
-//		var mainHeight = $('#mainContent').height();
-//	   	var footerTop = $('#footer').position().top + footerHeight;
-//	      	if (footerTop < docHeight) {
-//	          	$('#footer').css('margin-top', (docHeight - footerTop) + 'px');
-//		}
 	}
-
 };
 
 
