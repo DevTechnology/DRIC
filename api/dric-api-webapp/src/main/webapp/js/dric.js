@@ -25,10 +25,18 @@ var dric = {
 	// Display the advanced search modal dialog.
 	////////////////////////////////////////////////////////////////////////////////
 	showAdvancedSearch : function() {
-		$("#advDrugSrchForm").val("");
-		$("#recallTimeFilter").val("ONEMONTH")
-		$("#recallStatusFilter").val("ALL");
-		$("#classificationFilter").val("ALL");
+		$("#advDrugSrchForm").val(dric.queryTerms.name);
+		$("#recallTimeFilter").val(dric.queryTerms.reportDate)
+		$("#recallStatusFilter").val(dric.queryTerms.status);
+		var classification = dric.queryTerms.classification;
+		if (classification === 'CLASS1') {
+			classification = 'Class I';
+		} else if (classification === 'CLASS2') {
+			classification = 'Class II';
+		} else if (classification === 'CLASS3') {
+			classification = 'Class III';
+		}
+		$("#classificationFilter").val(classification);
 		$("#advancedSearchModal").modal('show');
 	},
 
