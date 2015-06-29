@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+	<meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="Author" content="James Caple, james.caple@devtechnology.com">
@@ -18,9 +18,9 @@
 </head>
 <body class="devBackgroundE">
 	<div class="container-full">
-		<span class="sr-only">Drug Recall Information Center</span>
-		<div class="header dricHeader text-center" onclick="dric.resetQuickSearch();">
-			<img src="img/icons/DRIC-logo2.png" title="Drug Recall Information Center" alt="Drug Recall Information Center" border=0 class="img-responsive logo">
+		<h1><span class="sr-only">Drug Recall Information Center</span></h1>
+		<div class="header dricHeader text-center">
+			<img src="img/icons/DRIC-logo2.png" title="Drug Recall Information Center" alt="DRIC - Drug Recall Information Center" border=0 class="img-responsive logo">
 		</div>
 	</div>
 	<nav class="navbar navbar-default text-center" role="navigation">
@@ -37,16 +37,14 @@
 			<div class="collapse navbar-collapse in" id="navbar-collapse">
 				<div class="navbar-form" role="search">
 					<div class="input-group">
-						<span class="sr-only">Drug Recall Quick Search Field</span>
-						<input type="text" class="form-control" placeholder="Search (e.g., advil)..." id="quickSearchFld" title="Search Field" aria-label="Search Field">
+						<label for="quickSearchFld" class="sr-only">Drug Recall Quick Search Field</label>
+						<input type="text" class="form-control" placeholder="Search (e.g., advil)..." id="quickSearchFld" aria-label="Search Field">
 						<span class="input-group-btn">
-							<span class="sr-only">Drug Recall Quick Search Button</span>
-							<button type="button" class="btn btn-default btn-primary" title="Drug Recall Quick Search" onclick="dric.performQuickSearch();">Search</button>
+							<button type="button" id="quickSearchButton" class="btn btn-default btn-primary" title="Drug Recall Quick Search" onclick="dric.performQuickSearch();">Search</button>
 						</span>
 					</div>
-					<span class="sr-only">Drug Recall Advanced Search Button</span>
-					<button type="button" class="btn btn-default" onclick="dric.showAdvancedSearch();" title="Drug Recall Advanced Search">Advanced Search</button>
-					<button type="button" class="btn btn-default" onclick="dric.resetQuickSearch();" title="Reset Results To Latest In Current Month">Clear</button>
+					<button type="button" id="advancedSearchShowButton" class="btn btn-default" onclick="dric.showAdvancedSearch();" title="Drug Recall Advanced Search">Advanced Search</button>
+					<button type="button" id="clearSearchButton" class="btn btn-default" onclick="dric.resetQuickSearch();" title="Reset Results To Latest In Current Month">Clear</button>
 				</div>
 			</div>
 		</div>
@@ -56,10 +54,10 @@
 		<div class="modal-dialog modal-dialog-center">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<button type="button" id="closeAdvancedSearchButton" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h3 class="modal-title">Advanced Drug Recall Search</h3>
+					<h2 class="modal-title">Advanced Drug Recall Search</h2>
 				</div>
 				<div class="modal-body">
 					<div class="row">
@@ -75,10 +73,10 @@
 					</div>
 					<div class="row">
 						<div class="col-lg-6">
-							<label title="Filters For Search Results">Filter Criteria For Search Results:</label>
+							<span title="Filters For Search Results">Filter Criteria For Search Results:</span>
 							<div class="input-group">
 								<div class="input-group-btn advFilters">
-									<button type="button" class="btn btn-default dropdown-toggle" 
+									<button type="button" id="timeFilterButton" class="btn btn-default dropdown-toggle" 
 										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Filter by recall time period">
 										Recalls In Last:<span class="caret"></span></button>
 									<ul class="dropdown-menu">
@@ -102,6 +100,7 @@
 										</li>
 									</ul>
 								</div><!-- /btn-group -->
+								<label for="recallTimeFilter" class="sr-only">Time Filter</label>
 								<input type="text" class="form-control" id="recallTimeFilter" readonly aria-label="Filter value for timeframe in which to retrieve recalls.  1 month, 6 months or all months." title="Filtered recall period.">
 							</div><!-- /input-group -->
 							<div class="spacer">&nbsp;</div>
@@ -132,8 +131,9 @@
 											</a>
 										</li>
 									</ul>
-								 </div><!-- /btn-group -->
-								 <input type="text" class="form-control" id="recallStatusFilter" readonly aria-label="Search filter for drug classification.  Ongoing, Completed, Terminated or All." title="Filtered by recall status">
+								</div><!-- /btn-group -->
+								<label for="recallStatusFilter" class="sr-only">Status Filter</label>
+								<input type="text" class="form-control" id="recallStatusFilter" readonly aria-label="Search filter for drug classification.  Ongoing, Completed, Terminated or All." title="Filtered by recall status">
 							</div><!-- /input-group -->
 							<div class="spacer">&nbsp;</div>
 							<div class="input-group">
@@ -164,6 +164,7 @@
 										</li>
 									</ul>
 								</div><!-- /btn-group -->
+								<label for="classificationFilter" class="sr-only">Classification Filter</label>
 								<input type="text" class="form-control" id="classificationFilter" readonly aria-label="Search filter for drug classification type.  Class I, Class II, Class III or All." title="Filtered by classification.">
 							</div><!-- /input-group -->
 						</div><!-- /.col-lg-6 -->
@@ -218,6 +219,9 @@
 			if (e.keyCode == 13) {
 				dric.performQuickSearch();
 			}
+		});
+		$(".dricHeader").click(function() {
+			dric.resetQuickSearch();
 		});
 	});
 	// This code centers the modal dialogs in the middle of the screen
