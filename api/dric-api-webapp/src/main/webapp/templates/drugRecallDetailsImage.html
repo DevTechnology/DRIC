@@ -5,7 +5,9 @@
 </div>
 <div class="col-xs-4">
 	<div class="thumbnail">
-		<img alt="<%=data.ndcText%>" src="<%if (data.hasOwnProperty('drugImage')) {%><%=data.drugImage%><%}%>" id="recalledDrugImageId" border="0">
+		<a href="<%=data.drugImage%>" target="_blank">
+			<img alt="<%=data.ndcText%>" src="<%=data.drugImage%>" id="recalledDrugImageId" border="0">
+		</a>
 	</div>
 </div>
 <div class="col-xs-4 bottom-aligned-text">
