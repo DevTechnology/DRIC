@@ -1,12 +1,14 @@
-html, body {
-  height: 100%;
+html {
+	position: relative;
+	min-height: 100%;
 }
 
 body {
-	padding-top: 0px;
+/*	padding-top: 0px;*/
+	margin-bottom: 49px; /* Margin bottom by footer height */
 }
-/* center logo in header */
-.dricHeader img {
+
+.dricHeader img { /* center logo in header */
 	display: block;
 	margin: auto;
 	
@@ -17,38 +19,11 @@ body {
 	cursor: pointer;
 }
 
-#mainContent {
-  min-height: 100%;
-  top: -10px;
-}
-
-#main {
-  overflow:auto;
-  padding-bottom:150px; /* this needs to be bigger than footer height*/
-}
-
-*{
+* {
 	font-family: 'Economica', sans-serif;
 	font-weight:400;
 }
-video#bgvid {
-position: fixed;
-top: 50%;
-left: 50%;
-min-width: 100%;
-min-height: 100%;
-width: auto;
-height: auto;
-z-index: -100;
--webkit-transform: translateX(-50%) translateY(-50%);
-transform: translateX(-50%) translateY(-50%);
-background: url(beach.jpg) no-repeat;
-background-size: cover;
-}
 
-.container{
-	margin-top: 20px;
-}
 h1{
 	font-size: 200%;
 	margin-top: 0;
@@ -58,100 +33,21 @@ h2{
 	font-style: italic;
 	margin-top: 10px;
 }
-.title{
-}
 
-/*
-@media (min-width: 768px) {
-    .navbar .navbar-nav {
-        display: inline-block;
-        float: none;
-        vertical-align: top;
-    }
-
-    .navbar .navbar-collapse {
-        text-align: center;
-    }
-}
-
-.navbar .navbar-nav {
-	display: inline-block;
-    	float: none;
-      	vertical-align: top;
-}
-
-.navbar .navbar-collapse {
-        text-align: center;
-}
-
-.navbar .navbar-default {
-	background: none;
-	border:none;
-	z-index: 1001;
-}
 
 .navbar {
 	margin-bottom: 1px;
 }
-*/
-
-.navbar {
-	margin-bottom: 1px;
-}
-/*
-.navbar .divider-vertical {
-height: 30px;
-margin: 10px 15px;
-border-right: 1px solid #337ab7;
-border-left: 1px solid #337ab7;
-}
-*/
-
-/*
-.navbar-inverse .divider-vertical {
-border-right-color: #222222;
-border-left-color: #111111;
-}
-
-@media (max-width: 768px) {
-.navbar-collapse .nav > .divider-vertical {
-    display: none;
-  }
-}
-.navbar-nav{
-	font-size: 125%;
-}
-
-.dropdown-backdrop {
-  display: none;
-}
-*/
-/*
-.footer {
-  position: relative;
-  margin-top: -150px;
-  height: 150px;
-  clear:both;
-  padding-top:20px;
-} 
 
 .footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 60px;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 49px;
+	background-color: #f5f5f5;
 }
-*/
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 49px;
-  background-color: #f5f5f5;
-}
-/* center footer logo */
-.footer a img {
+
+.footer a img { /* center footer logo */
 	display: block;
 	margin: auto;
 }
@@ -159,43 +55,9 @@ border-left-color: #111111;
 	text-align: center;
 	font-size:110%;
 }
-.fa-chevron-left,
-.fa-chevron-right{
+.fa-chevron-left, .fa-chevron-right{
 	position:absolute;top:50%;z-index:5;display:inline-block;
 }
-/*
-.navbar-default{
-  background-color: #91beed;
-}*/
-
-/*
-@media (min-width: 768px) {
-  .navbar-default{
-    /*background-color: transparent;
-    border-color: transparent;*/
-}
-}
-
-@media(max-width:768px)  {
-
-    .navbar-collapse.collapse {
-        display: none !important;
-    }
-
-    .navbar-collapse {
-        overflow-x: visible !important;
-    }
-
-    .navbar-collapse.in {
-      overflow-y: auto !important;
-    }
-
-    .collapse.in {
-      display: block !important;
-    }
-
-}
-*/
 
 .navbar ul.nav li a {
     z-index: 1005;
@@ -282,29 +144,8 @@ border-left-color: #111111;
 
 /**********************************************************/
 
-.devBackgroundA {
-	background-color: #8592c3;
-}
-
-.devBackgroundB {
-	background-color: #bcbcbe;
-}
-
-.devBackgroundC {
-	background-color: #dddedf;
-}
-
-.devBackgroundD {
-	background-color: #b57575;
-}
-
 .devBackgroundE {
 	background-color: white;
-}
-
-.devBackground18F {
-	background-color: #829fbd;
-
 }
 
 .divBorder {
