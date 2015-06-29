@@ -1,11 +1,11 @@
 <div class="col-xs-9">
-	<h4>
+	<h3>
 		<b>Related Image from RxImage</b>
-	</h4>
+	</h3>
 </div>
 <div class="col-xs-4">
 	<div class="thumbnail">
-		<img alt="Drug Thumbnail Image" src="<%if (data.hasOwnProperty('drugImage')) {%><%=data.drugImage%><%}%>" id="recalledDrugImage" border="0">
+		<img alt="<%=data.ndcText%>" src="<%if (data.hasOwnProperty('drugImage')) {%><%=data.drugImage%><%}%>" id="recalledDrugImageId" border="0">
 	</div>
 </div>
 <div class="col-xs-4 bottom-aligned-text">
