@@ -33,7 +33,7 @@ public class DricApi {
 	 * @param reportDate, see FdaReportDateFilter for options
 	 * @param status, see FdaStatusFilter for options
 	 * @param classification, see FdaClassificationFilter for options
-	 * @param limit, defaults to 10, used to specify how many results to return per request
+	 * @param limit, defaults to 100, used to specify how many results to return per request
 	 * @param skip, defaults to 0, used to specify the starting index of results, used in combination with limit can be used for pagination
 	 * @return
 	 */
