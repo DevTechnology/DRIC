@@ -5,7 +5,7 @@ These instructions are assumed to be executed on a system with Maven 3.3.3 insta
 2. via Command Line (Dos or Shell) goto the sub directory of  /api/dric-api-webapp
 3. Execute the build: mvn package
 
-#Deploy:
+#Deploy Setup:
 You can do one of the following:
 
 1. Edit: /api/dric-api-webapp/pom.xml
@@ -44,6 +44,12 @@ You can do one of the following:
  * The Maven install: $M2_HOME/conf/settings.xml
  * A user’s install: ${user.home}/.m2/settings.xml
 		
+# Deploy to Local Wildfly
+1. Download all the code from: https://github.com/DevTechnology/DRIC.git repository
+2. via Command Line (Dos or Shell) goto the sub directory of  /api/dric-api-webapp
+3. Execute the build: mvn wildfly:deploy -P wildfly-local
 
-
-
+# Compile and Deploy
+1. Download all the code from: https://github.com/DevTechnology/DRIC.git repository
+2. via Command Line (Dos or Shell) goto the sub directory of  /api/dric-api-webapp
+3. Execute the build: mvn package wildfly:deploy -P wildfly-local
