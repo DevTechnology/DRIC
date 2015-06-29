@@ -5,11 +5,12 @@ html, body {
 body {
 	padding-top: 0px;
 }
-
-.dricHeader {
-	padding-left: 5px;
+/* center logo in header */
+.dricHeader img {
+	display: block;
+	margin: auto;
+	
 }
-
 .logo {
 	max-height: 100px;
 	max-width: 300px;
@@ -25,16 +26,6 @@ body {
   overflow:auto;
   padding-bottom:150px; /* this needs to be bigger than footer height*/
 }
-
-.footer {
-  position: relative;
-  margin-top: -150px; /* negative value of footer height */
-  height: 150px;
-  clear:both;
-  padding-top:20px;
-} 
-
-
 
 *{
 	font-family: 'Economica', sans-serif;
@@ -135,13 +126,34 @@ border-left-color: #111111;
   display: none;
 }
 */
+/*
+.footer {
+  position: relative;
+  margin-top: -150px;
+  height: 150px;
+  clear:both;
+  padding-top:20px;
+} 
 
 .footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  /* Set the fixed height of the footer here */
   height: 60px;
+}
+*/
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 49px;
+  background-color: #f5f5f5;
+}
+/* center footer logo */
+.footer a img {
+	display: block;
+	margin: auto;
 }
 .footer-text{
 	text-align: center;
