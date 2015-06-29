@@ -5,9 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="Author" content="James Caple, james.caple@devtechnology.com">
-
   <title>Drug Recall Information Center</title>
-
   <!-- Use min once things are more or less working -->
   <link href="frameworks/bootstrap-3.3.5-dist/css/bootstrap.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
@@ -18,54 +16,41 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
-
-<body class="devBackgroundE" onload="">
-
-  <div class="container-full">
-	<span class="sr-only">Drug Recall Information Center</span>
-  	<div class="header dricHeader text-center" onclick="dric.resetQuickSearch();">
-		<center>
-			<img src="img/icons/DRIC-logo2.png" title="Drug Recall Information Center" 
-				alt="Drug Recall Information Center" border=0 class="img-responsive logo">
-		</center>
+<body class="devBackgroundE">
+	<div class="container-full">
+		<span class="sr-only">Drug Recall Information Center</span>
+		<div class="header dricHeader text-center" onclick="dric.resetQuickSearch();">
+			<img src="img/icons/DRIC-logo2.png" title="Drug Recall Information Center" alt="Drug Recall Information Center" border=0 class="img-responsive logo">
+		</div>
 	</div>
-	<nav class="navbar navbar-default text-center" role="navigation" id="navBar">
+	<nav class="navbar navbar-default text-center" role="navigation">
 		<div class="container-fluid">
-			<!-- Brand and toggle get grouped for better mobile display -->
-    			<div class="navbar-header">
-          			<button type="button" class="navbar-toggle pull-left collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="true">
-	          			<span class="sr-only">Toggle navigation</span>
-		          		<span class="icon-bar"></span>
-			          	<span class="icon-bar"></span>
-				        <span class="icon-bar"></span>
-			        </button>
-	                </div>
-
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle pull-left collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="true">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
-			<!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"> -->
 			<div class="collapse navbar-collapse in" id="navbar-collapse">
 				<div class="navbar-form" role="search">
-			        	<div class="input-group">
-	          				<span class="sr-only">Drug Recall Quick Search Field</span>
-				        	<input type="text" class="form-control" placeholder="Search (e.g., advil)..." id="quickSearchFld" title="Search Field" aria-label="Search Field">
+					<div class="input-group">
+						<span class="sr-only">Drug Recall Quick Search Field</span>
+						<input type="text" class="form-control" placeholder="Search (e.g., advil)..." id="quickSearchFld" title="Search Field" aria-label="Search Field">
 						<span class="input-group-btn">
-	          					<span class="sr-only">Drug Recall Quick Search Button</span>
-							<button type="button" class="btn btn-default btn-primary" 
-								title="Drug Recall Quick Search" 
-								onclick="dric.performQuickSearch();">Search</button>
+							<span class="sr-only">Drug Recall Quick Search Button</span>
+							<button type="button" class="btn btn-default btn-primary" title="Drug Recall Quick Search" onclick="dric.performQuickSearch();">Search</button>
 						</span>
-				        </div>
-	          			<span class="sr-only">Drug Recall Advanced Search Button</span>
-					<button type="button" class="btn btn-default" onclick="dric.showAdvancedSearch();"
-						title="Drug Recall Advanced Search">Advanced Search</button>
-					<button type="button" class="btn btn-default" onclick="dric.resetQuickSearch();"
-						title="Reset Results To Latest In Current Month">Clear</button>
-			        </div>
+					</div>
+					<span class="sr-only">Drug Recall Advanced Search Button</span>
+					<button type="button" class="btn btn-default" onclick="dric.showAdvancedSearch();" title="Drug Recall Advanced Search">Advanced Search</button>
+					<button type="button" class="btn btn-default" onclick="dric.resetQuickSearch();" title="Reset Results To Latest In Current Month">Clear</button>
+				</div>
 			</div>
 		</div>
-      	</nav> <!-- NavBar -->
-	
-
+	</nav>
 	<!-- Modal Dialogs -->
 	<div class="modal" id="advancedSearchModal">
 		<div class="modal-dialog modal-dialog-center">
@@ -85,11 +70,9 @@
 							</div>
 						</div>
 					</div>
-
 					<div class="row spacer">
 						&nbsp;
 					</div>
-
 					<div class="row">
 						<div class="col-lg-6">
 							<label title="Filters For Search Results">Filter Criteria For Search Results:</label>
@@ -118,8 +101,8 @@
 											</a>
 										</li>
 									</ul>
-								 </div><!-- /btn-group -->
-								 <input type="text" class="form-control" id="recallTimeFilter" readonly aria-label="Filter value for timeframe in which to retrieve recalls.  1 month, 6 months or all months." title="Filtered recall period.">
+								</div><!-- /btn-group -->
+								<input type="text" class="form-control" id="recallTimeFilter" readonly aria-label="Filter value for timeframe in which to retrieve recalls.  1 month, 6 months or all months." title="Filtered recall period.">
 							</div><!-- /input-group -->
 							<div class="spacer">&nbsp;</div>
 							<div class="input-group">
@@ -180,20 +163,19 @@
 											</a>
 										</li>
 									</ul>
-								 </div><!-- /btn-group -->
-								 <input type="text" class="form-control" id="classificationFilter" readonly aria-label="Search filter for drug classification type.  Class I, Class II, Class III or All." title="Filtered by classification.">
+								</div><!-- /btn-group -->
+								<input type="text" class="form-control" id="classificationFilter" readonly aria-label="Search filter for drug classification type.  Class I, Class II, Class III or All." title="Filtered by classification.">
 							</div><!-- /input-group -->
 						</div><!-- /.col-lg-6 -->
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" onclick="dric.performAdvancedSearch();">Search</button>
+					<button type="button" class="btn btn-default" onclick="dric.executeAdvancedSearch();">Search</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	
 	<!-- Search Results Details Modal -->
 	<div class="modal" id="searchResultsModal">
 		<div class="modal-dialog modal-dialog-center">
@@ -207,26 +189,20 @@
 				<div class="modal-body" id="drugRecallDetailsBody">
 					filled by template
 				</div>
-
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
-	</div>
-
-	<!-- End Modal Dialog Definitions -->
-
-	<!-- Main Content: Search Results -->
+	</div> <!-- End Modal Dialog Definitions -->
 	<div class="container-full" id="mainContent">
+		<!-- Main Content: Search Results -->
 	</div>
-
-  </div> <!-- Main DIV -->
-
-  <div id="footer">
-	<center><a href="http://www.devtechnology.com" target="_new" border="0"><img src="img/developedby.png" class="img-responsive text-center" title="Dev Technology Group" alt="Developed By Dev Technology Group" sr-only="Developed By Dev Technology Group, http://www.devtechnology.com"></a></center>
-  </div>
-
+	<footer class="footer">
+		<a href="http://www.devtechnology.com" target="_new">
+			<img src="img/developedby.png" class="img-responsive text-center" title="Dev Technology Group" alt="Developed By Dev Technology Group" sr-only="Developed By Dev Technology Group, http://www.devtechnology.com">
+		</a>
+	</footer>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery-1.11.3.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -235,45 +211,26 @@
 <script src="js/underscore-min.js"></script>
 <!-- Drug Recall Information Center Javascript -->
 <script src="js/dric.js"></script>
-
 <script>
 	$(document).ready(function() {
+		// quick search execute when pressing enter
 		$("#quickSearchFld").keyup(function (e) {
 			if (e.keyCode == 13) {
 				dric.performQuickSearch();
 			}
 		});
-
-		didResize = false;
-		dric.reloadFooter();
-
-		$(window).resize(function() {
-			didResize = true;
-		});
-
-		setInterval(function() {  
-	  		if(didResize) {
-		     		didResize = false;
-				dric.reloadFooter();
-			}
-	   	}, 250);
-
-      	});
-
-	
+	});
 	// This code centers the modal dialogs in the middle of the screen
 	$('.modal').on('shown.bs.modal', function() {
-	    $(this).find('.modal-dialog').css({
-	            'margin-top': function () {
-	            return -($(this).outerHeight() / 2);
-	    },
-	    'margin-left': function () {
-	    	return -($(this).outerWidth() / 2);
-            }
-            });
+		$(this).find('.modal-dialog').css({
+			'margin-top': function () {
+				return -($(this).outerHeight() / 2);
+			},
+			'margin-left': function () {
+				return -($(this).outerWidth() / 2);
+			}
+		});
 	});
 </script>
-  
 </body>
 </html>
-
