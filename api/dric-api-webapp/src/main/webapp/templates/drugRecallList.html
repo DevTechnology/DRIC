@@ -3,19 +3,12 @@
 		<div class="panel-heading">Drug Recall Reports <span>[ Error ]</span></div>
 	<% } else if (data.hasOwnProperty('error') && data.error != null && data.meta.httpStatus == 404) { %>
 		<div class="panel-heading">Drug Recall Reports <span>[ No Results Found ]</span></div>
-	<% } else { 
-		// TODO decide if pagination is class="disabled"
-		// TODO make pagination do something
-		var skip = data.meta.results.skip;
-		var limit = data.meta.results.limit;
-		var total = data.meta.results.total;
-		var batch = data.recalls.length;
-	%>
+	<% } else { %>
 		<div class="panel-heading" id="dricPagination">
 			<ul class="pagination">
-				<li class="disabled"><a href="#">&laquo;</a></li>
-				<li class="disabled"><a href="#">Results (<%=data.recalls.length%> of <%=data.meta.results.total%>)</a></li>
-				<li class="active"><a href="#">&raquo;</a></li>
+				<li class="<%=data.prevDisabled%>"><a href="#" onclick="<%=data.prevOnclick%>">&laquo;</a></li>
+				<li class="disabled"><a href="#">Results (<%=data.resultStr%>)</a></li>
+				<li class="<%=data.nextDisabled%>"><a href="#" onclick="<%=data.nextOnclick%>">&raquo;</a></li>
 			</ul>
 		</div>
 	<% } %>
