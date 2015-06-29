@@ -6,7 +6,7 @@
 	<%} else {%>
 		<div class="panel-heading"> Results (<%=data.recalls.length%> of <%=data.meta.results.total%>)</div>
 	<%}%>
-		<div style="height: 265px !important; overflow: scroll;overflow-x:hidden;">
+		<div><!-- style="height: 265px !important; overflow: scroll;overflow-x:hidden;" -->
 			<div class="list-group text-left">
 			<% if (data.hasOwnProperty('error') && data.error != null && data.meta.httpStatus != 404) {%>
 				<div class="alert alert-danger" role="alert">
