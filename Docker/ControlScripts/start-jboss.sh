@@ -20,20 +20,20 @@ then
 fi
 
 #Broken in Docker 1.6.0, need 1.6.2 binary
-#sudo docker run -d -p 8080:8080 -p 9990:9990 -v /usr/jboss/deployments:/opt/jboss/wildfly/standalone/deployments/:rw dtg/dric
+#docker run -d -p 8080:8080 -p 9990:9990 -v /usr/jboss/deployments:/opt/jboss/wildfly/standalone/deployments/:rw dtg/dric
 
 #Grab the current time
 current_time=$(date "+%Y.%m.%d-%H.%M.%S")
 
 #Rename the previous started instance to X_time, for historical record keeping
-sudo docker rename dric dric_$current_time
+docker rename dric dric_$current_time
 
 #Run it - Override the dockerfile CMD line with a custom -D, this allows the most flexability to
 # input the API keys during runtime. There are better methods (encrypted XML files inserted during 
 # docker compile time and stored in a secured GIT instance), but due to time this will suffice.
 if [ -f "$file" ]
 then
-sudo docker run -d -p 8080:8080 -p 9990:9990 --name dric dtg/dric /opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0 -DopenFdaApiKey=$fdaapikey
+	docker run -d -p 8080:8080 -p 9990:9990 --name dric dtg/dric /opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0 -DopenFdaApiKey=$fdaapikey
 else
-sudo docker run -d -p 8080:8080 -p 9990:9990 --name dric dtg/dric
+	docker run -d -p 8080:8080 -p 9990:9990 --name dric dtg/dric
 fi
