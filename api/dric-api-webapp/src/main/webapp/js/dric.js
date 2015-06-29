@@ -70,7 +70,7 @@ var dric = {
 	},
 	
 	getNdcImage : function(data) {
-		var imageHtml = _.templateFromUrl("templates/drugRecallDetailsImage.html", {drugImage:'img/ajax-loader-sm.gif'}, {variable:"data"});
+		var imageHtml = _.templateFromUrl("templates/drugRecallDetailsImage.html", {'ndcText':'Loading Image...' , 'drugImage':'img/ajax-loader-sm.gif'}, {variable:"data"});
 		$("#images").html(imageHtml).show();
 		if (data.hasOwnProperty("product_ndc") && data.product_ndc.length > 0) {
 			var ndcList = data.product_ndc.join();
@@ -90,13 +90,15 @@ var dric = {
 	////////////////////////////////////////////////////////////////////////////////
 	ndcImageCallback : function(data) {
 		try {
+			var ndcText = 'No Image Available for NDC '+data.ndc;
 			var imageUrl = 'img/No_image_available.svg';
 			if (data.hasOwnProperty("url")) {
 				if (data.url.length > 0) {
 					imageUrl = data.url[0];
+					'Drug Thumbnail for NDC '+data.ndc;
 				}
 			}
-			var imageHtml = _.templateFromUrl("templates/drugRecallDetailsImage.html", {drugImage:imageUrl}, {variable:"data"});
+			var imageHtml = _.templateFromUrl("templates/drugRecallDetailsImage.html", {'ndcText':ndcText , 'drugImage':imageUrl}, {variable:"data"});
 			$("#images").html(imageHtml).show();
 		} catch (e) {
 			console.log("Unexpected error in ndcImageCallback: " + e.message);
