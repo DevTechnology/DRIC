@@ -26,6 +26,7 @@ fi
 current_time=$(date "+%Y.%m.%d-%H.%M.%S")
 
 #Rename the previous started instance to X_time, for historical record keeping
+#Note: This will fail if it is currently not running or it was started without the -name dric option, it will continue execution
 docker rename dric dric_$current_time
 
 #Run it - Override the dockerfile CMD line with a custom -D, this allows the most flexability to
