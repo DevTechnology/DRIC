@@ -7,6 +7,11 @@ This script updates all the scripts needed to compile and run the docker instanc
 ##build-dric-container.sh
 This script builds the docker image. Utilizes CURL -O to download "dockerfile" from github before execution.
 
+Several options exist:
+ * *sudo ./build-dric-container.sh prod* - This builds the prod version it downloads the war file specified at the top of the script to the local directory and packages it with the container.
+  * *sudo ./build-dric-container.sh debug* - This does not package the war, but exposes debug port 8787 as well as 8080/9990
+  * *sudo ./build-dric-container.sh* - This does not package the war, and is the default.
+
 ##start-jboss.sh
 This script starts the Docker Jboss Wildfly image as name "dric". It looks for the "apikey.properties" file in the same directory and if it exists it will import the openFDA key from that and use that to override the default docker CMD to include the key value as a -D JVM property. It will map the jboss 8080 and 9990 ports to the host (this is fine for quick tests, production environments should look into the normal dynamic port mapping)
 
@@ -33,7 +38,8 @@ non root with a user with sudo priveleges.
 	1. ls -l (each .sh file should be -rwxr-xr-x)
 	2. sudo chmod 755 *.sh (if not correct)
 4. Execute the docker build (this will download the docker file and build it).
-	1. sudo ./build-dric-container.sh
+	1. sudo ./build-dric-container.sh prod
+		* You can also use the debug and default ones, but you must manually or through maven scripts deploy the war to the container. "prod" parameter downloads the latest official release.
 5. Execute jboss
 	1. sudo ./start-jboss.sh
 6. Verify running state
