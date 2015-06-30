@@ -3,6 +3,18 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
 
+<!-- #This is a Sample Settings.xml used for the DRIC project#
+	* You can place this in 
+		* The Maven install: $M2_HOME/conf/settings.xml
+		or
+		* A user's install: ${user.home}/.m2/settings.xml
+	* Then edit the properties as necessary (current properties are default values)
+	or
+	* Edit your current Settings.xml file by adding in the specified profiles
+	
+	Note: You can specify profiles during the execution of the mvn deployment by using -P (i.e. -P wildfly-remote)
+ -->
+
 	<profiles>
 		<profile>
 			<id>wildfly-remote</id>
