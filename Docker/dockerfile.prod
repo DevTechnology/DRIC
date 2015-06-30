@@ -1,5 +1,6 @@
 # Use latest jboss/base-jdk:7 image as the base
 FROM jboss/base-jdk:7
+ADD dric-api-webapp.war /opt/jboss/wildfly/standalone/deployments/
 
 # Set the WILDFLY_VERSION env variable
 ENV WILDFLY_VERSION 8.2.0.Final
