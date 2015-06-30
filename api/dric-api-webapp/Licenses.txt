@@ -1,0 +1,19 @@
+RESTEasy - http://resteasy.jboss.org/
+	ASL 2.0 license - http://docs.jboss.org/resteasy/docs/3.0.9.Final/userguide/html_single/index.html#license
+Google Gson - https://code.google.com/p/google-gson/
+	 Apache License, Version 2.0 - https://code.google.com/p/google-gson/source/browse/trunk/gson/LICENSE?r=369
+JUnit - http://junit.org/
+ 	Eclipse Public License (EPL) - http://junit.org/license.html
+Apache log4j - https://logging.apache.org/log4j/2.x/
+	Apache Software License 1.2 - https://logging.apache.org/log4j/1.2/license.html
+Apache HttpComponents - https://hc.apache.org/index.html
+	Apache License, Version 2.0 - https://hc.apache.org/httpcomponents-core-dev/license.html
+JQuery - https://jquery.org/
+	MIT License - https://jquery.org/license/
+Bootstrap - http://getbootstrap.com/
+	MIT License - https://github.com/twbs/bootstrap/blob/master/LICENSE
+Font Awesome - http://fortawesome.github.io/Font-Awesome/
+	MIT License - http://fortawesome.github.io/Font-Awesome/license/
+	SIL OFL 1.1 - http://fortawesome.github.io/Font-Awesome/license/
+Underscore - http://underscorejs.org/
+	MIT License - http://underscorejs.org/docs/underscore.html
