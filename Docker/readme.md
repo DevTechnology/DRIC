@@ -1,4 +1,23 @@
-These instructions are assumed to be executed on fedora core linux distributions and 
+#Scripts Explanation
+You will need [CURL](http://curl.haxx.se/docs/manual.html) installed to run some of the scripts.
+
+##update-control-scripts.sh
+This script updates all the scripts needed to compile and run the docker instance (it doesn't update itself). Utilizes CURL -O and runs CHMOD to make the scripts rwxr-xr-x permission based.
+
+##build-dric-container.sh
+This script builds the docker image. Utilizes CURL -O to download "dockerfile" from github before execution.
+
+##start-jboss.sh
+This script starts the Docker Jboss Wildfly image as name "dric". It looks for the "apikey.properties" file in the same directory and if it exists it will import the openFDA key from that and use that to override the default docker CMD to include the key value as a -D JVM property.
+ *apikey.properties format (see sample.apikey.properties file):
+  *fdaapikey=ADSAS34fdafDf32
+
+##stop-jboss.sh
+This script stops the docker image named "dric".
+
+#Compile and Start
+
+These instructions are assumed to be executed on fedora linux distributions and 
 do not cover how to install Docker or the OS itself. It is also assumed to be running as
 non root with a user with sudo priveleges.
 
