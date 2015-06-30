@@ -1,0 +1,19 @@
+Repository URL: git@github.com:DevTechnology/DRIC.git
+Branches to build: */master
+Excluded Regions: Docker/*
+Build Triggers: Poll SCM H/5 * * * *
+# every fifteen minutes (perhaps at :07, :22, :37, :52)
+H/15 * * * *
+
+Build
+Root POM: api/dric-api-webapp/pom.xml
+
+Goals and options: clean package wildfly:deploy -P wildfly-remote
+
+Enable triggering of downstream projects
+Block downstream triggers when building
+
+Maven Validation Level: Default
+Setting files: Settings file in filesystem
+	File path: /usr/jenkins/settings.xml
+Global Settings File: use default maven Global settings
