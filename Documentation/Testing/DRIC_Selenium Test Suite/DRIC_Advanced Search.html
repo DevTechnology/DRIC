@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://54.164.224.125:8080/" />
+<title>Advanced_Case_1</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Advanced_Case_1</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>http://54.164.224.125:8080/dric</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.navbar-form &gt; button.btn.btn-default</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=advancedSearchShowButton</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.modal-footer &gt; button.btn.btn-default</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h2.modal-title</td>
+	<td>Advanced Drug Recall Search</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[6]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=h4.list-group-item-heading</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h3.modal-title</td>
+	<td>Drug Recall Report Details</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='drugRecallDetailsBody']/div/div[2]/div[2]/div/p[3]</td>
+	<td>Class II</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.col-xs-9 &gt; p</td>
+	<td>Tri-mix T50, 8.825 mg/0.29 mg/2.95 mcg/mL (papaverine, phentolamine mesylate, alprostadil) injectable packaged in a clear glass injectable vial, Martin Avenue Pharmacy, 1247 Rickert Dr, Naperville, IL.</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=#searchResultsModal &gt; div.modal-dialog &gt; div.modal-content &gt; div.modal-footer &gt; button.btn.btn-default</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=#searchResultsModal &gt; div.modal-dialog &gt; div.modal-content &gt; div.modal-footer &gt; button.btn.btn-default</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

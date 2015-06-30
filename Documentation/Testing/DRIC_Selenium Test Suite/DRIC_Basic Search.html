@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://54.164.224.125:8080/" />
+<title>Base Search</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Base Search</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>http://54.164.224.125:8080/dric</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=quickSearchFld</td>
+	<td>ciprofloxacin</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.panel-heading</td>
+	<td>« Results (1-10 of 10) »</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=h4.list-group-item-heading</td>
+	<td>Ciprofloxacin Tablets, USP, 500 mg, Rx Only, 100 Tablets per Bottle, Manufactured in India by: Uniqu</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=a.list-group-item</td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>null</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=h4.list-group-item-heading</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=recalledDrugImageId</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=#searchResultsModal &gt; div.modal-dialog.modal-dialog-center &gt; div.modal-content &gt; div.modal-footer &gt; button.btn.btn-default</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>css=div.col-xs-9 &gt; p</td>
+	<td>Ciprofloxacin Tablets, USP, 500 mg, Rx Only, 100 Tablets per Bottle, Manufactured in India by: Unique Pharmaceutical Laboratories (A Division of J.B. Chemicals &amp; Pharmaceuticals Ltd.), Mumbai - 400 030, Distributed by: PACK Pharmaceuticals, LLC, Buffalo Grove, IL 60089, NDC 16571-412-10.</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=#searchResultsModal &gt; div.modal-dialog &gt; div.modal-content &gt; div.modal-footer &gt; button.btn.btn-default</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[4]</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>
