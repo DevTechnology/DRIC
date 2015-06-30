@@ -1,32 +1,38 @@
-Docker
-	Apache License 2
-Jenkins
-	 Creative Commons Attribution 4.0 International license
-	 MIT License
-GitHub
+Environment:
+Docker - https://www.docker.com/
+	Apache License 2 - https://github.com/docker/docker/blob/master/LICENSE
+OpenJDK 7 - http://openjdk.java.net/
+ 	GNU General Public License, version 2 with the Classpath Exception - http://openjdk.java.net/legal/gplv2+ce.html
+JBoss Wildfly - http://wildfly.org/
+ 	LGPL 2.1 License - http://www.gnu.org/licenses/lgpl-2.1-standalone.html
+CentOS - http://www.centos.org/
+	GNU General Public License - https://creativecommons.org/licenses/by/3.0/deed.en_US
+	Model Trademark Guidelines - http://modeltrademarkguidelines.org/index.php?title=Home:_Model_Trademark_Guidelines
+	
+Building:
+Jenkins - https://jenkins-ci.org/
+	 Creative Commons Attribution 4.0 International license - http://creativecommons.org/licenses/by/4.0/
+	 MIT License - https://jenkins-ci.org/mit-license
+GitHub - https://github.com/
  	 MIT license
-OpenJDK 7
- 	GNU General Public License, version 2
-JBoss 8
- 	LGPL 2.1 License
-CentOS
-	GNU General Public License
-RESTEasy
-	ASL 2.0 license
-Google Gson
-	 Apache License, Version 2.0
-JUnit
- 	Eclipse Public License (EPL)
-Apache log4j
-	Apache Software License 1.1
-Apache HttpComponents
-	Apache License, Version 2.0
-JQuery
-	MIT License
-Bootstrap
-	MIT License
-Font Awesome
-	MIT License
-	SIL OFL 1.1
-Underscore
-	MIT License
+
+Code:
+RESTEasy - http://resteasy.jboss.org/
+	ASL 2.0 license - http://docs.jboss.org/resteasy/docs/3.0.9.Final/userguide/html_single/index.html#license
+Google Gson - https://code.google.com/p/google-gson/
+	 Apache License, Version 2.0 - https://code.google.com/p/google-gson/source/browse/trunk/gson/LICENSE?r=369
+JUnit - http://junit.org/
+ 	Eclipse Public License (EPL) - http://junit.org/license.html
+Apache log4j - https://logging.apache.org/log4j/2.x/
+	Apache Software License 1.2 - https://logging.apache.org/log4j/1.2/license.html
+Apache HttpComponents - https://hc.apache.org/index.html
+	Apache License, Version 2.0 - https://hc.apache.org/httpcomponents-core-dev/license.html
+JQuery - https://jquery.org/
+	MIT License - https://jquery.org/license/
+Bootstrap - http://getbootstrap.com/
+	MIT License - https://github.com/twbs/bootstrap/blob/master/LICENSE
+Font Awesome - http://fortawesome.github.io/Font-Awesome/
+	MIT License - http://fortawesome.github.io/Font-Awesome/license/
+	SIL OFL 1.1 - http://fortawesome.github.io/Font-Awesome/license/
+Underscore - http://underscorejs.org/
+	MIT License - http://underscorejs.org/docs/underscore.html
