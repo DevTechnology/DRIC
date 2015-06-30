@@ -1,11 +1,25 @@
+#Project Information
+This project is a REST API and HTML UI for the Drug Recall Information Center (DRIC)
+
+##How it was originally generated
+The project was creating using the following Maven command:
+mvn archetype:generate -DarchetypeArtifactId=jersey-quickstart-webapp -DarchetypeGroupId=org.glassfish.jersey.archetypes -DinteractiveMode=false -DgroupId=com.devtechnology -DartifactId=dric-api-webapp -Dpackage=com.devtechnology -DarchetypeVersion=2.18
+
+The web.xml and pom.xml were modified to support using org.jboss.resteasy:resteasy-jaxrs:2.3.1.GA due to compatibility issues with JBoss wildfly and Jersey.
+
+##API Information
+The REST API (DricApi.java) has a method to get drug recall data with optional filter parameters. The data is gathered from the Open FDA Drug Enforcement service (https://open.fda.gov/drug/enforcement). The second API method uses the RxImage service (http://rximage.nlm.nih.gov/docs/doku.php) to request any image URLs that apply to the passed NDC.
+
+
+#Build and Deploy
 These instructions are assumed to be executed on a system with Maven 3.3.3 installed and configured properly. See: https://maven.apache.org/download.cgi :in order to download and setup a copy.
 
-#Compile:
+##Compile:
 1. Download all the code from: https://github.com/DevTechnology/DRIC.git repository
 2. via Command Line (Dos or Shell) goto the sub directory of  /api/dric-api-webapp
 3. Execute the build: mvn package
 
-#Deploy Setup:
+##Deploy Setup:
 You can do one of the following:
 
 * #1 Edit: /api/dric-api-webapp/pom.xml
@@ -44,12 +58,14 @@ You can do one of the following:
   * The Maven install: $M2_HOME/conf/settings.xml
   * A user’s install: ${user.home}/.m2/settings.xml
 		
-# Deploy to Local Wildfly
+## Deploy to Local Wildfly
 1. Download all the code from: https://github.com/DevTechnology/DRIC.git repository
 2. via Command Line (Dos or Shell) goto the sub directory of  /api/dric-api-webapp
 3. Execute the build: mvn wildfly:deploy -P wildfly-local
+ * -P option on the mvn command line specifies the Profile to use
 
-# Compile and Deploy
+## Compile and Deploy
 1. Download all the code from: https://github.com/DevTechnology/DRIC.git repository
 2. via Command Line (Dos or Shell) goto the sub directory of  /api/dric-api-webapp
 3. Execute the build: mvn package wildfly:deploy -P wildfly-local
+ * -P option on the mvn command line specifies the Profile to use
