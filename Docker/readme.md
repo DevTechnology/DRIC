@@ -30,52 +30,52 @@ do not cover how to [install Docker](https://docs.docker.com/installation/) or t
 
 Run the Instructions in the listed order.
 
-* Download the Control Scripts by executing the following:
+> 1) Download the Control Scripts by executing the following:
  
 ```
-	1. curl -O https://raw.githubusercontent.com/DevTechnology/DRIC/master/Docker/ControlScripts/update-control-scripts.sh
-	2. sudo chmod 755 *.sh
-	3. sudo ./update-control-scripts.sh
+	> curl -O https://raw.githubusercontent.com/DevTechnology/DRIC/master/Docker/ControlScripts/update-control-scripts.sh
+	> sudo chmod 755 *.sh
+	> sudo ./update-control-scripts.sh
 ```
 
-* Make sure all scripts are 755 for permissions by executing the following
+> 2) Make sure all scripts are 755 for permissions by executing the following
 
 ```
-	1. ls -l (each .sh file should be -rwxr-xr-x)
+	> ls -l (each .sh file should be -rwxr-xr-x)
 ```
 
-* If the scripts are not the correct permissions execute the following
+> 3) If the scripts are not the correct permissions execute the following
 
 ```
-	1. sudo chmod 755 *.sh (if not correct)
+	> sudo chmod 755 *.sh (if not correct)
 ```
 
-* Execute the docker build by doing the following
- * This will download the correct docker file from github and build it
+> 4) Execute the docker build by doing the following
+> * This will download the correct docker file from github and build it
  
 ```
-	1. sudo ./build-dric-container.sh prod
+	> sudo ./build-dric-container.sh prod
 		* You can also use the debug and default ones, but you must manually or through maven scripts deploy the war to the container. "prod" parameter downloads the latest official release.
 ```
 
-* Execute jboss by doing the following
+> 5) Execute jboss by doing the following
  
 ```
-	1. sudo ./start-jboss.sh
+	> sudo ./start-jboss.sh
 		* The first time you run this it will fail on renaming the current instance, this can be ignored.
 ```
 
-* Verify running state
+> 6) Verify running state
  
 ```
-	1. sudo docker ps
+	> sudo docker ps
 		* You should see the name "dric" running
 ```
 
-* Connect to the running instance by running the following (make sure to insert your IP).
+> 7) Connect to the running instance by running the following (make sure to insert your IP).
 
 ```
-	1. http://\<your IP address here>:8080/dric
+	> http://<your IP address here>:8080/dric
 ```
 
 Notes: This is a basic Jboss wildfly instance with no SSL or special configurations. For production 
