@@ -1,4 +1,8 @@
-#Scripts Explanation
+# Table of Contents
+ * [Scripts Explanation](#scripts-explanation)
+ * [Compile and Start](#compile-and-start)
+
+# Scripts Explanation
 You will need [CURL](http://curl.haxx.se/docs/manual.html) installed to run some of the scripts.
 
 ##update-control-scripts.sh
@@ -23,7 +27,7 @@ There are better methods of Adding the API keys during runtime for example encry
  *apikey.properties format (see sample.apikey.properties file):
   *fdaapikey=ADSAS34fdafDf32
 
-#Compile and Start
+# Compile and Start
 
 These instructions are assumed to be executed on Fedora linux distributions and 
 do not cover how to [install Docker](https://docs.docker.com/installation/) or the OS itself. It is also assumed to be running as non-root with a user with sudo priveleges.
