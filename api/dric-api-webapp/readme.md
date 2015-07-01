@@ -1,3 +1,7 @@
+# Table of Contents
+ * [Project Information](#project-information)
+ * [Build and Deploy](#build-and-deploy)
+
 #Project Information
 This project is a REST API and HTML UI for the Drug Recall Information Center (DRIC)
 
