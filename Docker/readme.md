@@ -28,22 +28,55 @@ There are better methods of Adding the API keys during runtime for example encry
 These instructions are assumed to be executed on Fedora linux distributions and 
 do not cover how to [install Docker](https://docs.docker.com/installation/) or the OS itself. It is also assumed to be running as non-root with a user with sudo priveleges.
 
-1. Download the Control Scripts at: https://github.com/DevTechnology/DRIC/tree/master/Docker/ControlScripts
+Run the Instructions in the listed order.
+
+* Download the Control Scripts by executing the following:
+ 
+```
 	1. curl -O https://raw.githubusercontent.com/DevTechnology/DRIC/master/Docker/ControlScripts/update-control-scripts.sh
 	2. sudo chmod 755 *.sh
 	3. sudo ./update-control-scripts.sh
-2. Make sure all scripts are 755 for permissions
+```
+
+* Make sure all scripts are 755 for permissions by executing the following
+
+```
 	1. ls -l (each .sh file should be -rwxr-xr-x)
-	2. sudo chmod 755 *.sh (if not correct)
-3. Execute the docker build (this will download the docker file and build it).
+```
+
+* If the scripts are not the correct permissions execute the following
+
+```
+	1. sudo chmod 755 *.sh (if not correct)
+```
+
+* Execute the docker build by doing the following
+ * This will download the correct docker file from github and build it
+ 
+```
 	1. sudo ./build-dric-container.sh prod
 		* You can also use the debug and default ones, but you must manually or through maven scripts deploy the war to the container. "prod" parameter downloads the latest official release.
-4. Execute jboss
+```
+
+* Execute jboss by doing the following
+ 
+```
 	1. sudo ./start-jboss.sh
-5. Verify running state
+		* The first time you run this it will fail on renaming the current instance, this can be ignored.
+```
+
+* Verify running state
+ 
+```
 	1. sudo docker ps
 		* You should see the name "dric" running
-	2. http://\<your IP address here>:8080/dric
+```
+
+* Connect to the running instance by running the following (make sure to insert your IP).
+
+```
+	1. http://\<your IP address here>:8080/dric
+```
 
 Notes: This is a basic Jboss wildfly instance with no SSL or special configurations. For production 
 		environments it's recommended to harden the configuration and make it fault tolerant.
