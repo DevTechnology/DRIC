@@ -10,4 +10,9 @@ Username: (Default: admin)
 Password: (Default: Admin#70365)
 * Click the “Deployments” tab
 * Click the “Add” button
-![war_deployment_1](/img/war_deploy.png)
+* 
+
+![alt text](https://github.com/DevTechnology/DRIC/tree/master/Documentation/Configuration/imgs/war_deploy.png "Logo Title Text 1")
+
+
+
