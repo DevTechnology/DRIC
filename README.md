@@ -3,7 +3,7 @@
 ### Publicly-available URL  
 [http://dric-public-449159857.us-east-1.elb.amazonaws.com:8080/dric/] (http://dric-public-449159857.us-east-1.elb.amazonaws.com:8080/dric/)  
 
-### Develoment Approach 
+### Development Approach 
 Dev Technology Group utilized our established process for providing Agile development services for a variety of Federal Government customers to develop the Drug Recall Information Center (DRIC) application. Leveraging key tenants of the US Digital Services Playbook, we developed an open source prototype to provide current drug recall information for consumers. DRIC enables users to easily search for reports of recalled drugs and see a visual image of select recalled drugs. We adopted a strategy of “mobile first” development, ensuring that the application runs on both a traditional desktop and mobile devices.  
 
 Michelle Scheuerman was the **leader** for this project and actively engaged in each step of the development to ensure delivery of a quality product and championed our agile process. She initiated the project with a kick-off meeting to share the vision for DRIC and the process to be followed. Our **collaborative and multidisciplinary team** included Adam D’Angelo (Technical Architect), James Caple (Frontend Web Developer), Jesse Hess (Backend Web Developer), and Larry Cutlip-Mason (DevOps Engineer) and provided the needed skill sets and experience to successfully develop the DRIC application. Working together in our Dev Technology collaboration space, the self-organized team completed prioritized tasks from the Kanban board during a series of development iterations. *(criteria a,  b, & j)*  
