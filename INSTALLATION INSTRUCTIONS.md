@@ -5,4 +5,4 @@ To install DRIC on your local Fedora instance follow the Docker Installation rea
 
  * [Docker Installation](https://github.com/DevTechnology/DRIC/blob/master/Docker/readme.md)
  * [Maven Build & Deploy](https://github.com/DevTechnology/DRIC/blob/master/api/dric-api-webapp/readme.md)
- * [Manual War Deployment](https://github.com/DevTechnology/DRIC/blob/master/Documentation/Configuration/ManualWarInstall.doc)
+ * [Manual War Deployment](https://github.com/DevTechnology/DRIC/blob/master/Documentation/Configuration/ManualWarInstall.md)
