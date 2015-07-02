@@ -29,5 +29,5 @@ b. Click the “En/Disable” button
 
 ![alt text](https://github.com/DevTechnology/DRIC/blob/master/Documentation/Configuration/imgs/select war and enable.png "enable war Title Text 1")
 
-11. Navigate to http://<your ip address>:8080/dric/
+11. Navigate to http://\<your ip address\>:8080/dric/
 12. The Drug Recall Information center page will be displayed.
