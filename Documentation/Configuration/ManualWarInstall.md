@@ -1,9 +1,9 @@
 # Manually Installing the War File
 
 1. Navigate to http://\<your ip address\>:9990/console/App.html
-2. In the “Authentication Required” box, enter the following information.
-Username: (Default: admin)
-Password: (Default: Admin#70365)
+2. In the “Authentication Required” box, enter the following information.  
+a. Username: (Default: admin)  
+b. Password: (Default: Admin#70365)
 3. Click the “Deployments” tab
 4. Click the “Add” button
 
