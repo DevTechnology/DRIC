@@ -4,7 +4,8 @@ Level 1 Logging and Monitoring is handled through several AWS Services.
 #Monitoring Configuration 
 
 ##Level 1
-Cloudwatch is used for System and EBS Volume Metrics
+Cloudwatch is used for System and EBS Volume Metrics.
+http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/ConsoleAlarms.html
 
 ###AWS EC2:
   * NetworkOut >= 104,857,600 for 5 minutes
@@ -51,7 +52,7 @@ This level is a future item, this revolves around setting up Nagios and monitori
 #Logging Configuration 
 
 ##Level 1   
-Cloudwatch is used for basic logging
+Cloudwatch is used for collecting the logs. Currently only Network Flow Logs are captured, http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html .
 
 ###AWS EC2:
 * Flow Log:
