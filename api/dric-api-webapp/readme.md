@@ -1,8 +1,10 @@
-# Table of Contents
+# Maven Build & Deploy
+
+## Table of Contents
  * [Project Information](#project-information)
  * [Build and Deploy](#build-and-deploy)
 
-#Project Information
+##Project Information
 This project is a REST API and HTML UI for the Drug Recall Information Center (DRIC)
 
 ##How it was originally generated
