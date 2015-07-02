@@ -1,0 +1,1203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style>
+.failed {color: red; background-color: #ffcccc;}
+.passed {color: green; background-color: #ccffcc;}
+.done {color: #404040; background-color: #ccffcc;}
+.comment {color: #404040; background-color: #d0d0d0;}
+body, table { font-family: Verdana, Arial, sans-serif; font-size: 12pt; }
+table { border-collapse: collapse; border: 1px solid #ccc; }
+th, td { padding-left: 0.3em; padding-right: 0.3em; border: 1px solid #ccc; }
+#suiteSummaryTable thead { font-size: 14pt; font-weight: 800; }
+.test_case thead { font-size: 14pt; font-weight: 400; }
+</style>
+</head>
+<body>
+<table id="suiteSummaryTable" class="selenium">
+<thead><tr class="passed"><td>Test Suite: DRIC_Selenium Test Suite</td></tr></thead>
+<tbody>
+<tr><td>Test cases: 6 total / <span class="passed">6</span> passed / <span class="failed">0</span> failed</td></tr>
+<tr><td>Commands: 191 total / <span class="passed">191</span> passed / <span class="failed">0</span> failed / <span class="skipped">0</span> skipped</td></tr>
+</tbody></table><br>
+<table id="suiteTable" class="selenium">
+<thead><tr><td>Index of test cases</td></tr></thead>
+<tbody>
+<tr class="passed"><td><a href="#test0">DRIC_Homepage Load</a></td></tr>
+<tr class="passed"><td><a href="#test1">DRIC_Base Search</a></td></tr>
+<tr class="passed"><td><a href="#test2">DRIC_Pagnation</a></td></tr>
+<tr class="passed"><td><a href="#test3">DRIC_Advanced Search</a></td></tr>
+<tr class="done"><td><a href="#test4">DRIC_Advanced Search Filters</a></td></tr>
+<tr class="done"><td><a href="#test5">DRIC_PxImage</a></td></tr>
+
+</tbody></table>
+
+<br><hr><br><a name="test0"></a><table class="test_case"><thead><tr><td colspan="4">Test case: DRIC_Homepage Load</td></tr></thead><tbody><tr class="done">
+	<td>open</td>
+	<td>http://54.164.224.125:8080/dric</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="comment">
+	<td colspan="4">Verify DRIC page is accessible - check homepage loaded propery with all the elements.</td>
+</tr>
+<tr class="passed">
+	<td>assertElementPresent</td>
+	<td>css=img.img-responsive.logo</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="passed">
+	<td>assertElementPresent</td>
+	<td>id=quickSearchFld</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="passed">
+	<td>assertElementPresent</td>
+	<td>id=quickSearchButton</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="passed">
+	<td>assertElementPresent</td>
+	<td>id=advancedSearchShowButton</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="passed">
+	<td>assertElementPresent</td>
+	<td>id=clearSearchButton</td>
+	<td></td>
+	<td></td>
+</tr>
+
+</tbody></table>
+
+<br><hr><br><a name="test1"></a><table class="test_case"><thead><tr><td colspan="4">Test case: DRIC_Base Search</td></tr></thead><tbody><tr class="done">
+	<td>open</td>
+	<td>http://54.164.224.125:8080/dric</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>id=quickSearchFld</td>
+	<td>ciprofloxacin</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[2]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="passed">
+	<td>assertText</td>
+	<td>css=div.panel-heading</td>
+	<td>« Results (1-10 of 10) »</td>
+	<td></td>
+</tr>
+<tr class="passed">
+	<td>assertText</td>
+	<td>css=h4.list-group-item-heading</td>
+	<td>Ciprofloxacin Tablets, USP, 500 mg, Rx Only, 100 Tablets per Bottle, Manufactured in India by: Uniqu</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=a.list-group-item</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>selectWindow</td>
+	<td>null</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=h4.list-group-item-heading</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>id=recalledDrugImageId</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=#searchResultsModal &gt; div.modal-dialog.modal-dialog-center &gt; div.modal-content &gt; div.modal-footer &gt; button.btn.btn-default</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="passed">
+	<td>assertText</td>
+	<td>css=div.col-xs-9 &gt; p</td>
+	<td>Ciprofloxacin Tablets, USP, 500 mg, Rx Only, 100 Tablets per Bottle, Manufactured in India by: Unique Pharmaceutical Laboratories (A Division of J.B. Chemicals &amp; Pharmaceuticals Ltd.), Mumbai - 400 030, Distributed by: PACK Pharmaceuticals, LLC, Buffalo Grove, IL 60089, NDC 16571-412-10.</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=#searchResultsModal &gt; div.modal-dialog &gt; div.modal-content &gt; div.modal-footer &gt; button.btn.btn-default</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[4]</td>
+	<td></td>
+	<td></td>
+</tr>
+
+</tbody></table>
+
+<br><hr><br><a name="test2"></a><table class="test_case"><thead><tr><td colspan="4">Test case: DRIC_Pagnation</td></tr></thead><tbody><tr class="done">
+	<td>open</td>
+	<td>http://54.164.224.125:8080/dric</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>id=quickSearchFld</td>
+	<td>tablet</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>id=quickSearchButton</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="passed">
+	<td>assertText</td>
+	<td>css=div.panel-heading</td>
+	<td>« Results (1-100 of 413) »</td>
+	<td>Element css=div.panel-heading not found</td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=»</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="passed">
+	<td>assertText</td>
+	<td>css=div.panel-heading</td>
+	<td>« Results (101-200 of 413) »</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=»</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="passed">
+	<td>assertText</td>
+	<td>css=div.panel-heading</td>
+	<td>« Results (201-300 of 413) »</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=»</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="passed">
+	<td>assertText</td>
+	<td>css=div.panel-heading</td>
+	<td>« Results (301-400 of 413) »</td>
+	<td>Element css=div.panel-heading not found</td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=»</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="passed">
+	<td>assertText</td>
+	<td>css=div.panel-heading</td>
+	<td>« Results (401-413 of 413) »</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=»</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="passed">
+	<td>assertText</td>
+	<td>css=div.panel-heading</td>
+	<td>« Results (401-413 of 413) »</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=«</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="passed">
+	<td>assertText</td>
+	<td>css=div.panel-heading</td>
+	<td>« Results (301-400 of 413) »</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=«</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="passed">
+	<td>assertText</td>
+	<td>css=div.panel-heading</td>
+	<td>« Results (201-300 of 413) »</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=«</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="passed">
+	<td>assertText</td>
+	<td>css=div.panel-heading</td>
+	<td>« Results (101-200 of 413) »</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=«</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="passed">
+	<td>assertText</td>
+	<td>css=div.panel-heading</td>
+	<td>« Results (1-100 of 413) »</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>//div[@id='srchResultsPanel']/div[2]/div/a[3]/h4</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=#searchResultsModal &gt; div.modal-dialog.modal-dialog-center &gt; div.modal-content &gt; div.modal-footer &gt; button.btn.btn-default</td>
+	<td></td>
+	<td></td>
+</tr>
+
+</tbody></table>
+
+<br><hr><br><a name="test3"></a><table class="test_case"><thead><tr><td colspan="4">Test case: DRIC_Advanced Search</td></tr></thead><tbody><tr class="done">
+	<td>open</td>
+	<td>http://54.164.224.125:8080/dric</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=div.navbar-form &gt; button.btn.btn-default</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>id=advancedSearchShowButton</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=div.modal-footer &gt; button.btn.btn-default</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="passed">
+	<td>assertText</td>
+	<td>css=h2.modal-title</td>
+	<td>Advanced Drug Recall Search</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[6]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=h4.list-group-item-heading</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="passed">
+	<td>assertText</td>
+	<td>css=h3.modal-title</td>
+	<td>Drug Recall Report Details</td>
+	<td></td>
+</tr>
+<tr class="passed">
+	<td>assertText</td>
+	<td>//div[@id='drugRecallDetailsBody']/div/div[2]/div[2]/div/p[3]</td>
+	<td>Class II</td>
+	<td></td>
+</tr>
+<tr class="passed">
+	<td>assertText</td>
+	<td>css=div.col-xs-9 &gt; p</td>
+	<td>Tri-mix T50, 8.825 mg/0.29 mg/2.95 mcg/mL (papaverine, phentolamine mesylate, alprostadil) injectable packaged in a clear glass injectable vial, Martin Avenue Pharmacy, 1247 Rickert Dr, Naperville, IL.</td>
+	<td></td>
+</tr>
+<tr class="passed">
+	<td>assertElementPresent</td>
+	<td>css=#searchResultsModal &gt; div.modal-dialog &gt; div.modal-content &gt; div.modal-footer &gt; button.btn.btn-default</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=#searchResultsModal &gt; div.modal-dialog &gt; div.modal-content &gt; div.modal-footer &gt; button.btn.btn-default</td>
+	<td></td>
+	<td></td>
+</tr>
+
+</tbody></table>
+
+<br><hr><br><a name="test4"></a><table class="test_case"><thead><tr><td colspan="4">Test case: DRIC_Advanced Search Filters</td></tr></thead><tbody><tr class="done">
+	<td>open</td>
+	<td>http://54.164.224.125:8080/dric/</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=div.navbar-form &gt; button.btn.btn-default</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[6]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=All</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[10]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=div.navbar-form &gt; button.btn.btn-default</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[10]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=div.navbar-form &gt; button.btn.btn-default</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[6]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=6 Months</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[10]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=div.navbar-form &gt; button.btn.btn-default</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[6]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=All</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[7]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=Ongoing</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[10]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=div.navbar-form &gt; button.btn.btn-default</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[6]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=All</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[7]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=Completed</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[8]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[10]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=div.navbar-form &gt; button.btn.btn-default</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[6]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=All</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[7]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=Terminated</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[10]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=div.navbar-form &gt; button.btn.btn-default</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[6]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=All</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[8]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=Class I</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[10]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=div.navbar-form &gt; button.btn.btn-default</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[6]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=All</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[8]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=Class II</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[10]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=div.navbar-form &gt; button.btn.btn-default</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[6]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=All</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[8]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=Class III</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[10]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=div.navbar-form &gt; button.btn.btn-default</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[8]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=Class I</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[10]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=div.navbar-form &gt; button.btn.btn-default</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[8]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=Class II</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[10]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=div.navbar-form &gt; button.btn.btn-default</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[8]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=Class III</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[10]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=div.navbar-form &gt; button.btn.btn-default</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[6]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=6 Months</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[7]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=Ongoing</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[8]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=Class I</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[10]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=div.navbar-form &gt; button.btn.btn-default</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[6]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=6 Months</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[7]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=Ongoing</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[8]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=Class II</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[10]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=div.navbar-form &gt; button.btn.btn-default</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[6]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=6 Months</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[7]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=Ongoing</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[8]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=Class III</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[10]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=div.navbar-form &gt; button.btn.btn-default</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[6]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=All</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[7]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=Completed</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[8]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=Class I</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[10]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=div.navbar-form &gt; button.btn.btn-default</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[6]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=All</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[7]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=Completed</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[8]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=Class II</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[10]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=div.navbar-form &gt; button.btn.btn-default</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[6]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=All</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[7]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=Completed</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[8]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=Class III</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[10]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=div.navbar-form &gt; button.btn.btn-default</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>id=advDrugSrchForm</td>
+	<td>capsule</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[7]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=Ongoing</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[10]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=div.navbar-form &gt; button.btn.btn-default</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>id=advDrugSrchForm</td>
+	<td>capsule</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[6]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=6 Months</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[7]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=Ongoing</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[8]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=Class II</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[10]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=div.navbar-form &gt; button.btn.btn-default</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>id=advDrugSrchForm</td>
+	<td>capsule</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[6]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=All</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[8]</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>link=Class II</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>xpath=(//button[@type='button'])[10]</td>
+	<td></td>
+	<td></td>
+</tr>
+
+</tbody></table>
+
+<br><hr><br><a name="test5"></a><table class="test_case"><thead><tr><td colspan="4">Test case: DRIC_PxImage</td></tr></thead><tbody><tr class="done">
+	<td>open</td>
+	<td>http://54.164.224.125:8080/dric</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>type</td>
+	<td>id=quickSearchFld</td>
+	<td>blood</td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>id=quickSearchButton</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=h4.list-group-item-heading</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>id=recalledDrugImageId</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>css=#searchResultsModal &gt; div.modal-dialog.modal-dialog-center &gt; div.modal-content &gt; div.modal-footer &gt; button.btn.btn-default</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr class="done">
+	<td>click</td>
+	<td>id=clearSearchButton</td>
+	<td></td>
+	<td></td>
+</tr>
+
+</tbody></table>
+
+</body></html>
