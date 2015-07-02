@@ -1,8 +1,9 @@
 # DRIC README File
 
-## Publicly-available URL  
+### Publicly-available URL  
 [http://dric-public-449159857.us-east-1.elb.amazonaws.com:8080/dric/] (http://dric-public-449159857.us-east-1.elb.amazonaws.com:8080/dric/)  
 
+### Develoment Approach 
 Dev Technology Group utilized our established process for providing Agile development services for a variety of Federal Government customers to develop the Drug Recall Information Center (DRIC) application. Leveraging key tenants of the US Digital Services Playbook, we developed an open source prototype to provide current drug recall information for consumers. DRIC enables users to easily search for reports of recalled drugs and see a visual image of select recalled drugs. We adopted a strategy of “mobile first” development, ensuring that the application runs on both a traditional desktop and mobile devices.  
 
 Michelle Scheuerman was the **leader** for this project and actively engaged in each step of the development to ensure delivery of a quality product and championed our agile process. She initiated the project with a kick-off meeting to share the vision for DRIC and the process to be followed. Our **collaborative and multidisciplinary team** included Adam D’Angelo (Technical Architect), James Caple (Frontend Web Developer), Jesse Hess (Backend Web Developer), and Larry Cutlip-Mason (DevOps Engineer) and provided the needed skill sets and experience to successfully develop the DRIC application. Working together in our Dev Technology collaboration space, the self-organized team completed prioritized tasks from the Kanban board during a series of development iterations. *(criteria a,  b, & j)*  
@@ -17,4 +18,4 @@ The team also held frequent reviews with the leader, so she could see the progre
 
 The [installation guide](https://github.com/DevTechnology/DRIC/blob/master/INSTALLATION%20INSTRUCTIONS.md) is included in the root of the DRIC GitHub repository to enable users to successfully install it in any environment. To install DRIC on your local Linux Fedora instance, follow the [Docker Installation](https://github.com/DevTechnology/DRIC/blob/master/Docker/readme.md) readme. If you wish to build and deploy DRIC, please follow the [Maven Build & Deploy](https://github.com/DevTechnology/DRIC/blob/master/api/dric-api-webapp/readme.md) readme. For information regarding manually deploying the war to the container, please see the [Manual War Deployment](https://github.com/DevTechnology/DRIC/blob/master/Documentation/Configuration/ManualWarInstall.md) readme.  
 
-In addition, the prototype is openly licensed and is offered free of charge by Dev Technology Group. (criteria k & l)
+In addition, the prototype is **openly licensed** and is offered **free of charge** by Dev Technology Group. *(criteria k & l)*
