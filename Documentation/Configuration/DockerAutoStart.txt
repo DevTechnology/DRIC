@@ -1,0 +1,30 @@
+Example on how to autostart the docker instance using the shell scripts,
+
+Create file docker.service at: /etc/systemd/system/multi-user.target.wants/ directory.
+
+Example:
+	[Unit]
+	Description=DRIC Application
+	Requires=docker.service
+	After=docker.service
+	
+	[Service]
+	User=root
+	Restart=on-failure
+	RestartSec=10
+	ExecStart=-/home/centos/start-jboss.sh
+	ExecStop=-/home/centos/stop-jboss.sh
+	RemainAfterExit=yes
+	
+	[Install]
+	WantedBy=multi-user.target
+
+Reload systemd:
+	 systemctl daemon-reload
+
+Start via systemd:
+	 systemctl start dric
+	 
+To confirm that everything worked, run:
+systemctl status dric
+docker ps
