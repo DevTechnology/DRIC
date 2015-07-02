@@ -1,6 +1,6 @@
 # Manually Installing the War File
 
-1. Navigate to http://<hostname/ip>:9990/console/App.html
+1. Navigate to http://\<hostname/ip\>:9990/console/App.html
 2. In the “Authentication Required” box, enter the following information.
 Username: (Default: admin)
 Password: (Default: Admin#70365)
