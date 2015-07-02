@@ -1,8 +1,8 @@
 #Description:
-Level 1 Monitoring is handled through AWS Services.
+There are 3 Levels to monitoring, The first level is basic system/application and volume statics. The second level requires more advanced intigration with the Logging Configuration (monitoring the logs via Cloudwatch). The 3rd level is integration with chef and nagios for more extensive system recovery and monitoring of specific application states.
 
 ##Level 1
-Cloudwatch is used for System and EBS Volume Metrics.
+Level 1 is configured purely as a default first step using AWS Cloudwatch Alarms.
 http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/ConsoleAlarms.html
 
 ###AWS EC2:
@@ -45,4 +45,7 @@ http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/ConsoleAlarms.
      * Send message to topic "DEV_IT"   
      
 ## Level 2 (Not Implimented)
-This level is a future item, this revolves around setting up Nagios and monitoring the internal logging state of Docker/Jboss and Application logs and other items. Utitilizing Logging Config Level 2, filters and alerts can be created on the Cloudwatch Log Groups
+This level is a future item, This revolves around integrating logging (level 1/2) into the cloudwatch alarms.
+
+## Level 3 (Not Implimented)
+This level is a future item, This revolves around setting up Nagios and monitoring the internal logging state of Docker/Jboss and Application logs and other items.
