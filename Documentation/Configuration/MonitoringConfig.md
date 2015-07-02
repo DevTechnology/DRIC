@@ -1,8 +1,8 @@
 #Description:
-There are 3 Levels to monitoring, The first level is basic system/application and volume statics. The second level requires more advanced intigration with the Logging Configuration (monitoring the logs via Cloudwatch). The 3rd level is integration with chef and nagios for more extensive system recovery and monitoring of specific application states.
+There are 3 Levels to monitoring. The first level is basic system/application and volume statistics. The second level requires more advanced integration with the Logging Configuration (monitoring the logs via CloudWatch). The 3rd level is integration with Chef and Nagios for more extensive system recovery and monitoring of specific application states.
 
 ##Level 1
-Level 1 is configured purely as a default first step using AWS Cloudwatch Alarms.
+Level 1 is configured purely as a default first step using AWS CloudWatch Alarms.
 http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/ConsoleAlarms.html
 
 ###AWS EC2:
@@ -44,8 +44,8 @@ http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/ConsoleAlarms.
     * Actions:
      * Send message to topic "DEV_IT"   
      
-## Level 2 (Not Implimented)
-This level is a future item, This revolves around integrating logging (level 1/2) into the cloudwatch alarms.
+## Level 2 (Not Implemented)
+This level is a future item, This revolves around integrating logging (level 1/2) into the CloudWatch alarms.
 
-## Level 3 (Not Implimented)
-This level is a future item, This revolves around setting up Nagios and monitoring the internal logging state of Docker/Jboss and Application logs and other items.
+## Level 3 (Not Implemented)
+This level is a future item, This revolves around setting up Nagios and monitoring the internal logging state of Docker/Jboss and application logs and other items.
