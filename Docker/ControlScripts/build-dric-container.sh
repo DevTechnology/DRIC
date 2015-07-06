@@ -1,8 +1,8 @@
  #!/bin/bash
  
 # These 2 properties specify the version to build, change if wanted/necessary
-file="dric-api-webapp-1.0-SNAPSHOT.war"
-version="v1.0"
+file="dric-api-webapp-1.1-SNAPSHOT.war"
+version="v1.1"
 
 # You can specify the type of file you want to use, test/debug or prod. Valid parms are "debug", "prod" or no parameter.
 # Example: sudo ./build-dric-container.sh debug
