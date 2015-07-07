@@ -34,7 +34,7 @@ Run the Instructions in the listed order.
 > 1) Download the Control Scripts by executing the following:
  
 ```
-	> curl -O https://raw.githubusercontent.com/DevTechnology/DRIC/master/Docker/ControlScripts/update-control-scripts.sh
+	> curl -O https://raw.githubusercontent.com/DevTechnology/DRIC/DRIC-v1.1-Beta-Release/Docker/ControlScripts/update-control-scripts.sh
 	> sudo chmod 755 *.sh
 	> sudo ./update-control-scripts.sh
 ```
