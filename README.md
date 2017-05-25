@@ -1,8 +1,5 @@
 # DRIC README File
 
-### Publicly-available URL  
-[http://dric-public-449159857.us-east-1.elb.amazonaws.com:8080/dric/] (http://dric-public-449159857.us-east-1.elb.amazonaws.com:8080/dric/)  
-
 ### Development Approach 
 Dev Technology Group utilized our established process for providing Agile development services for a variety of Federal Government customers to develop the Drug Recall Information Center (DRIC) application. Leveraging key tenants of the US Digital Services Playbook, we developed an open source prototype to provide current drug recall information for consumers. DRIC enables users to easily search for reports of recalled drugs and see a visual image of select recalled drugs. We adopted a strategy of “mobile first” development, ensuring that the application runs on both a traditional desktop and mobile devices.  
 
